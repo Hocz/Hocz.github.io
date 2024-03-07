@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+</head>
+<body>
+    <main id="profileMain">
+        <section>
+            <h2>Rasmus Göransson</h2>
+            <div class="profile-container">
+                <img src="Images\profilepic.jpg" alt="Rasmus Göransson">
+                <div class="profile-description">
+                    <div class="description-content">
+                        <h3>Languages:</h3>
+                        <p>
+                            - C# <br> 
+                            - C++ <br> 
+                            - HTML/CSS <br> 
+                            - Java <br> 
+                            - Python 
+                        </p>
+                    </div>
+                    <div class="description-content">
+                        <h3>Engines:</h3>
+                        <p>
+                            - Unity <br>
+                            - Unreal <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <main id="projectsMain">
+        <section>
+            <h2>Projects</h2>
+            <div class="filter-options-container">
+                <button id="filter-btn"><span>Filter</span></button>
+                <div class="filter-options" style="display: none;">
+                    <button onclick="filterProjects('all', this)"><span>Show All<span></button>
+                    <button onclick="filterProjects('unity', this)"><span>Unity<span></button>
+                    <button onclick="filterProjects('unreal', this)"><span>Unreal<span></button>
+                    <button onclick="filterProjects('steam', this)"><span>Steam<span></button>
+                    <button onclick="filterProjects('itch', this)"><span>Itch.io<span></button>
+                    <button onclick="filterProjects('alphabetical', this)"><span>A-Z<span></button>
+                    <!-- <button onclick="filterProjects('chronological', this)">Sort Chronologically</button> -->
+                </div>
+            </div>
+            <div class="projects-container">
+                <div class="project" data-engine="unity" data-steam="no" data-itch="yes" data-title="Cosmic Crusaders">
+                    <div class="project-content">
+                        <h3>Cosmic Crusaders</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unity" data-steam="no" data-itch="yes" data-title="Canyon Climbers">
+                    <div class="project-content">
+                        <h3>Canyon Climbers</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unity" data-steam="no" data-itch="no" data-title="KarioMart">
+                    <div class="project-content">
+                        <h3>KarioMart</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unity" data-steam="no" data-itch="no" data-title="Inventory/Shop System">
+                    <div class="project-content">
+                        <h3>Inventory/Shop System</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unity" data-steam="no" data-itch="no" data-title="Character Customization">
+                    <div class="project-content">
+                        <h3>Character Customization</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unity" data-steam="yes" data-itch="no" data-title="Ultimate Minesweeper">
+                    <div class="project-content">
+                        <h3>Ultimate Minesweeper</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unity" data-steam="no" data-itch="no" data-title="Futuregames Worksample">
+                    <div class="project-content">
+                        <h3>Futuregames Worksample</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unreal" data-steam="yes" data-itch="no" data-title="A Project Template">
+                    <div class="project-content">
+                        <h3>A Project Template</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unreal" data-steam="no" data-itch="yes" data-title="D Project Template">
+                    <div class="project-content">
+                        <h3>D Project Template</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unreal" data-steam="no" data-itch="no" data-title="Project Template">
+                    <div class="project-content">
+                        <h3>Project Template</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unity" data-steam="yes" data-itch="no" data-title="Project Template">
+                    <div class="project-content">
+                        <h3>Project Template</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+                <div class="project" data-engine="unreal" data-steam="yes" data-itch="no" data-title="Project Template">
+                    <div class="project-content">
+                        <h3>Project Template</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </div>
+        </section>
+    </main>
+</body>
+</html>
