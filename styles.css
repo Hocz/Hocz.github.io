@@ -1,0 +1,263 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 20px 0px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 4em;
+    text-shadow: 4px 4px 2px #000;
+}
+
+header h2 {
+    font-size: 2em;
+    color: #4CAF50;
+    text-shadow: 4px 4px 2px #000;
+    margin-right: 20px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: auto;
+} 
+
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+    color: #fff;
+    text-shadow: 4px 4px 2px #000;
+}
+
+.static-coin {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.static-coin:hover {
+    transform: scale(1.2);
+}
+
+.coin {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    pointer-events: none; /* Prevent the animated coin from being interactive */
+    transition: background-image 0.1s steps(6) infinite;
+}
+
+.personal-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -40px;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.linkedin-link img,
+.github-link img,
+.cv-link img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 2px;
+    transition: transform 0.2s ease;
+}
+
+.linkedin-link img:hover {
+    transform: scale(1.1);
+    background-color: #0077B5;
+}
+
+.github-link img:hover {
+    transform: scale(1.1);
+    background-color: #000;
+    border-radius: 50px;
+}
+
+.cv-link img:hover {
+    transform: scale(1.1);
+}
+
+/* Navigation Buttons*/
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* Navigation link styles */
+.nav-link {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4CAF50;
+    transition: width 0.5s ease;
+}
+
+.nav-link:hover {
+    color: #4CAF50;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Active link styles */
+.nav-link.active,
+.nav-link.active:hover {
+    background-color: #333;
+    color: #4CAF50;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Ensure the underline animation does not affect layout */
+.nav-link > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Projects */
+
+#projects h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    text-shadow: 4px 4px 2px #000;
+}
+
+#projects h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4CAF50;
+    transition: width 0.5s ease;
+}
+
+#projects h2:hover {
+    color: #4CAF50;
+}
+
+#projects h2:hover::after {
+    width: 100%;
+}
+
+.project {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.project-title {
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.project-content {
+    
+    width: 750px;
+    height: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1px;
+    border: #222 solid 2px;
+}
+
+
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-shadow: 4px 4px 2px #000;
+}
+
+
+/* Canvas container for Matter.js */
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicks to pass through to elements below */
+}
