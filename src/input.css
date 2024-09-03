@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.social-link-icon 
+{
+    @apply w-8 h-8 hover:scale-125 transition-transform duration-200 ease-in-out;
+}
+
+.header-title {
+    @apply text-4xl md:text-5xl font-bold;
+}
+
+.header-subtitle {
+    @apply text-xl md:text-2xl font-semibold text-green-500;
+}
+
+.header-section {
+    @apply flex flex-col md:flex-row justify-between items-start bg-neutral-800 text-white p-4;
+}
+
+.nav-link {
+    @apply text-lg font-semibold hover:text-green-500;
+}
+
+.project-container {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+}
+
+.project-card {
+    @apply bg-white shadow-md overflow-hidden;
+}
+
+.project-title {
+    @apply p-4 bg-neutral-800 text-center text-white hover:text-green-500;
+}
+
+.project-heading {
+    @apply text-2xl font-semibold;
+}
+
+.project-content {
+    @apply h-64 bg-cover bg-center;
+}
+
+.footer {
+    @apply bg-neutral-800 text-white text-center py-4;
+}

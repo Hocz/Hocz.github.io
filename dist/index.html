@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Rasmus Göransson</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+
+<body class="bg-neutral-700 text-gray-900">
+
+    <!-- Header -->
+    <header class="header-section">
+        <!-- Left Section -->
+        <div class="header-left">
+            <h1 class="header-title">RASMUS GÖRANSSON</h1>
+            <div class="personal-info mt-4 md:mt-2 flex justify-between items-start">
+                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
+                <div class="social-links flex space-x-4">
+                    <a href="https://www.linkedin.com/in/rasmus-g%C3%B6ransson-860330154/" target="_blank">
+                        <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
+                    </a>
+                    <a href="https://github.com/Hocz" target="_blank">
+                        <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
+                    </a>
+                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
+                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="header-right mt-6 md:mt-0 flex flex-col items-center">
+            <nav>
+                <ul class="flex space-x-8">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT ME</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section id="projects" class="project-container">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-title">
+                    <a href="MSExtended.html" class="project-link">
+                        <h2 class="project-heading">Minesweeper Extended</h2>
+                    </a>
+                </div>
+                <div class="project-content" style="background-image: url('../Images/Projects/MSExtended.png');"></div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-title">
+                    <a href="Project2.html" class="project-link">
+                        <h2 class="project-heading">Project2</h2>
+                    </a>
+                </div>
+                <div class="project-content" style="background-image: url('../Images/Projects/MSExtended.png');"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Rasmus Göransson. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
