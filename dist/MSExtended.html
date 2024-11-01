@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSExtended - Rasmus Göransson</title>
+    <link rel="stylesheet" href="output.css">
+    
+    <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
+</head>
+
+<body class="bg-neutral-700 text-gray-900">
+    <!-- Header -->
+    <header class="header-section">
+        <!-- Left Section -->
+        <div class="header-left">
+            <h1 class="header-title">RASMUS GÖRANSSON</h1>
+            <div class="personal-info mt-4 md:mt-2 flex justify-between items-start">
+                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
+                <div class="social-links flex space-x-4">
+                    <a href="https://www.linkedin.com/in/rasmus-g%C3%B6ransson-860330154/" target="_blank">
+                        <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
+                    </a>
+                    <a href="https://github.com/Hocz" target="_blank">
+                        <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
+                    </a>
+                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
+                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="header-right mt-6 md:mt-0 flex flex-col items-center">
+            <nav>
+                <ul class="space-y-4 text-center pr-8">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT ME</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 text-white">
+        <!-- Content Area -->
+        <div class="flex flex-col md:flex-row md:space-x-8">
+            <!-- Main Content -->
+            <section class="md:w-2/3 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
+                <h2 class="text-3xl font-semibold mb-4">Minesweeper Extended</h2>
+                <p class="leading-7 font-normal">
+                    Minesweeper Extended offers a gathered place to play the original classic take on Minesweeper, same rules, same style. Or, you could try some completely different styles of the original! 
+                    <br>Play Hex mode, an entirely different grid style. 
+                    <br>Experience the game in a new perspective and play it in 3D mode. 
+                    <br>You can also challenge yourself in the Endless Mode where you play until you lose or reach the end with each game getting more diffucult than the previous!
+                    <br>
+                    <br>
+                    <p class="-mb-5 font-medium text-green-500">Key Features:</p>
+                    <br>- Classic
+                    <br>- Hexagonal
+                    <br>- 3D
+                    <br>- Endless
+                </p>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="md:w-1/3 bg-neutral-800 bg-opacity-80 p-6 shadow-md my-8 md:my-0">
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Why Minesweeper?</h2>
+                <div>
+                    <p class="leading-7 font-normal">
+                        I used to play Minesweeper whenever I wanted to pass time, always using the same online site to play. 
+                        <br>
+                        <br>After getting into game development I thought it would be fun to revisit it to learn how it was made and make the game myself. Along with publishing it to Steam to create a dedicated place to play it from.
+                        <br>
+                        <br>As there are quite a few existing Minesweeper games already on Steam and on online sites, I decided to add some unique game modes I had not previously seen before: Classic, Hexagonal, 3D and Endless Mode.
+                    </p>
+
+            </aside>
+        </div>
+
+        <!-- Code Snippets Buttons-->
+        <div class="code-snippets-buttons flex justify-center space-x-4 my-6">
+            <a href="#code1">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code1</button>
+            </a>
+            <a href="#code2">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code2</button>
+            </a>
+            <a href="#code3">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code3</button>
+            </a>
+            <a href="#code4">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code4</button>
+            </a>
+        </div>
+        
+<!-- Code Example 1 -->
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
+            <section id="code1" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Image title (ex: code for grid generation)</h2>
+                <pre class="bg-neutral-900 text-white p-4 rounded-md overflow-x-auto">
+                    <code class="language-csharp">
+// Sample C# code for grid generation
+public class Grid
+{
+    private int[,] gridArray;
+    
+    public Grid(int width, int height)
+    {
+        gridArray = new int[width, height];
+        InitializeGrid();
+    }
+
+    private void InitializeGrid()
+    {
+        for (int x = 0; x < gridArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < gridArray.GetLength(1); y++)
+            {
+                gridArray[x, y] = 0;
+            }
+        }
+    }
+}
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 mt-5 shadow-md my-8 md:my-0">
+                <div>
+                    <p class="leading-7 font-normal text-center">
+                         Code Explanation! Wow!
+                    </p>
+            </aside>
+        </div>
+
+<!-- Code Example 2 -->
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
+            <section id="code2" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Image title (ex: code for grid generation)</h2>
+                <pre class="bg-neutral-900 text-white p-4 rounded-md overflow-x-auto">
+                    <code class="language-csharp">
+// Sample C# code for grid generation
+public class Grid
+{
+    private int[,] gridArray;
+    
+    public Grid(int width, int height)
+    {
+        gridArray = new int[width, height];
+        InitializeGrid();
+    }
+
+    private void InitializeGrid()
+    {
+        for (int x = 0; x < gridArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < gridArray.GetLength(1); y++)
+            {
+                gridArray[x, y] = 0;
+            }
+        }
+    }
+}
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 mt-5 shadow-md my-8 md:my-0">
+                <div>
+                    <p class="leading-7 font-normal text-center">
+                         Code Explanation! Wow!
+                    </p>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
