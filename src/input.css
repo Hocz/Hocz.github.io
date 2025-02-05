@@ -6,6 +6,32 @@ html {
     @apply scroll-smooth !important;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #166534;
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #22c55e;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 .social-link-icon 
 {
     @apply w-8 h-8 hover:scale-125 transition-transform duration-200 ease-in-out;
@@ -32,7 +58,7 @@ html {
 }
 
 .project-card {
-    @apply shadow-md overflow-hidden hover:scale-105 transition-transform duration-250 ease-in-out;
+    @apply shadow-md overflow-hidden hover:scale-105 transition-transform duration-200 ease-in-out;
 }
 
 .project-title {

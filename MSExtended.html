@@ -12,6 +12,7 @@
 </head>
 
 <body class="bg-neutral-700 text-gray-900">
+    
     <!-- Header -->
     <header class="header-section">
         <!-- Left Section -->
@@ -44,6 +45,28 @@
         </div>
     </header>
 
+    <div class="fixed top-40 left-5">
+        <!-- Code Snippets Buttons-->
+        <div class="code-snippets-buttons flex flex-col items-center space-y-4 my-6">
+            <a href="#top">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">↑</button>
+            </a>
+            <a href="#code1">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Grid Generation</button>
+            </a>
+            <a href="#code2">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Code2</button>
+            </a>
+            <a href="#code3">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Code3</button>
+            </a>
+            <a href="#code4">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Code4</button>
+            </a>
+        </div>
+
+    </div>
+
     <main class="container mx-auto px-4 py-8 text-white">
         <!-- Content Area -->
         <div class="flex flex-col md:flex-row md:space-x-8">
@@ -72,7 +95,8 @@
                     <p class="leading-7 font-normal">
                         I used to play Minesweeper whenever I wanted to pass time, always using the same online site to play. 
                         <br>
-                        <br>After getting into game development I thought it would be fun to revisit it to learn how it was made and make the game myself. Along with publishing it to Steam to create a dedicated place to play it from.
+                        <br>After getting into game development I thought it would be fun to revisit the game and learn how it was made and make the it myself. 
+                        <br>I also decided to publish it to Steam to create a dedicated place to play it from.
                         <br>
                         <br>As there are quite a few existing Minesweeper games already on Steam and on online sites, I decided to add some unique game modes I had not previously seen before: Classic, Hexagonal, 3D and Endless Mode.
                     </p>
@@ -80,25 +104,128 @@
             </aside>
         </div>
 
-        <!-- Code Snippets Buttons-->
-        <div class="code-snippets-buttons flex justify-center space-x-4 my-6">
-            <a href="#code1">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code1</button>
-            </a>
-            <a href="#code2">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code2</button>
-            </a>
-            <a href="#code3">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code3</button>
-            </a>
-            <a href="#code4">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded">Code4</button>
-            </a>
-        </div>
+
         
 <!-- Code Example 1 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
-            <section id="code1" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
+            <section id="code1" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 rounded-sm">
+                <pre class="bg-neutral-800 text-white p-4 rounded-md h-96 overflow-y-auto">
+                    <code class="language-csharp">
+public class Grid
+{
+    private CellData[,] _grid;
+
+    public int Width => _grid.GetLength(0);
+    public int Height => _grid.GetLength(1);
+
+    public CellData this[int x, int y] => _grid[x, y];
+    public Grid(int width, int height)
+    {
+        _grid = new CellData[width, height];
+
+        for (int x = 0; x < _grid.GetLength(0); x++)
+        {
+            for (int y = 0; y < _grid.GetLength(1); y++)
+            {
+                CellData cellData = ScriptableObject.CreateInstance<CellData>();
+                _grid[x, y] = cellData;
+                cellData.Position = new Vector3Int(x, y, 0);
+                cellData.Type = CellData.CellType.Empty;
+            }
+        }
+    }
+
+    public void CreateCellMines(CellData clickedCell, int amount)
+    {
+        int width = Width;
+        int height = Height;
+
+        int placedAmount = 0;
+
+        List<Vector2Int> validCells = new List<Vector2Int>();
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                CellData cellData = _grid[x, y];
+
+                // Exclude the clicked cell and its neighbors                
+                if (!IsAdjacent(clickedCell, cellData) && 
+                !(x == clickedCell.Position.x && y == clickedCell.Position.y))
+                {
+                    validCells.Add(new Vector2Int(x, y));
+                }
+            }
+        }
+
+        // Shuffle the list of possible positions to randomize mine placement
+        validCells = validCells.OrderBy(a => Random.value).ToList();
+
+        // Place the mines
+        for (int i = 0; i < amount && validCells.Count > 0; i++)
+        {
+            Vector2Int pos = validCells[0];
+            validCells.RemoveAt(0); // Remove the position to avoid placing another mine here
+            _grid[pos.x, pos.y].Type = CellData.CellType.Mine;
+            placedAmount++;
+        }
+    }
+
+    public void CreateCellNumbers()
+    {
+        int width = Width;
+        int height = Height;
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                CellData cellData = _grid[x, y];
+
+                if (cellData.Type == CellData.CellType.Mine) continue;
+
+                cellData.Number = GetAdjacentMines(cellData);
+                cellData.Type = cellData.Number > 0 ? CellData.CellType.Number : CellData.CellType.Empty;
+            }
+        }
+    }
+
+    public int GetAdjacentMines(CellData cellData)
+    {
+        int amount = 0;
+
+        IEnumerable<Vector2Int> adjacentOffsets = GameModeManager.Instance.CurrentGameMode != GameModeManager.GameMode.Hex
+                ? GetAllAdjacent()
+                : GetAdjacentHex(cellData);
+
+        foreach (Vector2Int offset in adjacentOffsets)
+        {
+            int x = cellData.Position.x + offset.x;
+            int y = cellData.Position.y + offset.y;
+
+            if (TryGetCellData(x, y, out CellData adjacentCellData) && 
+            adjacentCellData.Type == CellData.CellType.Mine)
+                amount++;
+        }
+
+        return amount;
+    }
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="md:w-2/4 bg-neutral-700 bg-opacity-80 p-6 my-8 md:my-0">
+                <h2 class="text-2xl font-semibold mb-4 text-green-500">Grid Generation</h2>
+                    <p class="leading-7 font-normal ">
+                         Code Explanation! Wow!
+                    </p>
+            </aside>
+        </div>
+
+<!-- Code Example 2 -->
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
+            <section id="code2" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
                 <h2 class="text-xl font-semibold mb-4">Image title (ex: code for grid generation)</h2>
                 <pre class="bg-neutral-900 text-white p-4 rounded-md overflow-x-auto">
                     <code class="language-csharp">
@@ -137,9 +264,9 @@ public class Grid
             </aside>
         </div>
 
-<!-- Code Example 2 -->
+        <!-- Code Example 3 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
-            <section id="code2" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
+            <section id="code3" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
                 <h2 class="text-xl font-semibold mb-4">Image title (ex: code for grid generation)</h2>
                 <pre class="bg-neutral-900 text-white p-4 rounded-md overflow-x-auto">
                     <code class="language-csharp">
