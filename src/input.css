@@ -32,7 +32,7 @@ html {
 }
 
 .project-card {
-    @apply shadow-md overflow-hidden hover:scale-105 transition-transform duration-150 ease-in-out;
+    @apply shadow-md overflow-hidden hover:scale-105 transition-transform duration-250 ease-in-out;
 }
 
 .project-title {
