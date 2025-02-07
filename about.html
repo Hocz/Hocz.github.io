@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - Rasmus Göransson</title>
     <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap">
 </head>
-<body class="bg-neutral-700 text-gray-900">
+
+<body class="bg-teal-900 text-white font-exo2">
 
     <!-- Header -->
     <header class="header-section">
@@ -44,28 +46,89 @@
         <!-- Content Area -->
         <div class="flex flex-col md:flex-row md:space-x-8">
             <!-- Main Content -->
-            <section class="md:w-2/3 bg-stone-200 p-6 shadow-md">
-                <h2 class="text-xl font-semibold mb-4">About Me</h2>
-                <p>This is the main content area. On larger screens, it will take up more space, and the sidebar will be positioned to the side. On smaller screens, the layout will change to accommodate a better user experience.</p>
+            <section class="md:w-2/3">
+                <div class="About bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
+                    <h2 class="text-5xl text-green-500 font-semibold mb-4">Rasmus Göransson</h2>
+                    <div class="flex justify-between">
+                        <div class="text-xl leading-8">
+                            <p>
+                                For the majority of my life I have been playing and loving video games. 
+                                I have always thought the idea of making games and coding seem so increadible and fun while at the same time a bit intimidating.
+                                It was through the help to a close friend giving me the push I needed that I decided to give game development a chance and I am so glad I did.
+                            </p>
+                            <p class="my-4">
+                                I am currently studying at Futuregames Stockholm, Sweden as a Gameplay Programmer. I love learning an trying different things.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:space-x-8 justify-between mt-8 pt-10">
+                    <div class="skill">
+                        <h3 class="Language text-3xl text-green-500">Languages</h3>
+                        <div class="C# flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            C#
+                        </div>
+                        <div class="Cpp flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            C++
+                        </div>
+                        <div class="HTML/CSS flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            HTML / CSS
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <h3 class="Engine text-3xl text-green-500">Engines | IDE</h3>
+                        <div class="Unity flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            Unity
+                        </div>
+                        <div class="Unreal flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            Unreal Engine
+                        </div>
+                        <div class="Visual Studio flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            Visual Studio
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <h3 class="Version Control text-3xl text-green-500">Version Control</h3>
+                        <div class="Github flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            Github
+                        </div>
+                        <div class="Perforce flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            Perforce
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <h3 class="Software text-3xl text-green-500">Softwares</h3>
+                        <div class="Aseprite flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            Aseprite
+                        </div>
+                        <div class="Blender flex text-2xl text-white pt-4">
+                            <div class="h-6 bg-white w-0.5 my-1 ml-2 mr-4"></div>
+                            Blender
+                        </div>
+                    </div>
+                </div>
+                
+
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-stone-200 p-6 shadow-md my-8 md:my-0">
-                <h2 class="text-4xl font-semibold mb-4 text-center">Skills</h2>
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">Languages:</h3>
-                    <p class="text-base">- C#<br>- C++<br>- HTML/CSS<br>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">Engines:</h3>
-                    <p class="text-base">- Unity<br>- Unreal</p>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">Software:</h3>
-                    <p class="text-base">- Blender<br>- Aseprite</p>
-                </div>                
+            <aside class="md:w-1/3 bg-transparent p-6 my-8 md:my-0">
+                
+                <img src="Images/temp-profile.jpg" alt="ProfilePic" class="rounded-full">
+          
             </aside>
         </div>
     </main>

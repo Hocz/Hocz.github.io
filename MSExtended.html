@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSExtended - Rasmus Göransson</title>
     <link rel="stylesheet" href="output.css">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap">
+
     <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
 </head>
 
-<body class="bg-neutral-700 text-gray-900">
+<body class="bg-teal-900 text-white font-exo2">
     
     <!-- Header -->
     <header class="header-section">
@@ -49,19 +50,19 @@
         <!-- Code Snippets Buttons-->
         <div class="code-snippets-buttons flex flex-col items-center space-y-4 my-6">
             <a href="#top">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">↑</button>
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">↑</button>
             </a>
             <a href="#code1">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Grid Generation</button>
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Grid Generation</button>
             </a>
             <a href="#code2">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Code2</button>
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Code2</button>
             </a>
             <a href="#code3">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Code3</button>
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Code3</button>
             </a>
             <a href="#code4">
-                <button class="code-snippet-button px-4 py-2 bg-neutral-800 bg-opacity-80 rounded-md text-white hover:text-green-500">Code4</button>
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Code4</button>
             </a>
         </div>
 
@@ -71,34 +72,54 @@
         <!-- Content Area -->
         <div class="flex flex-col md:flex-row md:space-x-8">
             <!-- Main Content -->
-            <section class="md:w-2/3 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
-                <h2 class="text-3xl font-semibold mb-4">Minesweeper Extended</h2>
-                <p class="leading-7 font-normal">
-                    Minesweeper Extended offers a gathered place to play the original classic take on Minesweeper, same rules, same style. Or, you could try some completely different styles of the original! 
-                    <br>Play Hex mode, an entirely different grid style. 
-                    <br>Experience the game in a new perspective and play it in 3D mode. 
-                    <br>You can also challenge yourself in the Endless Mode where you play until you lose or reach the end with each game getting more diffucult than the previous!
-                    <br>
-                    <br>
-                    <p class="-mb-5 font-medium text-green-500">Key Features:</p>
-                    <br>- Classic
-                    <br>- Hexagonal
-                    <br>- 3D
-                    <br>- Endless
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
+                <h2 class="text-3xl font-semibold mb-4 text-green-500">Minesweeper Extended</h2>
+                <p class="leading-8 text-xl py-4">
+                    Minesweeper Extended offers a gathered place to play the original classic take on Minesweeper, same rules, same style. 
+                    Or, you could try some completely different styles of the original! 
+                </p>
+                <p class="leading-8 text-xl py-2">
+                    Play Hex mode, an entirely different grid style. 
+                </p>
+                <p class="leading-8 text-xl py-2">
+                    Experience the game in a new perspective and play it in 3D mode.
+                </p>
+                <p class="leading-8 text-xl py-2">
+                    You can also challenge yourself in the Endless Mode where you play until you lose or reach the end with each game getting more diffucult than the previous!
+                </p>
+                <p class="leading-8 text-xl py-4 text-green-500">
+                    Key Features:
+                    <p class="text-xl py-1">
+                    Classic
+                    </p>
+                    <p class="text-xl py-1">
+                    Hexagonal
+                    </p>
+                    <p class="text-xl py-1">
+                    3D  
+                    </p>
+                    <p class="text-xl py-1">
+                    Endless
+                    </p>
                 </p>
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-800 bg-opacity-80 p-6 shadow-md my-8 md:my-0">
+            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
                 <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Why Minesweeper?</h2>
                 <div>
-                    <p class="leading-7 font-normal">
+                    <p class="leading-8 text-xl py-4">
                         I used to play Minesweeper whenever I wanted to pass time, always using the same online site to play. 
                         <br>
-                        <br>After getting into game development I thought it would be fun to revisit the game and learn how it was made and make the it myself. 
-                        <br>I also decided to publish it to Steam to create a dedicated place to play it from.
-                        <br>
-                        <br>As there are quite a few existing Minesweeper games already on Steam and on online sites, I decided to add some unique game modes I had not previously seen before: Classic, Hexagonal, 3D and Endless Mode.
+    
+                    </p>
+                    <p class="leading-8 text-xl py-4">
+                        After getting into game development I thought it would be fun to revisit the game and learn how it was made and make the it myself. 
+                        I also decided to publish it to Steam to create a dedicated place to play it from.
+                    </p>
+                    <p class="leading-8 text-xl py-4">
+                        As there are quite a few existing Minesweeper games already on Steam and on online sites, 
+                        I decided to add some unique game modes I had not previously seen before: Classic, Hexagonal, 3D and Endless Mode.
                     </p>
 
             </aside>
@@ -108,8 +129,8 @@
         
 <!-- Code Example 1 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
-            <section id="code1" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 rounded-sm">
-                <pre class="bg-neutral-800 text-white p-4 rounded-md h-96 overflow-y-auto">
+            <section id="code1" class="md:w-3/4 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl">
+                <pre class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
 public class Grid
 {
@@ -215,9 +236,9 @@ public class Grid
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-2/4 bg-neutral-700 bg-opacity-80 p-6 my-8 md:my-0">
-                <h2 class="text-2xl font-semibold mb-4 text-green-500">Grid Generation</h2>
-                    <p class="leading-7 font-normal ">
+            <aside class="md:w-2/4 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Grid Generation</h2>
+                    <p class="leading-8">
                          Code Explanation! Wow!
                     </p>
             </aside>
@@ -225,9 +246,9 @@ public class Grid
 
 <!-- Code Example 2 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
-            <section id="code2" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
+            <section id="code2" class="md:w-3/4 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl">
                 <h2 class="text-xl font-semibold mb-4">Image title (ex: code for grid generation)</h2>
-                <pre class="bg-neutral-900 text-white p-4 rounded-md overflow-x-auto">
+                <pre class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
 // Sample C# code for grid generation
 public class Grid
@@ -256,54 +277,57 @@ public class Grid
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 mt-5 shadow-md my-8 md:my-0">
+            <aside class="md:w-2/4 bg-neutral-900 bg-opacity-80 p-6 mt-5 rounded-3xl my-8 md:my-0">
                 <div>
-                    <p class="leading-7 font-normal text-center">
+                    <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Code title</h2>
+                    <p class="leading-8 text-lg">
                          Code Explanation! Wow!
                     </p>
             </aside>
         </div>
 
-        <!-- Code Example 3 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
-            <section id="code3" class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 shadow-md">
-                <h2 class="text-xl font-semibold mb-4">Image title (ex: code for grid generation)</h2>
-                <pre class="bg-neutral-900 text-white p-4 rounded-md overflow-x-auto">
-                    <code class="language-csharp">
+<!-- Code Example 3 -->
+<div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
+    <section id="code3" class="md:w-3/4 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl">
+        <h2 class="text-xl font-semibold mb-4">Image title (ex: code for grid generation)</h2>
+        <pre class="p-4 rounded-3xl h-96 overflow-y-auto">
+            <code class="language-csharp">
 // Sample C# code for grid generation
 public class Grid
 {
-    private int[,] gridArray;
-    
-    public Grid(int width, int height)
-    {
-        gridArray = new int[width, height];
-        InitializeGrid();
-    }
+private int[,] gridArray;
 
-    private void InitializeGrid()
+public Grid(int width, int height)
+{
+gridArray = new int[width, height];
+InitializeGrid();
+}
+
+private void InitializeGrid()
+{
+for (int x = 0; x < gridArray.GetLength(0); x++)
+{
+    for (int y = 0; y < gridArray.GetLength(1); y++)
     {
-        for (int x = 0; x < gridArray.GetLength(0); x++)
-        {
-            for (int y = 0; y < gridArray.GetLength(1); y++)
-            {
-                gridArray[x, y] = 0;
-            }
-        }
+        gridArray[x, y] = 0;
     }
 }
-                    </code>
-                </pre>
-            </section>
+}
+}
+            </code>
+        </pre>
+    </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/4 bg-neutral-800 bg-opacity-80 p-6 mt-5 shadow-md my-8 md:my-0">
-                <div>
-                    <p class="leading-7 font-normal text-center">
-                         Code Explanation! Wow!
-                    </p>
-            </aside>
-        </div>
+    <!-- Sidebar -->
+    <aside class="md:w-2/4 bg-neutral-900 bg-opacity-80 p-6 mt-5 rounded-3xl my-8 md:my-0">
+        <div>
+            <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Code title</h2>
+            <p class="leading-8 text-lg">
+                 Code Explanation! Wow!
+            </p>
+    </aside>
+</div>
+
     </main>
 </body>
 </html>
