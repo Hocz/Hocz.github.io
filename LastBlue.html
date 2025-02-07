@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Blue - Rasmus Göransson</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap">
+
+    <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
+</head>
+
+<body class="bg-teal-900 text-white font-exo2">
+    
+    <!-- Header -->
+    <header class="header-section">
+        <!-- Left Section -->
+        <div class="header-left">
+            <h1 class="header-title">RASMUS GÖRANSSON</h1>
+            <div class="personal-info mt-4 md:mt-2 flex justify-between items-start">
+                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
+                <div class="social-links flex space-x-4">
+                    <a href="https://www.linkedin.com/in/rasmus-g/" target="_blank">
+                        <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
+                    </a>
+                    <a href="https://github.com/Hocz" target="_blank">
+                        <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
+                    </a>
+                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
+                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="header-right mt-6 md:mt-0 flex flex-col items-center">
+            <nav>
+                <ul class="space-y-4 text-center pr-8">
+                    <li><a href="index.html" class="nav-link">HOME</a></li>
+                    <li><a href="about.html" class="nav-link">ABOUT ME</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="fixed top-40 left-5">
+        <!-- Code Snippets Buttons-->
+        <div class="code-snippets-buttons flex flex-col items-center space-y-4 my-6">
+            <a href="#top">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">↑</button>
+            </a>
+            <a href="#code1">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Code1</button>
+            </a>
+            <a href="#code2">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Code2</button>
+            </a>
+            <a href="#code3">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Code3</button>
+            </a>
+            <a href="#code4">
+                <button class="code-snippet-button px-4 py-2 bg-neutral-900 bg-opacity-95 rounded-md text-white hover:text-green-500">Code4</button>
+            </a>
+        </div>
+
+    </div>
+
+    <main class="container mx-auto px-4 py-8 text-white">
+        <!-- Content Area -->
+        <div class="flex flex-col md:flex-row md:space-x-8">
+            <!-- Main Content -->
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
+                <h2 class="text-3xl font-semibold mb-4 text-green-500">The Last Blue</h2>
+                <p class="leading-8 text-xl py-4">
+                    The Last Blue was our third Game project and was made by a team of 16 people. 
+                    
+                </p>
+                
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">My Contribution</h2>
+                <div>
+                    <p class="leading-8 text-xl py-4">
+                        For this project I mainly worked on AI using Unreal Engines Behavior Tree. 
+                    </p>
+                    <p class="leading-8 text-xl py-4">
+                        Aside from that I also did a little bit of UI.
+                    </p>
+            </aside>
+        </div>
+
+        <div>
+            <iframe class="my-8 rounded-3xl place-self-center" width="800" height="450" src="https://www.youtube.com/embed/VP8Lf0wo_jU?si=NGo-T_lzRchBsgAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+
+        
+<!-- Code Example 1 -->
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-10">
+            <section id="code1" class="md:w-3/4 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl">
+                <pre class="p-4 rounded-3xl h-96 overflow-y-auto">
+                    <code class="language-csharp">
+#pragma once
+
+#include "Actor.h"
+
+class Block : public Actor
+{
+public:
+
+    Block(glm::vec2 position);
+
+    void Update() override;
+    void Render() override;
+
+    void Hit(int damage) override;
+
+};
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="md:w-2/4 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Code title</h2>
+                    <p class="leading-8">
+                         Code Explanation! Wow!
+                    </p>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
