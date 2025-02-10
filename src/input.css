@@ -20,13 +20,13 @@ html {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #171717;
+    background: #166534;
     border-radius: 2px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #262626;
+    background: #22c55e;
 }
 
 ::-webkit-scrollbar-corner {
@@ -47,11 +47,11 @@ html {
 }
 
 .header-section {
-    @apply flex flex-col md:flex-row justify-between items-start bg-neutral-900 text-white p-4;
+    @apply flex flex-col md:flex-row justify-between items-start bg-neutral-900 bg-opacity-90 text-white p-4;
 }
 
 .nav-link {
-    @apply text-lg font-semibold hover:text-green-500 inline-block hover:scale-110;
+    @apply text-lg font-semibold p-2 inline-block hover:scale-110 transition-transform duration-200 ease-in-out;
 }
 
 .project-container {
@@ -76,6 +76,10 @@ html {
 
 .project-content {
     @apply h-80 bg-cover bg-center;
+}
+
+.code-snippet-button{
+    @apply px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500
 }
 
 .skill {
