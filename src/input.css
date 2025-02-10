@@ -83,5 +83,5 @@ html {
 }
 
 .skill {
-    @apply bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl my-4
+    @apply bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl my-2
 }
