@@ -75,7 +75,7 @@ html {
 }
 
 .project-content {
-    @apply h-80 bg-cover bg-center;
+    @apply h-80 bg-cover bg-top;
 }
 
 .code-snippet-button{

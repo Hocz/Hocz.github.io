@@ -722,14 +722,6 @@ video {
   height: fit-content;
 }
 
-.h-80 {
-  height: 20rem;
-}
-
-.h-auto {
-  height: auto;
-}
-
 .w-0\.5 {
   width: 0.125rem;
 }
@@ -1175,7 +1167,7 @@ html {
 .project-content {
   height: 20rem;
   background-size: cover;
-  background-position: center;
+  background-position: top;
 }
 
 .code-snippet-button {

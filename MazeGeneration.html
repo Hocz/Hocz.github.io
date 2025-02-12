@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rasmus Göransson - The Last Blue</title>
+    <title>Rasmus Göransson - Procedural Maze Generation</title>
     <link rel="stylesheet" href="output.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap">
 
-    <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css"/>
+    <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
 </head>
@@ -51,50 +51,34 @@
         <div id="top" class="flex flex-col md:flex-row md:space-x-8">
             <!-- Main Content -->
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500">The Last Blue</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500">Procedural Maze Generation</h2>
                 <p class="leading-8 text-xl py-4">
-                    The Last Blue was our third Game project and was made by a team of 16 people. 
                     
-                </p>
-                <p class="leading-8 text-xl py-4">
-                    Sample text!
                 </p>
             </section>
 
             <!-- Sidebar -->
             <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">My Contribution</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Why? | Ideas</h2>
                 <div>
                     <p class="leading-8 text-xl py-4">
-                        For this project I mainly worked on AI using Unreal Engines Behavior Tree. 
-                    </p>
-                    <p class="leading-8 text-xl py-4">
-                        Aside from that I also did a little bit of UI.
-                    </p>
-                    <p class="leading-8 text-xl py-4">
-                        Sample text!
-                    </p>
-            </aside>
-        </div>
 
-        <div>
-            <iframe class="my-8 rounded-3xl place-self-center" width="800" height="450" src="https://www.youtube.com/embed/VP8Lf0wo_jU?si=NGo-T_lzRchBsgAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </p>
+
+            </aside>
         </div>
 
         <!-- Code Snippets Buttons-->
         <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
             <button class="code-snippet-button" onclick="scrollToElement('top')">↑</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Example 1</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Example 2</button>      
-            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Example 3</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Example 4</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Example 5</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Depth First Search</button>
+            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Defined Areas</button>
+            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Random Areas</button>         
+            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Cross Paths</button>         
+            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Sprites</button>    
             <button class="code-snippet-button" onclick="scrollToElement('code6example')">Example 6</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Example 7</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code8example')">Example 8</button>    
         </div>
         
-
         <!-- Code Example 1 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section id="code1example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
@@ -105,16 +89,111 @@
                 </button>
                 <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!
+private void GenerateMaze()
+{
+    Cell startCell = _mazeGrid[0, 0];
+    startCell.Visit(true);
+
+    _cellStack.Push(startCell);
+
+    while (_cellStack.Count > 0)
+    {
+        Cell currentCell = _cellStack.Pop();
+        Cell nextCell = GetNextCell(currentCell);
+
+        if (nextCell != null)
+        {
+            if (!_cellConnections.ContainsKey(currentCell))
+            {
+                _cellConnections[currentCell] = new List<Cell>();
+            }
+            _cellConnections[currentCell].Add(nextCell);
+
+            if (!_cellConnections.ContainsKey(nextCell))
+            {
+                _cellConnections[nextCell] = new List<Cell>();
+            }
+            _cellConnections[nextCell].Add(currentCell);
+
+            nextCell.Visit(true);
+            _cellStack.Push(currentCell);
+            _cellStack.Push(nextCell);
+        }
+    }
+}
+
+
+private Cell GetNextCell(Cell currentCell)
+{
+    List<Cell> neighbors = GetNeighbors(currentCell);
+
+    if (neighbors.Count == 0)
+    {
+        return null;
+    }
+    int index = UnityEngine.Random.Range(0 , neighbors.Count);
+    return neighbors[index];
+}
+
+
+private List<Cell> GetNeighbors(Cell currentCell)
+{
+    int x = currentCell.PosX;
+    int y = currentCell.PosY;
+
+    List<Cell> neighbors = new List<Cell>();
+
+    // right neighbor
+    if (x + 1 < MazeWidth)
+    {
+        Cell rightNeighbor = _mazeGrid[x + 1, y];
+        if (!rightNeighbor.IsVisited)
+        {
+            neighbors.Add(rightNeighbor);
+        }
+    }
+
+    // left neighbor
+    if (x - 1 >= 0)
+    {
+        Cell leftNeighbor = _mazeGrid[x - 1, y];
+        if (!leftNeighbor.IsVisited)
+        {
+            neighbors.Add(leftNeighbor);
+        }
+    }
+
+    // top neighbor
+    if (y + 1 < MazeHeight)
+    {
+        Cell topNeighbor = _mazeGrid[x, y + 1];
+        if (!topNeighbor.IsVisited)
+        {
+            neighbors.Add(topNeighbor);
+        }
+    }
+
+    // bottom neighbor
+    if (y - 1 >= 0)
+    {
+        Cell bottomNeighbor = _mazeGrid[x, y - 1];
+        if (!bottomNeighbor.IsVisited)
+        {
+            neighbors.Add(bottomNeighbor);
+        }
+    }
+
+    return neighbors;
+}
                     </code>
                 </pre>
             </section>
 
             <!-- Sidebar -->
             <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Depth First Search Algorithm</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                        Sample Text!
                 </p>
             </aside>    
         </div>
@@ -122,7 +201,7 @@ Sample Code!
         <!-- Code Example 2 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Defined Areas</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -160,17 +239,18 @@ Sample Code!
 
             <!-- Sidebar -->
             <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Random Areas</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
             </aside>    
         </div>
 
+
         <!-- Code Example 4 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Cross Paths</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -208,7 +288,7 @@ Sample Code!
 
             <!-- Sidebar -->
             <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sprites</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -233,55 +313,6 @@ Sample Code!
                 ⇅
                 </button>
                 <pre id="code6pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
-            </aside>
-        </div>
-
-        <!-- Code Example 7 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section id="code7example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
-                <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code7pre')">
-                ⇅
-                </button>
-                <pre id="code7pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
-            </section>
-
-            <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
-                <p class="leading-8 py-1">
-                    Sample Text!
-                </p>
-            </aside>    
-        </div>
-
-
-        <!-- Code Example 8 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
-                <p class="leading-8 py-1">
-                    Sample Text!
-                </p>
-            </section>
-
-            <!-- Sidebar -->
-            <aside id="code8example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
-                <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code8pre')">
-                ⇅
-                </button>
-                <pre id="code8pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
 Sample Code!        
                     </code>
