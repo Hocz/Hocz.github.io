@@ -91,24 +91,43 @@
             <button class="code-snippet-button" onclick="scrollToElement('code7example')">Block Class</button>
 
         </div>
-        
+
         <!-- Code Example 1 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section id="code1example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">    
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+                
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code1pre')">
                 ⇅
                 </button>
-                <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <button 
+                class="absolute top-16 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
+                onclick="toggleSections()">
+                ⇆
+                </button>
+
+                <div id="code1-h" class="">
+                    <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+Sample Code! h
+
+                        </code>
+                    </pre>
+                </div>
+
+                <div id="code1-c" class="hidden">
+                    <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+Sample Code! cpp
+                        </code>
+                    </pre>
+                </div>
+
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Game Class</h2>
                 <p class="leading-8 py-1">
                         Sample Text!
@@ -117,7 +136,7 @@ Sample Code!
         </div>
 
         <!-- Code Example 2 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+        <div id="code2example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Input Manager</h2>
                 <p class="leading-8 py-1">
@@ -126,7 +145,7 @@ Sample Code!
             </section>
 
             <!-- Sidebar -->
-            <aside id="code2example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code2pre')">
@@ -142,7 +161,7 @@ Sample Code!
 
         <!-- Code Example 3 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section id="code3example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code3pre')">
@@ -156,7 +175,7 @@ Sample Code!
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Texture Manager</h2>
                 <p class="leading-8 py-1">
                         Sample Text!
@@ -166,7 +185,7 @@ Sample Code!
         
 
         <!-- Code Example 4 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+        <div id="code4example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Collision</h2>
                 <p class="leading-8 py-1">
@@ -175,7 +194,7 @@ Sample Code!
             </section>
 
             <!-- Sidebar -->
-            <aside id="code4example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code4pre')">
@@ -191,7 +210,7 @@ Sample Code!
 
         <!-- Code Example 5 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section id="code5example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code5pre')">
@@ -205,7 +224,7 @@ Sample Code!
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Camera</h2>
                 <p class="leading-8 py-1">
                         Sample Text!
@@ -214,7 +233,7 @@ Sample Code!
         </div>
 
         <!-- Code Example 6 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+        <div id="code6example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Player Class</h2>
                 <p class="leading-8 py-1">
@@ -223,7 +242,7 @@ Sample Code!
             </section>
 
             <!-- Sidebar -->
-            <aside id="code6example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code6pre')">
@@ -239,7 +258,7 @@ Sample Code!
 
         <!-- Code Example 7 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section id="code7example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code7pre')">
@@ -253,7 +272,7 @@ Sample Code!
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Block Class</h2>
                 <p class="leading-8 py-1">
                         Sample Text!
@@ -285,5 +304,17 @@ Sample Code!
             }
         }
     </script>
+
+    <script>
+        function toggleSections(id) {
+            const preElement = document.getElementById(id);
+            if (preElement.classList.contains("hidden")) {
+                preElement.classList.remove("hidden");
+            } else {
+                preElement.classList.add("hidden");
+            }
+        }
+    </script>
+
 </body>
 </html>

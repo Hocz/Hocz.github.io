@@ -124,7 +124,7 @@
 
         <!-- Code Example 1 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section id="code1example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code1pre')">
@@ -161,7 +161,7 @@ public class Grid
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
+            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Grid Class</h2>
                 <p class="leading-8 py-1">
                     The Grid class initializes a 2D array of Celldata objects, each representing an individual cell. 
@@ -177,7 +177,7 @@ public class Grid
         </div>
         
         <!-- Code Example 2 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+        <div id="code2example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Mine Placement</h2>
                 <p class="leading-8 py-1">
@@ -194,7 +194,7 @@ public class Grid
             </section>
 
             <!-- Sidebar -->
-            <aside id="code2example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code2pre')">
@@ -244,7 +244,7 @@ public void CreateCellMines(CellData clickedCell, int amount)
 
         <!-- Code Example 3 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20 relative">
-            <section id="code3example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code3pre')">
@@ -275,7 +275,7 @@ public void CreateCellNumbers()
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
+            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Number Placement</h2>
                     <p class="leading-8 py-1">
                         Numbers are generated based on the number of adjacent mines there are to each individual cell.
@@ -290,7 +290,7 @@ public void CreateCellNumbers()
         </div>
 
         <!-- Code Example 4 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+        <div id="code4example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Revel Cells</h2>
                 <p class="leading-8 py-1">
@@ -306,7 +306,7 @@ public void CreateCellNumbers()
             </section>
 
             <!-- Sidebar -->
-            <aside id="code4example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code4pre')">
@@ -385,7 +385,7 @@ private void RevealArea(CellData cellData)
 
         <!-- Code Example 5 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20 relative">
-            <section id="code5example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code5pre')">
@@ -425,7 +425,7 @@ private void Unchord(CellData chord)
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
+            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Chord Cells</h2>
                     <p class="leading-8 py-1">
                         Chording is a method used to automatically reveal nearby cells when certain conditions are met.
@@ -441,7 +441,7 @@ private void Unchord(CellData chord)
         </div>
 
        <!-- Code Example 6 -->
-       <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+       <div id="code6example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
         <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
             <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Steam Achievements Manager</h2>
             <p class="leading-8 py-1">
@@ -458,7 +458,7 @@ private void Unchord(CellData chord)
         </section>
 
             <!-- Sidebar -->
-            <aside id="code6example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
                 onclick="toggleOverflow('code6pre')">
