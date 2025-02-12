@@ -111,12 +111,14 @@
         </div>
 
         <!-- Code Snippets Buttons-->
-        <div class="sticky top-4 z-50 flex justify-between bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
+        <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
             <button class="code-snippet-button" onclick="scrollToElement('top')">↑</button>
             <button class="code-snippet-button" onclick="scrollToElement('code1example')">Grid</button>
             <button class="code-snippet-button" onclick="scrollToElement('code2example')">Mines</button>
             <button class="code-snippet-button" onclick="scrollToElement('code3example')">Numbers</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Steam Achievements</button>
+            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Reveal</button>
+            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Chord</button>
+            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Steam Achievements</button>
         </div>
 
 
@@ -159,21 +161,36 @@ public class Grid
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Grid Generation</h2>
-                <p class="leading-8">
-                        Sample Text!
+            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Grid Class</h2>
+                <p class="leading-8 py-1">
+                    The Grid class initializes a 2D array of Celldata objects, each representing an individual cell. 
+                </p>
+                <p class="leading-8 py-1">
+                    Every cell is assigned a position within the grid and a default type of Empty.
+                </p>
+                <p class="leading-8 py-1">
+                    By using Celldata as a Scriptable Object makes it easier to manage each cell's properties and state changes. 
+                    This allows cells to be modified and tracked simply by accessing their celldata.
                 </p>
             </aside>    
         </div>
         
         <!-- Code Example 2 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl">
+            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Mine Placement</h2>
-                <p class="leading-8">
-                        Sample Text!
+                <p class="leading-8 py-1">
+                    Mines are generated when the player first clicks on a cell. 
                 </p>
+                <p class="leading-8 py-1">
+                    A list of valid cells is created, which includes every cell in the grid, excluding the initial clicked cell and it's adjacent neighbors. 
+                    The list is then shuffled into a random order.
+                </p>
+                <p class="leading-8 py-1">
+                    Mines are placed by looping through the list until the set number of mines have been placed.
+                </p>
+                
             </section>
 
             <!-- Sidebar -->
@@ -258,20 +275,33 @@ public void CreateCellNumbers()
             </section>
 
             <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Number Placement</h2>
-                    <p class="leading-8">
-                        Sample Text!
+                    <p class="leading-8 py-1">
+                        Numbers are generated based on the number of adjacent mines there are to each individual cell.
+                    </p>
+                    <p class="leading-8 py-1">
+                        For each cell in the grid, the number of adjacent mines is calculated and stored in it's celldata.
+                    </p>
+                    <p class="leading-8 py-1">
+                        Mine cells are skipped, and cell with no adjacent mines are set to empty.
                     </p>
             </aside>
         </div>
 
         <!-- Code Example 4 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Steam Achievement Manager</h2>
-                <p class="leading-8">
-                        Sample Text!
+            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Revel Cells</h2>
+                <p class="leading-8 py-1">
+                    When a hidden cell is clicked there are three outcomes: 
+                    <br>- If the cell is a mine, the game ends.
+                    <br>- If the cell is empty, an area of cells are revealed.
+                    <br>- If the cell is a number, the number is revealed.
+                </p>
+                <p class="leading-8 py-1">
+                    An area of cells is revealed by recursively checking the adjacent neighbors of empty cells. 
+                    If a neighbor is either empty or a number, it is revealed. 
                 </p>
             </section>
 
@@ -279,17 +309,219 @@ public void CreateCellNumbers()
             <aside id="code4example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
                 class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code2pre')">
+                onclick="toggleOverflow('code4pre')">
                 ⇅
                 </button>
                 <pre id="code4pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!   
+private void RevealCellData(CellData cellData)
+{
+    if (cellData.IsRevealed || cellData.IsFlagged) return;
+    
+    switch (cellData.Type)
+    {
+        case CellData.CellType.Mine:
+            ExplodeCells(cellData);
+            _audioManager.PlayExplosion();
+            break;
+        case CellData.CellType.Empty:
+            RevealArea(cellData);
+            _audioManager.PlayRevealCell();
+            CheckWinCondition();
+            break;
+        default:
+            cellData.IsRevealed = true;
+            _audioManager.PlayRevealCell();
+            CheckWinCondition();
+            break;
+    }
+
+    RefreshGame();
+}
+
+
+private void RevealArea(CellData cellData)
+{
+    if (_gameIsOver || cellData.IsRevealed || cellData.Type == CellData.CellType.Mine) return;
+
+    Queue<CellData> cellsToReveal = new Queue<CellData>();
+    HashSet<CellData> processedCells = new HashSet<CellData>();
+    cellsToReveal.Enqueue(cellData);
+
+    while (cellsToReveal.Count > 0)
+    {
+        CellData currentCell = cellsToReveal.Dequeue();
+        if (currentCell.IsRevealed || processedCells.Contains(currentCell)) continue;
+
+        currentCell.IsRevealed = true;
+        processedCells.Add(currentCell);
+
+        // If the cell is empty, enqueue all 8 surrounding cells
+        if (currentCell.Type == CellData.CellType.Empty)
+        {
+            IEnumerable<Vector2Int> adjacentOffsets = GameModeManager.Instance.CurrentGameMode != GameModeManager.GameMode.Hex
+                ? _grid.GetAllAdjacent()
+                : _grid.GetAdjacentHex(currentCell);
+
+            foreach (Vector2Int offset in adjacentOffsets)
+            {
+                int neighbourX = currentCell.Position.x + offset.x;
+                int neighbourY = currentCell.Position.y + offset.y;
+
+                if (_grid.TryGetCellData(neighbourX, neighbourY, out CellData adjacentCell))
+                {
+                    if (!adjacentCell.IsRevealed && adjacentCell.Type != CellData.CellType.Mine)
+                        cellsToReveal.Enqueue(adjacentCell);
+                }
+            }
+        }
+    }
+}  
                     </code>
                 </pre>
             </aside>
         </div>
 
+
+        <!-- Code Example 5 -->
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20 relative">
+            <section id="code5example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+                <button 
+                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
+                onclick="toggleOverflow('code5pre')">
+                ⇅
+                </button>
+                <pre id="code5pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                    <code class="language-csharp">
+private void Unchord(CellData chord)
+{
+    chord.IsChorded = false;
+
+    IEnumerable<Vector2Int> adjacentOffsets = GameModeManager.Instance.CurrentGameMode != GameModeManager.GameMode.Hex
+            ? _grid.GetAllAdjacent()
+            : _grid.GetAdjacentHex(chord);
+
+    foreach (Vector2Int offset in adjacentOffsets)
+    {
+        int x = chord.Position.x + offset.x;
+        int y = chord.Position.y + offset.y;
+
+        if (_grid.TryGetCellData(x, y, out CellData cellData))
+        {
+            if (cellData.IsRevealed && cellData.Type == CellData.CellType.Number)
+            {
+                if (_grid.GetAdjacentFlags(cellData) >= cellData.Number)
+                {
+                    RevealCellData(chord);
+                    return;
+                }
+            }
+        }
+            
+    }
+}
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Chord Cells</h2>
+                    <p class="leading-8 py-1">
+                        Chording is a method used to automatically reveal nearby cells when certain conditions are met.
+                    </p>
+                    <p class="leading-8 py-1">
+                        If a revealed number cell has the same number of adjacent flags as it's number, it can be chorded.
+                        This reveals all the cell's adjacent neghbors, except for it's flagged neighbors.
+                    </p>
+                    <p class="leading-8 py-1">
+                        If any revealed neighbor is a mine, the game ends.
+                    </p>
+            </aside>
+        </div>
+
+       <!-- Code Example 6 -->
+       <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+        <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
+            <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Steam Achievements Manager</h2>
+            <p class="leading-8 py-1">
+                The Achievements Manager uses Steam's Steamworks API to set and update achievements.
+            </p>
+            <p class="leading-8 py-1">
+                It follows the singleton pattern to ensure only one instance exists.
+            </p>
+            <p class="leading-8 py-1">
+                - SetAchievement sets a specific achievement and saves it.
+                <br>- SetStats updates a stat and saves it. 
+                For example, an achievement requiring 10 wins would update after each win.
+            </p>
+        </section>
+
+            <!-- Sidebar -->
+            <aside id="code6example" class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+                <button 
+                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
+                onclick="toggleOverflow('code6pre')">
+                ⇅
+                </button>
+                <pre id="code6pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                    <code class="language-csharp">
+public class AchievementsManager : MonoBehaviour
+{
+    
+    private static AchievementsManager _instance;
+
+    public static AchievementsManager Instance
+    {
+        get { return _instance; }
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetAchievement(string ach)
+    {
+        SteamUserStats.SetAchievement(ach);
+        SteamUserStats.StoreStats();
+    }
+
+    public void SetStats(string stat, int data)
+    {
+        SteamUserStats.SetStat(stat, data);
+        SteamUserStats.StoreStats();
+    }
+
+    public void ClearAllAchievements()
+    {
+        SteamUserStats.ResetAllStats(true);
+    }
+
+    public void ClearAchievement(string ach)
+    {
+        SteamUserStats.ClearAchievement(ach);
+    }
+
+    public void HasAchievement(string ach)
+    {
+        SteamUserStats.GetAchievement(ach, out bool achieved);
+        Debug.Log($"Achievement: {ach}, Status: {achieved}");
+    }
+}
+                          
+                    </code>
+                </pre>
+            </aside>
+        </div>
 
     </main>
 
