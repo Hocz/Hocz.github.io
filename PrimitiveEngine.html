@@ -97,29 +97,429 @@
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 
                 <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code1pre')">
+                class="toggleButton absolute top-10 right-10"
+                onclick="toggleOverflow('code1pre-h', 'code1pre-cpp')">
                 ⇅
                 </button>
-                <button 
-                class="absolute top-16 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleSections()">
-                ⇆
+                <button
+                id="toggle-button1"
+                class="toggleButton absolute top-10 right-20"
+                onclick="toggleSections('code1-header', 'code1-cpp', 'toggle-button1')">
+                h
                 </button>
 
-                <div id="code1-h" class="">
-                    <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="code1-header" class="">
+                    <pre id="code1pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
                         <code class="language-csharp">
-Sample Code! h
+#pragma once
+
+#include "iostream"
+#include "SDL_image.h"
+#include "SDL.h"
+#include "vector"
+
+#define NOMINMAX
+#include "windows.h"
+
+static constexpr int max_Actors = 50;
+
+// Forward declarations
+class Actor;
+enum class ECollision_Type;
+class Camera;
+class WorldGenerator;
+
+class Game {
+
+public:
+
+	Game(const Game&) = delete;
+	Game& operator=(const Game&) = delete;
+
+	static Game& Instance()
+	{
+		static Game instance;
+		return instance;
+	}
+
+
+	void Init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen);
+
+	void HandleEvents();
+
+	void Update();
+
+	void Render();
+
+
+	void Clean();
+
+	bool Running() { return isRunning; }
+
+	void SetRenderColor();
+	void FillRenderRect(int x, int y, int width, int height);
+	void RenderRect(int x, int y, int width, int height);
+
+	Actor* GetCollidingActor(Actor* other, ECollision_Type collisionType);
+	std::vector<Actor*> GetAllCollidingActors(Actor* other, ECollision_Type collisionType);
+
+	SDL_Renderer* GetRenderer();
+
+	// getter functions
+	Actor* GetPlayer();
+	Camera* GetCamera();
+	WorldGenerator* GetWorldGenerator();
+
+private:
+
+	Game();
+	~Game();
+
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+
+	bool isRunning;
+
+	static constexpr float BACKGROUND_GRID_SIZE = 50.f;
+
+	Actor* actors[max_Actors] = { nullptr };
+
+
+	WorldGenerator* worldGenerator = nullptr;
+
+
+	Actor* player = nullptr;
+
+	Camera* camera = nullptr;
+
+};
+
+
+// game time
+float Get_DeltaTime();
+
+float Get_CurrentTime();
+
+float Get_TimePassedSince(float time);
+
+int GetFrameCount();
+
 
                         </code>
                     </pre>
                 </div>
 
-                <div id="code1-c" class="hidden">
-                    <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="code1-cpp" class="hidden">
+                    <pre id="code1pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
                         <code class="language-csharp">
-Sample Code! cpp
+#include "Game.h"
+#include "Player.h"
+#include "Camera.h"
+#include "glm.hpp"
+#include "InputManager.h"
+#include "WorldGenerator.h"
+#include "AABB.h"
+#include "TextureManager.h"
+
+static float deltaTime = 0.f;
+static unsigned int frameCount = 0;
+
+
+// time
+static LARGE_INTEGER clockFrequency;
+static LARGE_INTEGER lastFrameTime;
+static LARGE_INTEGER startupTime;
+
+Game::Game()
+{
+    worldGenerator = new WorldGenerator();
+    
+    actors[0] = new Player(glm::vec2(32, -32));
+    player = actors[0];
+
+
+    camera = new Camera();
+}
+
+Game::~Game() // DELETE POINTERS
+{
+    delete player;
+
+    delete camera;
+}
+
+void Game::Init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
+{
+    int flags = 0;
+    if (fullscreen)
+    {
+        flags = SDL_WINDOW_FULLSCREEN;
+    }
+
+    if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
+    {
+        // initialize window
+        window = SDL_CreateWindow(title, xPos, yPos, width, height, flags);
+        if (window)
+        {
+            std::cout << "Window created!" << std::endl;
+        }
+
+
+        // initialize renderer
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        if (renderer)
+        {
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            std::cout << "Renderer Created!" << std::endl;
+        }
+
+
+        // initialize clock for delta time calc
+        QueryPerformanceFrequency(&clockFrequency);
+        QueryPerformanceCounter(&startupTime);
+        lastFrameTime = startupTime;
+
+        isRunning = true;
+    }
+    else
+    {
+        isRunning = false;
+    }
+
+    TextureManager::Instance().Load("player", "Textures/player.png", renderer);
+    TextureManager::Instance().Load("block_dirt", "Textures/block_dirt.png", renderer);
+}
+
+void Game::HandleEvents()
+{
+    SDL_Event event;
+    SDL_PollEvent(&event);
+    
+    switch (event.type)
+    {
+        case SDL_QUIT:
+        {
+            isRunning = false;
+            break;
+        }
+    }
+    
+    InputManager::Instance().HandleEvents(event);
+}
+
+void Game::Update()
+{
+    LARGE_INTEGER currentFrameTime;
+    QueryPerformanceCounter(&currentFrameTime);
+    deltaTime = float(currentFrameTime.QuadPart - lastFrameTime.QuadPart) / clockFrequency.QuadPart;
+
+    lastFrameTime = currentFrameTime;
+
+    if (player != nullptr)
+    {
+        player->Update();
+    }
+
+    for (int x = 0; x < worldGenerator->WORLD_WIDTH; x++)
+    {
+        for (int y = 0; y < worldGenerator->WORLD_HEIGHT; y++)
+        {
+            Block* block = worldGenerator->worldGrid[x][y];
+
+            if (block != nullptr)
+            {
+                block->Update();
+            }
+        }
+    }
+
+
+    camera->Update();
+
+    // last thing in update
+    frameCount++;
+}
+
+void Game::Render()
+{
+    // clear screen
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    // background grid
+    for (int x = -50; x <= 50; x++)
+    {
+        for (int y = -50; y <= 50; y++)
+        {
+            if ((x + y) % 2 == 0)
+            {
+                SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
+            }
+            else
+            {
+                SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
+            }
+
+            glm::vec2 position = glm::vec2(x * BACKGROUND_GRID_SIZE, y * BACKGROUND_GRID_SIZE);
+            position = camera->WorldToScreen(position);
+
+            SDL_Rect rect = { position.x, position.y, BACKGROUND_GRID_SIZE, BACKGROUND_GRID_SIZE };
+            SDL_RenderFillRect(renderer, &rect);
+        }
+    }
+
+    if (worldGenerator->worldGrid != nullptr)
+    {
+        for (int x = 0; x < worldGenerator->WORLD_WIDTH; x++)
+        {
+            for (int y = 0; y < worldGenerator->WORLD_HEIGHT; y++)
+            {
+                if (worldGenerator->worldGrid[x][y] != nullptr)
+                {
+                    worldGenerator->worldGrid[x][y]->Render();
+                }
+            }
+        }
+    }
+
+    if (player != nullptr)
+    {
+        player->Render();
+    }
+
+    SDL_RenderPresent(renderer);
+}
+
+void Game::Clean()
+{
+    TextureManager::Instance().Clean();
+
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    SDL_Quit();
+    std::cout << "Game Cleaned" << std::endl;
+}
+
+
+void Game::SetRenderColor()
+{
+    // white color
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+}
+
+void Game::FillRenderRect(int x, int y, int width, int height)
+{
+    SDL_Rect rect = { x, y, width, height };
+    SDL_RenderFillRect(renderer, &rect);
+}
+
+void Game::RenderRect(int x, int y, int width, int height)
+{
+    SDL_SetRenderDrawColor(renderer, 10, 10, 10, 255);
+    SDL_Rect rect = { x, y, width, height };
+    SDL_RenderDrawRect(renderer, &rect);
+}
+
+Actor* Game::GetCollidingActor(Actor* actor, ECollision_Type collisionType)
+{
+    for (int i = 0; i < max_Actors; i++)
+    {
+        if (actors[i] == actor)
+            continue;
+
+        if (actors[i] == nullptr)
+            continue;
+
+        if (actors[i]->collisionType != collisionType)
+            continue;
+
+        AABB a = AABB::FromPositionSize(actor->position, actor->size);
+        AABB b = AABB::FromPositionSize(actors[i]->position, actors[i]->size);
+
+        if (aabbOverlap(a, b))
+        {
+            return actors[i];
+        }
+    }
+    
+    return nullptr;
+}
+
+std::vector<Actor*> Game::GetAllCollidingActors(Actor* actor, ECollision_Type collisionType)
+{
+    std::vector<Actor*> collidingActors;
+    collidingActors.clear();
+
+    if (worldGenerator->worldGrid != nullptr)
+    {
+        for (int x = 0; x < worldGenerator->WORLD_WIDTH; x++)
+        {
+            for (int y = 0; y < worldGenerator->WORLD_HEIGHT; y++)
+            {
+                Block* block = worldGenerator->worldGrid[x][y];
+
+                if (block == nullptr)
+                    continue;
+
+                if (block->collisionType != collisionType)
+                    continue;
+
+                AABB a = AABB::FromPositionSize(actor->position, actor->size);
+                AABB b = AABB::FromPositionSize(block->position, block->size);
+
+                if (aabbOverlap(a, b))
+                {
+                    collidingActors.push_back(block);
+                }
+            }
+        }
+    }
+
+    return collidingActors;
+}
+
+SDL_Renderer* Game::GetRenderer()
+{
+    return renderer;
+}
+
+
+Actor* Game::GetPlayer()
+{
+    return player;
+}
+
+Camera* Game::GetCamera()
+{
+    return camera;
+}
+
+WorldGenerator* Game::GetWorldGenerator()
+{
+    return worldGenerator;
+}
+
+
+float Get_DeltaTime()
+{
+    return deltaTime;
+}
+
+float Get_CurrentTime()
+{
+    return float(lastFrameTime.QuadPart - startupTime.QuadPart) / clockFrequency.QuadPart;
+}
+
+float Get_TimePassedSince(float time)
+{
+    return Get_CurrentTime() - time;
+}
+
+int GetFrameCount()
+{
+    return frameCount;
+}
                         </code>
                     </pre>
                 </div>
@@ -136,8 +536,8 @@ Sample Code! cpp
         </div>
 
         <!-- Code Example 2 -->
-        <div id="code2example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+            <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Input Manager</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
@@ -146,36 +546,300 @@ Sample Code! cpp
 
             <!-- Sidebar -->
             <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+                
                 <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code2pre')">
+                class="toggleButton absolute top-10 right-10"
+                onclick="toggleOverflow('code2pre-h', 'code2pre-cpp')">
                 ⇅
                 </button>
-                <pre id="code2pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
+                <button 
+                id="toggle-button2"
+                class="toggleButton absolute top-10 right-20"
+                onclick="toggleSections('code2-header', 'code2-cpp', 'toggle-button2')">
+                h
+                </button>
+
+                <div id="code2-header" class="">
+                    <pre id="code2pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#pragma once
+
+#include "Input.h"
+#include "Game.h"
+
+class InputManager
+{
+public:
+
+	InputManager(const InputManager&) = delete;
+	InputManager& operator=(const InputManager&) = delete;
+
+	static InputManager& Instance()
+	{
+		static InputManager instance;
+		return instance;
+	}
+
+	void HandleEvents(SDL_Event& event);
+
+	bool KeyDown(Key key);
+	bool KeyPressed(Key key);
+	bool KeyUp(Key key);
+
+	bool MouseButtonDown(MouseButton button);
+	bool MouseButtonPressed(MouseButton button);
+	bool MouseButtonUp(MouseButton button);
+
+	int MouseX() const;
+	int MouseY() const;
+
+private:
+
+	InputManager() { }
+
+	struct InputState
+	{
+		bool down = false;
+		unsigned int updateFrame = 0;
+
+		void SetInput(bool newDown)
+		{
+			down = newDown;
+			updateFrame = GetFrameCount();
+		}
+	};
+
+	InputState keyStates[(int)Key::Count];
+	InputState mouseStates[(int)MouseButton::Count];
+	int mouseX = 0;
+	int mouseY = 0;
+};
+
+                        </code>
+                    </pre>
+                </div>
+
+                <div id="code2-cpp" class="hidden">
+                    <pre id="code2pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#include "InputManager.h"
+#include "SDL.h"
+#include "glm.hpp"
+
+void InputManager::HandleEvents(SDL_Event& event)
+{
+
+	switch (event.type)
+	{
+        case SDL_KEYDOWN:
+        {
+            if (event.key.repeat)
+                break;
+
+            InputState& state = keyStates[event.key.keysym.scancode];
+            state.SetInput(true);
+            break;
+        }
+
+        case SDL_KEYUP:
+        {
+            InputState& state = keyStates[event.key.keysym.scancode];
+            state.SetInput(false);
+            break;
+        }
+
+        case SDL_MOUSEBUTTONDOWN:
+        {
+            InputState& state = mouseStates[event.button.button];
+            state.SetInput(true);
+            break;
+        }
+
+        case SDL_MOUSEBUTTONUP:
+        {
+            InputState& state = mouseStates[event.button.button];
+            state.SetInput(false);
+            break;
+        }
+
+
+        case SDL_MOUSEMOTION:
+        {
+            mouseX = event.motion.x;
+            mouseY = event.motion.y;
+            break;
+        }
+
+	}
+}
+
+// key inputs
+bool InputManager::KeyDown(Key key)
+{
+	InputState& state = keyStates[(int)key];
+	return state.down;
+}
+
+bool InputManager::KeyPressed(Key key)
+{
+	InputState& state = keyStates[(int)key];
+	return state.down && state.updateFrame == GetFrameCount();
+}
+
+bool InputManager::KeyUp(Key key)
+{
+	InputState& state = keyStates[(int)key];
+	return !state.down && state.updateFrame == GetFrameCount();
+}
+
+// mount inputs
+bool InputManager::MouseButtonDown(MouseButton button)
+{
+	InputState& state = mouseStates[(int)button];
+	return state.down;
+}
+
+bool InputManager::MouseButtonPressed(MouseButton button)
+{
+	InputState& state = mouseStates[(int)button];
+	return state.down && state.updateFrame == GetFrameCount();
+}
+
+bool InputManager::MouseButtonUp(MouseButton button)
+{
+	InputState& state = mouseStates[(int)button];
+	return !state.down && state.updateFrame == GetFrameCount();
+}
+
+// mouse movement
+int InputManager::MouseX() const
+{
+	return mouseX;
+}
+
+int InputManager::MouseY() const
+{
+	return mouseY;
+}
+
+
+
+                        </code>
+                    </pre>
+                </div>
+
             </aside>
         </div>
 
         <!-- Code Example 3 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+                
                 <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code3pre')">
+                class="toggleButton absolute top-10 right-10"
+                onclick="toggleOverflow('code3pre-h', 'code3pre-cpp')">
                 ⇅
                 </button>
-                <pre id="code3pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <button 
+                id="toggle-button3"
+                class="toggleButton absolute top-10 right-20"
+                onclick="toggleSections('code3-header', 'code3-cpp', 'toggle-button3')">
+                h
+                </button>
+
+                <div id="code3-header" class="">
+                    <pre id="code3pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#pragma once
+
+#include "SDL.h"
+#include "SDL_image.h"
+#include "string"
+#include "unordered_map"
+
+class TextureManager
+{
+public:
+
+	TextureManager(const TextureManager&) = delete;
+	TextureManager& operator=(const TextureManager&) = delete;
+
+	static TextureManager& Instance()
+	{
+		static TextureManager instance;
+		return instance;
+	}
+
+	//SDL_Texture* LoadTexture(const char* textureName, SDL_Renderer* renderer);
+
+	bool Load(const std::string& id, const std::string fileName, SDL_Renderer* renderer);
+	void Render(const std::string& id, int x, int y, int width, int height, SDL_Renderer* renderer);
+	void Clean();
+
+private:
+
+	TextureManager() { }
+
+	std::unordered_map<std::string, SDL_Texture*> textureMap;
+};
+
+                        </code>
+                    </pre>
+                </div>
+
+                <div id="code3-cpp" class="hidden">
+                    <pre id="code3pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#include "TextureManager.h"
+#include "iostream"
+
+bool TextureManager::Load(const std::string& id, const std::string fileName, SDL_Renderer* renderer)
+{
+	SDL_Surface* tempSurface = IMG_Load(fileName.c_str());
+	if (!tempSurface)
+	{
+		std::cerr &lt;&lt; "Failed to Load Texture! File: " &lt;&lt; fileName &lt;&lt; "Error: " &lt;&lt; IMG_GetError() &lt;&lt; std::endl;
+		return false;
+	}
+
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+	SDL_FreeSurface(tempSurface);
+
+	if (!texture)
+	{
+		std::cerr &lt;&lt; "Failed to Create Texture! File: " &lt;&lt; fileName &lt;&lt; "Error: " &lt;&lt; IMG_GetError() &lt;&lt; std::endl;
+		return false;
+	}
+
+	textureMap[id] = texture;
+	return true;
+}
+
+void TextureManager::Render(const std::string& id, int x, int y, int width, int height, SDL_Renderer* renderer)
+{
+	SDL_Rect srcRect = { 0, 0, width, height };
+	SDL_Rect destRect = { x, y, width, height };
+
+	SDL_RenderCopy(renderer, textureMap[id], &srcRect, &destRect);
+}
+
+void TextureManager::Clean()
+{
+	for (auto& texturePair : textureMap)
+	{
+		SDL_DestroyTexture(texturePair.second);
+	}
+	textureMap.clear();
+}
+
+                        </code>
+                    </pre>
+                </div>
+
             </section>
 
             <!-- Sidebar -->
-            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Texture Manager</h2>
                 <p class="leading-8 py-1">
                         Sample Text!
@@ -185,8 +849,8 @@ Sample Code!
         
 
         <!-- Code Example 4 -->
-        <div id="code4example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+            <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Collision</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
@@ -195,36 +859,150 @@ Sample Code!
 
             <!-- Sidebar -->
             <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+                
                 <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code4pre')">
+                class="toggleButton absolute top-10 right-10"
+                onclick="toggleOverflow('code4pre-h', 'code4pre-cpp')">
                 ⇅
                 </button>
-                <pre id="code4pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
+                <button 
+                id="toggle-button4"
+                class="toggleButton absolute top-10 right-20"
+                onclick="toggleSections('code4-header', 'code4-cpp', 'toggle-button4')">
+                h
+                </button>
+
+                <div id="code4-header" class="">
+                    <pre id="code4pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#pragma once
+
+#include "glm.hpp"
+
+struct AABB
+{
+	static AABB FromPositionSize(glm::vec2 position, glm::vec2 size);
+
+	AABB() { }
+	AABB(glm::vec2 in_min, glm::vec2 in_max) : min(in_min), max(in_max) { }
+
+	glm::vec2 min;
+	glm::vec2 max;
+};
+
+bool aabbOverlap(AABB a, AABB b);
+
+                        </code>
+                    </pre>
+                </div>
+
+                <div id="code4-cpp" class="hidden">
+                    <pre id="code4pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#include "AABB.h"
+
+AABB AABB::FromPositionSize(glm::vec2 position, glm::vec2 size)
+{
+    return AABB(
+        position - size * 0.5f,
+        position + size * 0.5f
+    );
+}
+
+bool aabbOverlap(AABB a, AABB b)
+{
+    return 
+        a.max.x >= b.min.x && 
+        b.max.x >= a.min.x &&
+        a.max.y >= b.min.y && 
+        b.max.y >= a.min.y;
+}
+
+                        </code>
+                    </pre>
+                </div>
+
             </aside>
         </div>
 
         <!-- Code Example 5 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+                
                 <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code5pre')">
+                class="toggleButton absolute top-10 right-10"
+                onclick="toggleOverflow('code5pre-h', 'code5pre-cpp')">
                 ⇅
                 </button>
-                <pre id="code5pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <button 
+                id="toggle-button5"
+                class="toggleButton absolute top-10 right-20"
+                onclick="toggleSections('code5-header', 'code5-cpp', 'toggle-button5')">
+                h
+                </button>
+
+                <div id="code5-header" class="">
+                    <pre id="code5pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#pragma once
+
+#include "glm.hpp"
+
+class Camera
+{
+public:
+	void Update();
+
+	glm::vec2 WorldToScreen(glm::vec2 vector);
+	glm::vec2 ScreenToWorld(glm::vec2 vector);
+
+	glm::vec2 position;
+	
+};
+
+                        </code>
+                    </pre>
+                </div>
+
+                <div id="code5-cpp" class="hidden">
+                    <pre id="code5pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#include "Camera.h"
+#include "Config.h"
+#include "Game.h"
+#include "Actor.h"
+#include "InputManager.h"
+
+void Camera::Update()
+{
+	if (Game::Instance().GetPlayer() != nullptr)
+	{
+		glm::vec2 playerPosition = Game::Instance().GetPlayer()->position;
+
+		position = playerPosition;
+	}
+}
+
+glm::vec2 Camera::WorldToScreen(glm::vec2 vector)
+{
+	using namespace Config;
+	return vector - position + glm::vec2(WINDOWWIDTH * 0.5f, WINDOWHEIGHT * 0.5f);
+}
+
+glm::vec2 Camera::ScreenToWorld(glm::vec2 vector)
+{
+	using namespace Config;
+	return vector + position - glm::vec2(WINDOWWIDTH * 0.5f, WINDOWHEIGHT * 0.5f);
+}
+
+                        </code>
+                    </pre>
+                </div>
+
             </section>
 
             <!-- Sidebar -->
-            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Camera</h2>
                 <p class="leading-8 py-1">
                         Sample Text!
@@ -233,8 +1011,8 @@ Sample Code!
         </div>
 
         <!-- Code Example 6 -->
-        <div id="code6example" class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
+        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
+            <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Player Class</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
@@ -243,36 +1021,410 @@ Sample Code!
 
             <!-- Sidebar -->
             <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+                
                 <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code6pre')">
+                class="toggleButton absolute top-10 right-10"
+                onclick="toggleOverflow('code6pre-h', 'code6pre-cpp')">
                 ⇅
                 </button>
-                <pre id="code6pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
+                <button 
+                id="toggle-button6"
+                class="toggleButton absolute top-10 right-20"
+                onclick="toggleSections('code6-header', 'code6-cpp', 'toggle-button6')">
+                h
+                </button>
+
+                <div id="code6-header" class="">
+                    <pre id="code6pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#pragma once
+
+#include "Actor.h"
+
+class Player : public Actor
+{
+public:
+
+	Player(glm::vec2 position);
+
+	void Update() override;
+	void Render() override;
+
+	void Hit(int damage) override;
+
+	void HandleMovement();
+	void HandleGravity();
+	void HandleJump();
+
+	bool IsGrounded(const AABB& actor, const std::vector<AABB>& collidingActors, float extendedAmount) override;
+
+	bool IsColliding(const AABB& a, const AABB& b, glm::vec2& outOverlap) override;
+	void ResolveCollision(Actor* actor, const std::vector<AABB>& collidingActors) override;
+
+	void Use(int i);
+
+private:
+
+	glm::vec2 movementDirection = glm::vec2(0);
+	
+
+	float movementSpeed = 150.0f;
+	float maxMovementSpeeed = 200.0f;
+
+	float jumpStrength = 200.0f;
+	float jumpHeight = 1.0f;
+	float jumpTime = 0;
+	float startJump = 0;
+	float jumpDuration = 0.2f;
+	
+
+	float gravity = 500.0f;
+
+	bool isGrounded = false;
+
+};
+                        </code>
+                    </pre>
+                </div>
+
+                <div id="code6-cpp" class="hidden">
+                    <pre id="code6pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#include "Player.h"
+#include "Game.h"
+#include "glm.hpp"
+#include "InputManager.h"
+#include "Camera.h"
+#include "WorldGenerator.h"
+#include "TextureManager.h"
+
+Player::Player(glm::vec2 position)
+	: Actor(position, glm::vec2(24, 40))
+{
+	collisionType = ECollision_Type::Player;
+}
+
+void Player::Update()
+{
+	std::vector<Actor*> collidingActors = Game::Instance().GetAllCollidingActors(this, ECollision_Type::Block);
+	std::vector<AABB> actorsAABB;
+
+	for (Actor* a : collidingActors)
+	{
+		AABB aabb = AABB::FromPositionSize(a->position, a->size);
+		actorsAABB.push_back(aabb);
+	}
+	ResolveCollision(this, actorsAABB);
+
+
+	HandleMovement();
+	HandleJump();
+	HandleGravity();
+
+
+	if (InputManager::Instance().MouseButtonPressed(MouseButton::Left))
+	{
+		Use(0);
+	}
+
+	if (InputManager::Instance().MouseButtonPressed(MouseButton::Right))
+	{
+		Use(1);
+	}
+
+}
+
+void Player::Render()
+{
+	Actor::Render();
+
+	TextureManager::Instance().Render("player", renderPosition.x, renderPosition.y, size.x, size.y, Game::Instance().GetRenderer());
+
+
+	glm::vec2 newPos = glm::vec2(position.x, position.y + (size.y * 0.5f));
+	glm::vec2 newSize = glm::vec2(size.x * 0.75, size.y * 0.25f);
+
+	AABB extendedActor = AABB::FromPositionSize(newPos, newSize);
+
+	int width = extendedActor.max.x - extendedActor.min.x;
+	int height = extendedActor.max.y - extendedActor.min.y;
+
+	glm::vec2 renderPosition = newPos - glm::vec2(width, height) * 0.5f;
+	renderPosition = Game::Instance().GetCamera()->WorldToScreen(renderPosition);
+
+	Game::Instance().RenderRect(renderPosition.x, renderPosition.y, width, height);
+}
+
+void Player::Hit(int damage)
+{
+	// health check
+
+	Destroy();
+}
+
+void Player::HandleMovement()
+{
+
+	if (InputManager::Instance().KeyDown(Key::D)) // Right
+	{
+		velocity.x += movementSpeed * Get_DeltaTime();
+		velocity.x = glm::clamp(velocity.x, 0.0f, maxMovementSpeeed);
+	}
+	else if (InputManager::Instance().KeyDown(Key::A)) // Left
+	{
+		velocity.x -= movementSpeed * Get_DeltaTime();
+		velocity.x = glm::clamp(velocity.x, -maxMovementSpeeed, 0.0f);
+	}
+	else
+	{
+		velocity.x = 0;
+	}
+	
+
+	movementDirection.x = velocity.x;
+
+	position += movementDirection * Get_DeltaTime();
+}
+
+void Player::HandleGravity()
+{
+	std::vector<Actor*> collidingActors = Game::Instance().GetAllCollidingActors(this, ECollision_Type::Block);
+	std::vector<AABB> actorsAABB;
+
+	AABB player = AABB::FromPositionSize(this->position, this->size);
+
+	for (Actor* a : collidingActors)
+	{
+		AABB aabb = AABB::FromPositionSize(a->position, a->size);
+		actorsAABB.push_back(aabb);
+	}
+
+	if (!IsGrounded(player, actorsAABB, 2.0f))
+	{
+		velocity.y += gravity * Get_DeltaTime();
+	}
+	else
+	{
+		velocity.y = 0;
+		isGrounded = true;
+	}
+
+	movementDirection.y = velocity.y;
+}
+
+void Player::HandleJump()
+{	
+	if (InputManager::Instance().KeyPressed(Key::Space) && isGrounded)
+	{
+		velocity.y -= jumpStrength;
+	}
+
+	movementDirection.y = velocity.y;
+}
+
+bool Player::IsGrounded(const AABB& actor, const std::vector<AABB>& collidingActors, float extendedAmount)
+{
+	glm::vec2 newPos = glm::vec2(position.x, position.y + (size.y * 0.5f));
+	glm::vec2 newSize = glm::vec2(size.x * 0.75, (size.y * 0.25f));
+
+	AABB extendedActor = AABB::FromPositionSize(newPos, newSize);
+
+	for (const auto& a : collidingActors)
+	{
+		if (aabbOverlap(extendedActor, a))
+		{
+			isGrounded = true;
+			return true;
+		}
+	}
+
+	isGrounded = false;
+	return false;
+}
+
+bool Player::IsColliding(const AABB& a, const AABB& b, glm::vec2& outOverlap)
+{
+	float overlapX = glm::min(a.max.x - b.min.x, b.max.x - a.min.x);
+	float overlapY = glm::min(a.max.y - b.min.y, b.max.y - a.min.y);
+
+	if (overlapX > 0 && overlapY > 0)
+	{
+		outOverlap = glm::vec2(overlapX, overlapY);
+		return true;
+	}
+	return false;
+}
+
+void Player::ResolveCollision(Actor* actor, const std::vector<AABB>& collidingActors)
+{
+	glm::vec2 overlap;
+
+	AABB a = AABB::FromPositionSize(actor->position, actor->size);
+
+	for (const auto& cA : collidingActors)
+	{
+		if (!IsColliding(a, cA, overlap))
+		{
+			continue;
+		}
+
+		float overlapArea = 0.0f;
+
+		float overlapX = glm::max(0.0f, glm::min(a.max.x, cA.max.x) - glm::max(a.min.x, cA.min.x));
+		float overlapY = glm::max(0.0f, glm::min(a.max.y, cA.max.y) - glm::max(a.min.y, cA.min.y));
+		overlapArea = overlapX * overlapY;
+
+		if (overlapArea > ((actor->size.x * actor->size.y) * 0.25f))
+		{
+			actor->velocity = glm::vec2(0);
+			return;
+		}
+
+
+		if (overlap.x < overlap.y) // checks smallest axis overlap - x or y?
+		{
+			if (actor->position.x < cA.min.x)
+			{
+				actor->position.x -= overlap.x; // adjust position left
+			}
+			else
+			{
+				actor->position.x += overlap.x; // adjust position right
+			}
+			actor->velocity.x = 0;
+		}
+		else
+		{
+			if (actor->position.y < cA.min.y)
+			{
+				actor->position.y -= overlap.y; // adjust position down
+			}
+			else
+			{
+				actor->position.y += overlap.y; // adjust position up
+			}
+			actor->velocity.y = 0;
+		}
+	}
+}
+
+
+void Player::Use(int i)
+{
+	int mousePosX = InputManager::Instance().MouseX();
+	int mousePosY = InputManager::Instance().MouseY();
+
+	glm::vec2 worldMousePos = Game::Instance().GetCamera()->ScreenToWorld(glm::vec2(mousePosX, mousePosY));
+
+	glm::vec2 blockSize(16);
+
+	glm::vec2 gridPos = glm::floor(worldMousePos / blockSize);
+
+	std::cout << "Mouse is over grid cell: " << (int)gridPos.x << ", " << (int)gridPos.y << std::endl;
+
+	int gridWidth = Game::Instance().GetWorldGenerator()->WORLD_WIDTH;
+	int gridHeight = Game::Instance().GetWorldGenerator()->WORLD_HEIGHT;
+
+	if (gridPos.x >= 0 && gridPos.x <= gridWidth && gridPos.y >= 0 && gridPos.y <= gridHeight)
+	{
+		if (i == 0) // break
+		{
+			Game::Instance().GetWorldGenerator()->DestoryBlockAtPos((int)gridPos.x, (int)gridPos.y);
+		}
+		else if (i == 1) //place
+		{
+			Game::Instance().GetWorldGenerator()->CreateBlockAtPos((int)gridPos.x, (int)gridPos.y);
+		}
+	}
+}
+
+                        </code>
+                    </pre>
+                </div>
+
             </aside>
         </div>
 
         <!-- Code Example 7 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+                
                 <button 
-                class="absolute top-8 right-8 bg-transparent text-white px-2 py-1 text-3xl rounded-md hover:text-green-500 transition"
-                onclick="toggleOverflow('code7pre')">
+                class="toggleButton absolute top-10 right-10"
+                onclick="toggleOverflow('code7pre-h', 'code7pre-cpp')">
                 ⇅
                 </button>
-                <pre id="code7pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <button 
+                id="toggle-button7"
+                class="toggleButton absolute top-10 right-20"
+                onclick="toggleSections('code7-header', 'code7-cpp', 'toggle-button7')">
+                h
+                </button>
+
+                <div id="code7-header" class="">
+                    <pre id="code7pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#pragma once
+
+#include "Actor.h"
+
+class Block : public Actor
+{
+public:
+
+	Block(glm::vec2 position);
+
+	void Update() override;
+	void Render() override;
+
+	void Hit(int damage) override;
+
+};
+                        </code>
+                    </pre>
+                </div>
+
+                <div id="code7-cpp" class="hidden">
+                    <pre id="code7pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                        <code class="language-csharp">
+#include "Block.h"
+#include "Game.h"
+#include "Player.h"
+#include "TextureManager.h"
+
+Block::Block(glm::vec2 position) 
+	: Actor(position, glm::vec2(16))
+{
+	collisionType = ECollision_Type::Block;
+}
+
+void Block::Update()
+{
+	
+}
+
+void Block::Render()
+{
+	Actor::Render();
+
+	TextureManager::Instance().Render("block_dirt", renderPosition.x, renderPosition.y, size.x, size.y, Game::Instance().GetRenderer());
+
+}
+
+void Block::Hit(int damage)
+{
+	// health check
+
+	Destroy();
+}
+                        </code>
+                    </pre>
+                </div>
+
             </section>
 
             <!-- Sidebar -->
-            <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0">
+            <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Block Class</h2>
                 <p class="leading-8 py-1">
                         Sample Text!
@@ -293,25 +1445,48 @@ Sample Code!
     </script>
 
     <script>
-        function toggleOverflow(id) {
-            const preElement = document.getElementById(id);
-            if (preElement.classList.contains("h-96")) {
-                preElement.classList.remove("h-96");
-                preElement.classList.add("h-fit");
-            } else {
-                preElement.classList.remove("h-fit");
-                preElement.classList.add("h-96");
+        function toggleOverflow(id1, id2) {
+            const preElement1 = document.getElementById(id1);
+            const preElement2 = document.getElementById(id2);
+
+            if (preElement1.classList.contains("h-96") && preElement2.classList.contains("h-96")) 
+            {
+                preElement1.classList.remove("h-96");
+                preElement2.classList.remove("h-96");
+
+                preElement1.classList.add("h-fit");
+                preElement2.classList.add("h-fit");
+            } 
+            else 
+            {
+                preElement1.classList.remove("h-fit");
+                preElement2.classList.remove("h-fit");
+
+                preElement1.classList.add("h-96");
+                preElement2.classList.add("h-96");
             }
         }
     </script>
 
     <script>
-        function toggleSections(id) {
-            const preElement = document.getElementById(id);
-            if (preElement.classList.contains("hidden")) {
-                preElement.classList.remove("hidden");
-            } else {
-                preElement.classList.add("hidden");
+        function toggleSections(id1, id2, id3) {
+            const preElement1 = document.getElementById(id1);
+            const preElement2 = document.getElementById(id2);
+            const button = document.getElementById(id3);
+
+            if (preElement1.classList.contains("hidden") && !preElement2.classList.contains("hidden")) 
+            {
+                preElement1.classList.remove("hidden");
+                preElement2.classList.add("hidden");
+                
+                button.textContent = "h"
+            } 
+            else if (!preElement1.classList.contains("hidden") && preElement2.classList.contains("hidden"))
+            {
+                preElement2.classList.remove("hidden");
+                preElement1.classList.add("hidden");
+                
+                button.textContent = "cpp"
             }
         }
     </script>
