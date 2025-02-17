@@ -53,13 +53,20 @@
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500">Inventory Shop System</h2>
                 <p class="leading-8 text-xl py-4">
-                    
+                    The Inventory Shop System is as it sounds, the project consist of an Inventory System and a Shop System.
+                    <br>There is also an added bonus of a Saving system that keeps track of all different inventories: Player, Chests and Shops.
+                </p>
+                <p class="leading-8 text-xl py-4">
+                    The Inventory System is inspired by the one used in Minecraft. You can pick up, place and split an item slot.
+                </p>
+                <p class="leading-8 text-xl py-4">
+                    The Shop System...
                 </p>
             </section>
 
             <!-- Sidebar -->
             <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Why</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Why?</h2>
                 <div>
                     <p class="leading-8 text-xl py-4">
 
@@ -71,14 +78,14 @@
         <!-- Code Snippets Buttons-->
         <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
             <button class="code-snippet-button" onclick="scrollToElement('top')">↑</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Example 1</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Example 2</button>      
-            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Example 3</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Example 4</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Example 5</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Example 6</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Example 7</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code8example')">Example 8</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Inventory System</button>
+            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Item Slot</button>      
+            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Inventory Slot</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Inventory Slot UI</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Inventory Display</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Shop System</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Shop Display</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code8example')">Save System</button>    
         </div>
         
         <!-- Code Example 1 -->
@@ -91,14 +98,189 @@
                 </button>
                 <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!
+[Serializable]
+public class InventorySystem
+{
+    [SerializeField] private List<InventorySlot> _inventorySlots;
+    private int _gold;
+
+    
+    #region Properties
+
+    public List<InventorySlot> InventorySlots => _inventorySlots;
+
+    public int InventorySize => _inventorySlots.Count;
+
+    public int Gold => _gold;
+
+    #endregion
+
+    // event for changes in inventory slot
+    public UnityAction<InventorySlot> OnInventorySlotChanged;
+
+
+    // Constuctor
+    public InventorySystem(int inventorySize)
+    {
+        _gold = 0;
+        CreateInventory(inventorySize);
+    }
+
+    public InventorySystem(int inventorySize, int gold)
+    {
+        _gold = gold;
+        CreateInventory(inventorySize);
+    }
+
+    private void CreateInventory(int inventorySize)
+    {
+        _inventorySlots = new List<InventorySlot>(inventorySize);
+
+        for (int i = 0; i < inventorySize; i++)
+        {
+            _inventorySlots.Add(new InventorySlot());
+        }
+    }
+
+
+
+    public bool AddItemToInventory(InventoryItemData inventoryItemData, int amount)
+    {
+        // item exist in inventory - add amount to item stack
+        if (ContainsItem(inventoryItemData, out List<InventorySlot> inventorySlots))
+        {
+            // check all inventory slots with item - add to first available slot
+            foreach (InventorySlot inventorySlot in inventorySlots)
+            {
+                if (inventorySlot.HasAvailableAmountInStack(amount))
+                {
+                    inventorySlot.AddToStack(amount);
+                    OnInventorySlotChanged?.Invoke(inventorySlot);
+                    return true;
+                }
+            }
+        }
+        
+        // item doesn't exist in inventory - has available slot exist in inventory - add item(s) to first available inventory slot
+        if (HasAvailableInventorySlot(out InventorySlot availableInventorySlot))
+        {
+            if (availableInventorySlot.HasAvailableAmountInStack(amount)) // available inventory slot has available amount
+            {
+                availableInventorySlot.UpdateInventorySlot(inventoryItemData, amount);
+                OnInventorySlotChanged?.Invoke(availableInventorySlot);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // inventory has item - return all inventory slots with items
+    public bool ContainsItem(InventoryItemData inventoryItemData, out List<InventorySlot> inventorySlots)
+    {
+        inventorySlots = _inventorySlots.Where(slot => slot.InventoryItemData == inventoryItemData).ToList();
+
+        if (inventorySlots.Count > 1) return true;
+        
+        return false;
+    }
+
+    public bool HasAvailableInventorySlot(out InventorySlot availableInventorySlot)
+    {
+        // get first available inventory slot
+        availableInventorySlot = _inventorySlots.FirstOrDefault(slot => slot.InventoryItemData == null);
+        
+        if (availableInventorySlot != null) return true;
+
+        return false;
+    }
+
+
+    public bool HasAvailableInventorySlots(Dictionary<InventoryItemData, int> shoppingCart)
+    {
+        var tempInventorySystem = new InventorySystem(InventorySize);
+
+        // clone current inventory
+        for (int i = 0; i < InventorySize; i++)
+        {
+            tempInventorySystem.InventorySlots[i].AssignItemData(InventorySlots[i].InventoryItemData, InventorySlots[i].StackSize);
+        }
+
+        foreach (var kvp in shoppingCart)
+        {
+            for (int i = 0; i < kvp.Value; i++)
+            {
+                if (!tempInventorySystem.AddItemToInventory(kvp.Key, 1)) return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void UseGold(int priceTotal)
+    {
+        _gold -= priceTotal;
+    }
+    public void GetGold(int finalPrice)
+    {
+        _gold += finalPrice;
+    }
+
+    public Dictionary<InventoryItemData, int> GetAllInventoryItems()
+    {
+        // collection of specific item
+        Dictionary<InventoryItemData, int> distinctItems = new Dictionary<InventoryItemData, int>();
+
+        foreach (var slot in _inventorySlots)
+        {
+            if (slot.InventoryItemData == null) continue;
+
+            if (!distinctItems.ContainsKey(slot.InventoryItemData))
+            {
+                distinctItems.Add(slot.InventoryItemData, slot.StackSize);
+            }
+            else
+            {
+                distinctItems[slot.InventoryItemData] += slot.StackSize;
+            }
+        }
+
+        return distinctItems;
+    }
+
+    
+
+    public void RemoveItemsFromInventory(InventoryItemData inventoryItemData, int amount)
+    {
+        if (ContainsItem(inventoryItemData, out List<InventorySlot> inventorySlots))
+        {
+            foreach(var slot in inventorySlots)
+            {
+                int stackSize = slot.StackSize;
+
+                if (stackSize > amount)
+                {
+                    slot.RemoveFromStack(amount);
+                }
+                else
+                {
+                    slot.RemoveFromStack(stackSize);
+                    amount -= stackSize;
+                }
+
+                OnInventorySlotChanged?.Invoke(slot);
+            }
+        }
+    }
+}
+
                     </code>
                 </pre>
             </section>
 
             <!-- Sidebar -->
             <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory System</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -109,7 +291,7 @@ Sample Code!
         <!-- Code Example 2 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Item Slot</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -124,7 +306,92 @@ Sample Code!
                 </button>
                 <pre id="code2pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!        
+public class InventoryItemSlot : ISerializationCallbackReceiver
+{
+    [NonSerialized] protected InventoryItemData _inventoryItemData;
+    [SerializeField] protected int _itemID = -1;
+    [SerializeField] protected int _stackSize;
+
+
+    #region Properties
+
+    public InventoryItemData InventoryItemData => _inventoryItemData;
+
+    public int StackSize => _stackSize;
+
+    #endregion
+
+
+    // set inventory slot to empty
+    public void ClearInventorySlot()
+    {
+        _inventoryItemData = null;
+        _itemID = -1;
+        _stackSize = -1;
+    }
+
+    // assign item to specific inventory slot
+    public void AssignItemData(InventorySlot inventorySlot)
+    {
+        // add item to stack size
+        if (_inventoryItemData == inventorySlot.InventoryItemData)
+        {
+            AddToStack(inventorySlot.StackSize);
+        }
+        // overwrite inventory slot with item
+        else
+        {
+            _inventoryItemData = inventorySlot.InventoryItemData;
+            _itemID = _inventoryItemData.ID;
+            _stackSize = 0;
+            AddToStack(inventorySlot.StackSize);
+        }
+    }
+
+    public void AssignItemData(InventoryItemData inventoryItemData, int amount)
+    {
+        if (_inventoryItemData == inventoryItemData)
+        {
+            AddToStack(amount);
+        }
+        else
+        {
+            _inventoryItemData = inventoryItemData;
+            _itemID = _inventoryItemData.ID;
+            _stackSize = 0;
+            AddToStack(amount);
+        }
+    }
+
+    // add amount to item stacksize
+    public void AddToStack(int amount)
+    {
+        _stackSize += amount;
+    }
+
+    // remove amount from item stacksize
+    public void RemoveFromStack(int amount)
+    {
+        _stackSize -= amount;
+        if (_stackSize <= 0) ClearInventorySlot();
+    }
+
+
+
+    public void OnAfterDeserialize()
+    {
+        
+    }
+
+    public void OnBeforeSerialize()
+    {
+        if (_itemID == -1) return;
+
+        Database database = Resources.Load<Database>("Database");
+        _inventoryItemData = database.GetItem(_itemID);
+    }
+}
+       
                     </code>
                 </pre>
             </aside>
@@ -140,14 +407,71 @@ Sample Code!
                 </button>
                 <pre id="code3pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!
+[Serializable]
+public class InventorySlot : InventoryItemSlot
+{
+    //Constructors
+    public InventorySlot(InventoryItemData inventoryItemData, int amount)
+    {
+        _inventoryItemData = inventoryItemData;
+        _itemID = _inventoryItemData.ID;
+        _stackSize = amount;
+    }
+
+    public InventorySlot()
+    {
+        ClearInventorySlot();
+    }
+
+
+    // update inventory slot with new values
+    public void UpdateInventorySlot(InventoryItemData inventoryItemData, int amount)
+    {
+        _inventoryItemData = inventoryItemData;
+        _itemID = _inventoryItemData.ID;
+        _stackSize = amount;
+    }
+
+
+    // can add amount to stacksize - return amount left in stack
+    public bool HasAvailableAmountInStack(int amount, out int availableAmount)
+    {
+        availableAmount = InventoryItemData.MaxStackSize - _stackSize;
+        return HasAvailableAmountInStack(amount);
+    }
+
+    // can add amount to stacksize
+    public bool HasAvailableAmountInStack(int amount)
+    {
+        if (_inventoryItemData == null || _inventoryItemData != null && _stackSize + amount &lt;= _inventoryItemData.MaxStackSize) return true;
+        return false;
+    }
+
+
+    // splits item stack in 2
+    public bool SplitItemStack(out InventorySlot splitInventorySlot)
+    {
+        if (_stackSize &lt;= 1)
+        {
+            splitInventorySlot = null;
+            return false;
+        }
+
+        int halfStackSize = Mathf.RoundToInt(_stackSize / 2);
+        RemoveFromStack(halfStackSize);
+
+        splitInventorySlot = new InventorySlot(_inventoryItemData, halfStackSize);
+        return true;
+    }
+}
+
                     </code>
                 </pre>
             </section>
 
             <!-- Sidebar -->
             <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory Slot</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -157,7 +481,7 @@ Sample Code!
         <!-- Code Example 4 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory Slot UI</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -172,7 +496,82 @@ Sample Code!
                 </button>
                 <pre id="code4pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!        
+public class InventorySlotUI : MonoBehaviour
+{
+    [SerializeField] private Image _itemSprite;
+
+    [SerializeField] private TextMeshProUGUI _itemAmount;
+
+    [SerializeField] private InventorySlot _assignedInventorySlot;
+
+    private Button _button;
+
+
+    #region Properties
+
+    public InventorySlot AssignedInventorySlot => _assignedInventorySlot;
+
+    public InventoryDisplay ParentInventoyDisplay { get; private set; }
+
+    #endregion
+
+    private void Awake()
+    {
+        ClearInventorySlotUI();
+
+        _itemSprite.preserveAspect = true;
+
+        _button = GetComponent&lt;Button&gt;();
+        _button?.onClick.AddListener(OnUISlotClicked);
+
+        ParentInventoyDisplay = transform.parent.GetComponent&lt;InventoryDisplay&gt;();
+    }
+
+    public void InitializeInventorySlotUI(InventorySlot inventorySlot)
+    {
+        _assignedInventorySlot = inventorySlot;
+        UpdateInventorySlotUI(inventorySlot);
+    }
+
+    // update UI inventory slot with new values
+    public void UpdateInventorySlotUI(InventorySlot inventorySlot)
+    {
+        if (inventorySlot.InventoryItemData != null)
+        {
+            _itemSprite.sprite = inventorySlot.InventoryItemData.Sprite;
+            _itemSprite.color = Color.white;
+
+            if (inventorySlot.StackSize > 1) _itemAmount.text = inventorySlot.StackSize.ToString();
+            else _itemAmount.text = "";
+        }
+        else
+        {
+            ClearInventorySlotUI();
+        }
+        
+    }
+
+    // update UI inventory slot without assigning new values
+    public void UpdateInventorySlotUI()
+    {
+        if (_assignedInventorySlot != null) UpdateInventorySlotUI(_assignedInventorySlot);
+    }
+
+    // set inventory slot + UI to empty
+    public void ClearInventorySlotUI()
+    {
+        _assignedInventorySlot?.ClearInventorySlot();
+        _itemSprite.sprite = null;
+        _itemSprite.color = Color.clear;
+        _itemAmount.text = "";
+    }
+
+    public void OnUISlotClicked()
+    {
+        ParentInventoyDisplay?.InventorySlotClicked(this);
+    }
+}
+        
                     </code>
                 </pre>
             </aside>
@@ -188,14 +587,148 @@ Sample Code!
                 </button>
                 <pre id="code5pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!
+public abstract class InventoryDisplay : MonoBehaviour
+{
+    [SerializeField] SelectedItemData _selectedInventoryItem;
+
+    protected InventorySystem _inventorySystem;
+
+    protected Dictionary&lt;InventorySlotUI, InventorySlot&gt; _inventorySlotDictionary;
+
+
+    #region Properties
+
+    public InventorySystem InventorySystem => _inventorySystem;
+
+    public Dictionary&lt;InventorySlotUI, InventorySlot&gt; InventorySlotDictionary => _inventorySlotDictionary;
+
+    #endregion
+
+
+    protected virtual void Start()
+    {
+
+    }
+
+    public abstract void AssignInventorySlot(InventorySystem inventorySystem, int offset);
+
+    public virtual void UpdateInventorySlot(InventorySlot updatedInventorySlot)
+    {
+        foreach(var inventorySlot in _inventorySlotDictionary)
+        {
+            // if value of inventory slots match - update UI inventory slot with new value
+            if (inventorySlot.Value == updatedInventorySlot) 
+            {
+                inventorySlot.Key.UpdateInventorySlotUI(updatedInventorySlot);
+            }
+        }
+    }
+
+    public void InventorySlotClicked(InventorySlotUI clickedInventorySlotUI)
+    {
+        // inventory slot has item - player has NO selected item - select item
+        if (clickedInventorySlotUI.AssignedInventorySlot.InventoryItemData != null && _selectedInventoryItem.InventorySlot.InventoryItemData == null)
+        {
+            // player hold shift key - split item stack
+            bool isShiftPressed = Keyboard.current.leftShiftKey.isPressed;
+            if (isShiftPressed && clickedInventorySlotUI.AssignedInventorySlot.SplitItemStack(out InventorySlot splitInventorySlot))
+            {
+                _selectedInventoryItem.UpdateSelectedInventorySlot(splitInventorySlot);
+                clickedInventorySlotUI.UpdateInventorySlotUI();
+                return;
+            }
+            else
+            {
+                _selectedInventoryItem.UpdateSelectedInventorySlot(clickedInventorySlotUI.AssignedInventorySlot);
+                clickedInventorySlotUI.ClearInventorySlotUI();
+                return;
+            }
+        }
+
+
+        // inventory slot has NO item - player has selected item - assign item
+        if (clickedInventorySlotUI.AssignedInventorySlot.InventoryItemData == null && _selectedInventoryItem.InventorySlot.InventoryItemData != null)
+        {
+            clickedInventorySlotUI.AssignedInventorySlot.AssignItemData(_selectedInventoryItem.InventorySlot);
+            clickedInventorySlotUI.UpdateInventorySlotUI();
+            _selectedInventoryItem.ClearInventorySlot();
+            return;
+        }
+
+
+        // inventory slot has item - player has selected item - assign / combine / swap
+        if (clickedInventorySlotUI.AssignedInventorySlot.InventoryItemData != null && _selectedInventoryItem.InventorySlot.InventoryItemData != null)
+        {
+            // not the same item - swap with eachother
+            if (clickedInventorySlotUI.AssignedInventorySlot.InventoryItemData != _selectedInventoryItem.InventorySlot.InventoryItemData)
+            {
+                SwapInventorySlots(clickedInventorySlotUI);
+                return;
+            }
+
+            // same item - combine
+            if (clickedInventorySlotUI.AssignedInventorySlot.InventoryItemData == _selectedInventoryItem.InventorySlot.InventoryItemData)
+            {
+                // has available amount in clicked inventory slot - no overflow
+                if (clickedInventorySlotUI.AssignedInventorySlot.HasAvailableAmountInStack(_selectedInventoryItem.InventorySlot.StackSize))
+                {
+                    clickedInventorySlotUI.AssignedInventorySlot.AssignItemData(_selectedInventoryItem.InventorySlot); // combine inventory slots in to clicked inventory slot
+                    clickedInventorySlotUI.UpdateInventorySlotUI(); // update inventory slot UI
+                    _selectedInventoryItem.ClearInventorySlot(); // clear inventory slot
+                    return;
+                }
+                // had not enought available amount - overflow
+                else if (!clickedInventorySlotUI.AssignedInventorySlot.HasAvailableAmountInStack(_selectedInventoryItem.InventorySlot.StackSize, out int availableAmount))
+                {
+                    if (availableAmount &lt; 1) // stack size if full - can Not combine - swap items
+                    {
+                        SwapInventorySlots(clickedInventorySlotUI);
+                        return;
+                    }
+                    // add until max stack size - remove added amount from current selected item
+                    else
+                    {
+                        clickedInventorySlotUI.AssignedInventorySlot.AddToStack(availableAmount); // add available amount to clicked inventory slot
+                        clickedInventorySlotUI.UpdateInventorySlotUI(); // update clicked inventory slot
+
+                        int newAmountOnSelectedInventoryItem = _selectedInventoryItem.InventorySlot.StackSize - availableAmount; // create new size for current selected item
+
+                        InventorySlot newSelectedInventoryItem = new InventorySlot(_selectedInventoryItem.InventorySlot.InventoryItemData, newAmountOnSelectedInventoryItem); // create new selected inventory item with new values
+                        _selectedInventoryItem.ClearInventorySlot(); // clear selected item
+                        _selectedInventoryItem.UpdateSelectedInventorySlot(newSelectedInventoryItem); // update selected item with new selected inventory item
+                        return;
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+    private void SwapInventorySlots(InventorySlotUI clickedInventorySlotUI)
+    {
+        // new temporary(cloned) inventory slot
+       InventorySlot tempInventorySlot = new InventorySlot(_selectedInventoryItem.InventorySlot.InventoryItemData, _selectedInventoryItem.InventorySlot.StackSize);
+       
+        _selectedInventoryItem.ClearInventorySlot(); // clear inventory slot
+        _selectedInventoryItem.UpdateSelectedInventorySlot(clickedInventorySlotUI.AssignedInventorySlot); // update inventory slot with new values
+        
+
+        clickedInventorySlotUI.ClearInventorySlotUI(); // clear inventory slot UI
+        clickedInventorySlotUI.AssignedInventorySlot.AssignItemData(tempInventorySlot); // assing inventory slot UI with cloned values
+        clickedInventorySlotUI.UpdateInventorySlotUI(); // update inventory slot UI
+    }
+
+}
+
                     </code>
                 </pre>
             </section>
 
             <!-- Sidebar -->
             <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory Display</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -206,7 +739,7 @@ Sample Code!
         <!-- Code Example 6 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Shop System</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -221,7 +754,105 @@ Sample Code!
                 </button>
                 <pre id="code6pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!        
+[Serializable]
+public class ShopSystem
+{
+    [SerializeField] private List&lt;ShopInventorySlot&gt; _shopInventory;
+    [SerializeField] private int _availableGold;
+    [SerializeField] private float _buyMarkUp;
+    [SerializeField] private float _sellMarkUp;
+
+
+    #region Properties
+
+    public List&lt;ShopInventorySlot&gt; ShopInventory => _shopInventory;
+
+    public int AvailableGold => _availableGold;
+
+    public float BuyMarkUp => _buyMarkUp;
+
+    public float SellMarkUp => _sellMarkUp;
+
+    #endregion
+
+    // Constuctor
+    public ShopSystem(int shopSize, int goldAmount, float buyMarkUp, float sellMarkUp)
+    {
+        _availableGold = goldAmount;
+        _buyMarkUp = buyMarkUp;
+        _sellMarkUp = sellMarkUp;
+
+        SetShopInventorySize(shopSize);
+    }
+    
+
+    private void SetShopInventorySize(int shopSize)
+    {
+        _shopInventory = new List&lt;ShopInventorySlot&gt;(shopSize);
+
+        for (int i = 0;  i &lt; shopSize; i++)
+        {
+            _shopInventory.Add(new ShopInventorySlot());
+        }
+
+    }
+
+    public void AddItemToShopInventory(InventoryItemData inventoryItemData, int amount)
+    {
+        if (ContainsItem(inventoryItemData, out ShopInventorySlot shopInventorySlot))
+        {
+            shopInventorySlot.AddToStack(amount);
+            return;
+        }
+
+        ShopInventorySlot availableShopInventorySlot = GetAvailableShopInventorySlot();
+        availableShopInventorySlot.AssignItemData(inventoryItemData, amount);
+    }
+
+    private ShopInventorySlot GetAvailableShopInventorySlot()
+    {
+        ShopInventorySlot availableShopInventorySlot = _shopInventory.FirstOrDefault(slot => slot.InventoryItemData == null);
+
+        if (availableShopInventorySlot == null)
+        {
+            availableShopInventorySlot= new ShopInventorySlot();
+            _shopInventory.Add(availableShopInventorySlot);
+        }
+
+        return availableShopInventorySlot;
+    }
+
+    // shop inventory has item - return shop inventory slot with item
+    public bool ContainsItem(InventoryItemData inventoryItemData, out ShopInventorySlot shopInventorySlot)
+    {
+        shopInventorySlot = _shopInventory.Find(slot => slot.InventoryItemData == inventoryItemData);
+        return shopInventorySlot != null;
+    }
+
+    public void BuyItem(InventoryItemData inventoryItemData, int amount)
+    {
+        if (!ContainsItem(inventoryItemData, out ShopInventorySlot shopInventorySlot)) return;
+
+        shopInventorySlot.RemoveFromStack(amount);
+    }
+
+    public void GetGold(int priceTotal)
+    {
+        _availableGold += priceTotal;
+    }
+
+    public void UseGold(int priceTotal)
+    {
+        _availableGold -= priceTotal;
+    }
+
+    public void SellItem(InventoryItemData inventoryItemData, int amount, int finalPrice)
+    {
+        AddItemToShopInventory(inventoryItemData, amount);
+        UseGold(finalPrice);
+    }
+}
+       
                     </code>
                 </pre>
             </aside>
@@ -237,14 +868,304 @@ Sample Code!
                 </button>
                 <pre id="code7pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!
+public class ShopKeeperDisplay : MonoBehaviour
+{
+    [SerializeField] private ShopInventorySlotUI _shopSlotInventoryPrefab;
+    [SerializeField] private ShoppingCartItemUI _shoppingCartItemPrefab;
+
+
+    [SerializeField] private Button _buyTabButton;
+    [SerializeField] private Button _sellTabButton;
+
+    [Header("Shopping Cart:")]
+
+    [SerializeField] private TextMeshProUGUI _priceTotalText;
+    [SerializeField] private TextMeshProUGUI _playerGoldText;
+    [SerializeField] private TextMeshProUGUI _shopGoldText;
+
+    [Space(10)]
+
+    [SerializeField] private Button _buySellButton;
+    [SerializeField] private TextMeshProUGUI _buySellButtonText;
+
+
+    [Header("Item Preview Section:")]
+
+    [SerializeField] private Image _itemPreviewSprite;
+    [SerializeField] private TextMeshProUGUI _itemPreviewName;
+    [SerializeField] private TextMeshProUGUI _itemPreviewDescription;
+
+    [SerializeField] private GameObject _itemListContentPanel;
+    [SerializeField] private GameObject _shoppingCartContentPanel;
+
+
+    private ShopSystem _shopSystem;
+    private PlayerInventory _playerInventory;
+
+    private Dictionary&lt;InventoryItemData, int&gt; _shoppingCart = new Dictionary&lt;InventoryItemData, int&gt;();
+    private Dictionary&lt;InventoryItemData, ShoppingCartItemUI&gt; _shoppingCartUI = new Dictionary&lt;InventoryItemData, ShoppingCartItemUI&gt;();
+
+    private int _priceTotal;
+    private bool _isSelling;
+
+    public void DisplayShopWindow(ShopSystem shopSystem, PlayerInventory playerInventory)
+    {
+        _shopSystem = shopSystem;
+        _playerInventory = playerInventory;
+
+        RefreshShopDisplay();
+    }
+
+    private void RefreshShopDisplay()
+    {
+        if (_buySellButton != null)
+        {
+            _buySellButtonText.text = _isSelling ? "Sell" : "Buy";
+            _buySellButton.onClick?.RemoveAllListeners();
+            
+            if (_isSelling)
+            {
+                _buySellButton.onClick.AddListener(SellItems);
+            }
+            else
+            {
+                _buySellButton.onClick.AddListener(BuyItems);
+            }
+        }
+
+        ClearShopInventorySlots();
+        ClearItemPreview();
+
+        _priceTotalText.enabled = false;
+        _buySellButton.gameObject.SetActive(false);
+        _priceTotal = 0;
+        _playerGoldText.text = $"Player Gold: {_playerInventory.PrimaryInventorySystem.Gold}G";
+        _shopGoldText.text = $"Shop Gold: {_shopSystem.AvailableGold}G";
+
+        if (_isSelling) DisplayPlayerInventory();
+        else DisplayShopInventory();
+
+    }
+
+    private void BuyItems()
+    {
+        if (_playerInventory.PrimaryInventorySystem.Gold &lt; _priceTotal) return;
+        if (!_playerInventory.PrimaryInventorySystem.HasAvailableInventorySlots(_shoppingCart)) return;
+
+        foreach (var kvp in _shoppingCart)
+        {
+            _shopSystem.BuyItem(kvp.Key, kvp.Value);
+
+            for (int i = 0; i &lt; kvp.Value; i++)
+            {
+                _playerInventory.PrimaryInventorySystem.AddItemToInventory(kvp.Key, 1);
+            }
+        }
+
+        _shopSystem.GetGold(_priceTotal);
+        _playerInventory.PrimaryInventorySystem.UseGold(_priceTotal);
+
+        RefreshShopDisplay();
+    }
+
+    private void SellItems()
+    {
+        if (_shopSystem.AvailableGold &lt; _priceTotal) return;
+
+        foreach (var kvp in _shoppingCart)
+        {
+            int finalPrice = GetModifiedPrice(kvp.Key, kvp.Value, _shopSystem.SellMarkUp);
+
+            _shopSystem.SellItem(kvp.Key, kvp.Value, finalPrice);
+
+            _playerInventory.PrimaryInventorySystem.GetGold(finalPrice);
+            _playerInventory.PrimaryInventorySystem.RemoveItemsFromInventory(kvp.Key, kvp.Value);
+        }
+
+        RefreshShopDisplay();
+    }
+    
+
+    private void ClearShopInventorySlots()
+    {
+        _shoppingCart = new Dictionary&lt;InventoryItemData, int&gt;();
+        _shoppingCartUI = new Dictionary&lt;InventoryItemData, ShoppingCartItemUI&gt;();
+
+        foreach (var item in _itemListContentPanel.transform.Cast&lt;Transform&gt;())
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (var item in _shoppingCartContentPanel.transform.Cast&lt;Transform&gt;())
+        {
+            Destroy(item.gameObject);
+        }
+    }
+
+    private void DisplayShopInventory()
+    {
+        foreach (var slot in _shopSystem.ShopInventory)
+        {
+            if (slot.InventoryItemData == null)
+            {
+                continue;
+            }
+
+            ShopInventorySlotUI shopInventorySlotUI = Instantiate(_shopSlotInventoryPrefab, _itemListContentPanel.transform);
+
+            shopInventorySlotUI.Initialize(slot, _shopSystem.BuyMarkUp);
+        }
+    }
+
+    private void DisplayPlayerInventory()
+    {
+        foreach (var item in _playerInventory.PrimaryInventorySystem.GetAllInventoryItems())
+        {
+            ShopInventorySlot tempShopInventorySlot = new ShopInventorySlot();
+
+            tempShopInventorySlot.AssignItemData(item.Key, item.Value);
+
+            ShopInventorySlotUI shopInventorySlotUI = Instantiate(_shopSlotInventoryPrefab, _itemListContentPanel.transform);
+            shopInventorySlotUI.Initialize(tempShopInventorySlot, _shopSystem.SellMarkUp);
+        }
+    }
+
+    public void AddShopItemToCart(ShopInventorySlotUI shopInventorySlotUI)
+    {
+        InventoryItemData inventoryItemData = shopInventorySlotUI.AssignedShopInventorySlot.InventoryItemData;
+
+        UpdateItemPreview(shopInventorySlotUI);
+
+        int finalPrice = GetModifiedPrice(inventoryItemData, 1, shopInventorySlotUI.Markup);
+
+        // item already in cart - increase amount
+        if (_shoppingCart.ContainsKey(inventoryItemData))
+        {
+            _shoppingCart[inventoryItemData]++;
+            string previewItemData = $"{inventoryItemData.Name} - {finalPrice}G - x{_shoppingCart[inventoryItemData]}";
+            _shoppingCartUI[inventoryItemData].SetItemPreviewText(previewItemData);
+        }
+        // item not in cart - add item to cart
+        else
+        {
+            _shoppingCart.Add(inventoryItemData, 1);
+
+            ShoppingCartItemUI shoppingCartItemUI = Instantiate(_shoppingCartItemPrefab, _shoppingCartContentPanel.transform);
+            string previewItemData = $"{inventoryItemData.Name} - {finalPrice}G - x1";
+
+            shoppingCartItemUI.SetItemPreviewText(previewItemData);
+            _shoppingCartUI.Add(inventoryItemData, shoppingCartItemUI);        
+        }
+
+        // set total price of all items
+        _priceTotal += finalPrice;
+        _priceTotalText.text = $"Total: {_priceTotal}G";
+
+        if (_priceTotal > 0 && !_priceTotalText.IsActive())
+        {
+            _priceTotalText.enabled = true;
+            _buySellButton.gameObject.SetActive(true);
+        }
+
+        HasAvailableGold();
+    }
+
+    public void RemoveShopItemFromCart(ShopInventorySlotUI shopInventorySlotUI)
+    {
+        InventoryItemData inventoryItemData = shopInventorySlotUI.AssignedShopInventorySlot.InventoryItemData;
+
+        int finalPrice = GetModifiedPrice(inventoryItemData, 1, shopInventorySlotUI.Markup);
+
+        // item already in cart - decrease amount
+        if (_shoppingCart.ContainsKey(inventoryItemData))
+        {
+            _shoppingCart[inventoryItemData]--;
+            string previewItemData = $"{inventoryItemData.Name} - {finalPrice}G - x{_shoppingCart[inventoryItemData]}";
+            _shoppingCartUI[inventoryItemData].SetItemPreviewText(previewItemData);
+
+            if (_shoppingCart[inventoryItemData] &lt;= 0)
+            {
+                _shoppingCart.Remove(inventoryItemData);
+                GameObject shoppingCartItemUI = _shoppingCartUI[inventoryItemData].gameObject;
+                _shoppingCartUI.Remove(inventoryItemData);
+                Destroy(shoppingCartItemUI);
+            }
+        }
+
+        _priceTotal -= finalPrice;
+        _priceTotalText.text = $"Total: {_priceTotal}G";
+
+        if (_priceTotal &lt;= 0 &&  _priceTotalText.IsActive())
+        {
+            _priceTotalText.enabled = false;
+            _buySellButton.gameObject.SetActive(false);
+            ClearItemPreview();
+            return;
+        }
+
+        HasAvailableGold();
+    }
+
+
+    private void UpdateItemPreview(ShopInventorySlotUI shopInventorySlotUI)
+    {
+        InventoryItemData inventoryItemData = shopInventorySlotUI.AssignedShopInventorySlot.InventoryItemData;
+
+        _itemPreviewSprite.sprite = inventoryItemData.Sprite;
+        _itemPreviewSprite.color = Color.white;
+        _itemPreviewName.text = inventoryItemData.Name;
+        _itemPreviewDescription.text = inventoryItemData.Description;
+    }
+
+    private void ClearItemPreview()
+    {
+        _itemPreviewSprite.sprite = null;
+        _itemPreviewSprite.color = Color.clear;
+        _itemPreviewName.text = "";
+        _itemPreviewDescription.text = "";
+    }
+
+    public static int GetModifiedPrice(InventoryItemData inventoryItemData, int amount, float markup)
+    {
+        int basePrice = inventoryItemData.GoldValue * amount;
+
+        return Mathf.FloorToInt(basePrice + basePrice * markup);
+    }
+    private void HasAvailableGold()
+    {
+        int availableGold = _isSelling ? _shopSystem.AvailableGold : _playerInventory.PrimaryInventorySystem.Gold;
+
+        _priceTotalText.color = _priceTotal > availableGold ? Color.red : Color.white;
+
+        if (_isSelling || _playerInventory.PrimaryInventorySystem.HasAvailableInventorySlots(_shoppingCart)) return;
+
+        _priceTotalText.text = "Not enough space in Inventory!";
+        _priceTotalText.color = Color.red;
+
+    }
+
+
+    public void OnBuyTabPressed()
+    {
+        _isSelling = false;
+        RefreshShopDisplay();
+    }
+
+    public void OnSellTabPressed()
+    {
+        _isSelling = true;
+        RefreshShopDisplay();
+    }
+
+}
+
                     </code>
                 </pre>
             </section>
 
             <!-- Sidebar -->
             <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Shop Display</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -255,7 +1176,7 @@ Sample Code!
         <!-- Code Example 8 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section id="code8example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Save System</h2>
                 <p class="leading-8 py-1">
                     Sample Text!
                 </p>
@@ -270,7 +1191,68 @@ Sample Code!
                 </button>
                 <pre id="code8pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
                     <code class="language-csharp">
-Sample Code!        
+public static class SaveLoad
+{
+    public static UnityAction OnSaveGame;
+    public static UnityAction&lt;SaveData&gt; OnLoadGame;
+
+    private static string _directory = "/SaveData/";
+    private static string _fileName = "SaveGame.sav";
+
+
+    public static bool Save(SaveData saveData)
+    {
+        OnSaveGame?.Invoke();
+
+        string directory = Application.persistentDataPath + _directory;
+
+        GUIUtility.systemCopyBuffer = directory;
+
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+
+        string json = JsonUtility.ToJson(saveData, true);
+        File.WriteAllText(directory + _fileName, json);
+
+        Debug.Log("Saving Game!");
+
+        return true;
+    }
+
+    public static SaveData Load()
+    {
+        string fullPath = Application.persistentDataPath + _directory + _fileName;
+        SaveData saveData = new SaveData();
+
+        if (File.Exists(fullPath))
+        {
+            string json = File.ReadAllText(fullPath);
+            saveData = JsonUtility.FromJson&lt;SaveData&gt;(json);
+
+            OnLoadGame?.Invoke(saveData);
+            Debug.Log("Loading Game!");
+        }
+        else
+        {
+            Debug.LogWarning("Save file NOT found!");
+        }
+
+        return saveData;
+    }
+
+    public static void Delete()
+    {
+        string fullPath = Application.persistentDataPath + _directory + _fileName;
+
+        if (File.Exists (fullPath))
+        {
+            File.Delete(fullPath);
+            Debug.Log("Save file Deleted!");
+        }
+    }
+}
                     </code>
                 </pre>
             </aside>

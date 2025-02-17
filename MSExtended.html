@@ -144,11 +144,11 @@ public class Grid
     {
         _grid = new CellData[width, height];
 
-        for (int x = 0; x < _grid.GetLength(0); x++)
+        for (int x = 0; x &lt; _grid.GetLength(0); x++)
         {
-            for (int y = 0; y < _grid.GetLength(1); y++)
+            for (int y = 0; y &lt; _grid.GetLength(1); y++)
             {
-                CellData cellData = ScriptableObject.CreateInstance<CellData>();
+                CellData cellData = ScriptableObject.CreateInstance&lt;CellData&gt;();
                 _grid[x, y] = cellData;
                 cellData.Position = new Vector3Int(x, y, 0);
                 cellData.Type = CellData.CellType.Empty;
@@ -209,10 +209,10 @@ public void CreateCellMines(CellData clickedCell, int amount)
 
     int placedAmount = 0;
 
-    List<Vector2Int> validCells = new List<Vector2Int>();
-    for (int x = 0; x < width; x++)
+    List&lt;Vector2Int&gt; validCells = new List&lt;Vector2Int&gt;();
+    for (int x = 0; x &lt; width; x++)
     {
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y &lt; height; y++)
         {
             CellData cellData = _grid[x, y];
 
@@ -257,9 +257,9 @@ public void CreateCellNumbers()
     int width = Width;
     int height = Height;
 
-    for (int x = 0; x < width; x++)
+    for (int x = 0; x &lt; width; x++)
     {
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y &lt; height; y++)
         {
             CellData cellData = _grid[x, y];
 
@@ -344,8 +344,8 @@ private void RevealArea(CellData cellData)
 {
     if (_gameIsOver || cellData.IsRevealed || cellData.Type == CellData.CellType.Mine) return;
 
-    Queue<CellData> cellsToReveal = new Queue<CellData>();
-    HashSet<CellData> processedCells = new HashSet<CellData>();
+    Queue&lt;CellData&gt; cellsToReveal = new Queue&lt;CellData&gt;();
+    HashSet&lt;CellData&gt; processedCells = new HashSet&lt;CellData&gt;();
     cellsToReveal.Enqueue(cellData);
 
     while (cellsToReveal.Count > 0)
@@ -359,7 +359,7 @@ private void RevealArea(CellData cellData)
         // If the cell is empty, enqueue all 8 surrounding cells
         if (currentCell.Type == CellData.CellType.Empty)
         {
-            IEnumerable<Vector2Int> adjacentOffsets = GameModeManager.Instance.CurrentGameMode != GameModeManager.GameMode.Hex
+            IEnumerable&lt;Vector2Int&gt; adjacentOffsets = GameModeManager.Instance.CurrentGameMode != GameModeManager.GameMode.Hex
                 ? _grid.GetAllAdjacent()
                 : _grid.GetAdjacentHex(currentCell);
 
@@ -397,7 +397,7 @@ private void Unchord(CellData chord)
 {
     chord.IsChorded = false;
 
-    IEnumerable<Vector2Int> adjacentOffsets = GameModeManager.Instance.CurrentGameMode != GameModeManager.GameMode.Hex
+    IEnumerable&lt;Vector2Int&gt; adjacentOffsets = GameModeManager.Instance.CurrentGameMode != GameModeManager.GameMode.Hex
             ? _grid.GetAllAdjacent()
             : _grid.GetAdjacentHex(chord);
 
