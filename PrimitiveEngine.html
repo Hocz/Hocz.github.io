@@ -54,12 +54,15 @@
                 <h2 class="text-3xl font-semibold mb-4 text-green-500">Primitive Engine</h2>
                 <p class="leading-8 text-xl py-4">
                     Primitive Engine is a project I started to improve my C++ skills. 
-                    Aside from C++ I am also using SDL2 for window management and rendering as well as GLM for math, that way I can focus more on gameplay features and less on math.
+                    Aside from C++ I am also using SDL2 for window management and rendering as well as GLM for math, that way I can focus more on gameplay features and less on the underlaying math.
                 </p>
                 <p class="leading-8 text-xl py-4">
-                    This project is currently a work in progress and I have a lot more plans for it. 
+                    This project is still a work in progress, and I have many more features planned. 
+                    I'm focusing on implementing a solid foundation without making it too generalized, while also refining important aspects like collision resolution and player movement to create a more enjoyable experience. 
                 </p>
-                
+                <p class="leading-8 text-xl py-4">
+                    My goal is to continually evolve the game and add new features as I progress.
+                </p>
             </section>
 
             <!-- Sidebar -->
@@ -67,11 +70,10 @@
                 <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Ideas</h2>
                 <div>
                     <p class="leading-8 text-xl py-4">
-                        My plans for this project is to create a game that akin to Terraria, a 2D block game with the key gameplay features being building, mining and combat.
+                        My plan for this project is to create a game similar to Terraria, a 2D block-based game focused on building, mining and combat.
                     </p>
                     <p class="leading-8 text-xl py-4">
-                        I also plan on looking into procedural world generation. 
-                        Along with generating a random looking terrain, I also want to try adding biomes, caves and other natural features such as trees and ore veins.
+                        Additionally, I aim to explore procedural world generation, creating random terrain along with biomes, caves and other natural features like trees and ore veins.
                     </p>
             </aside>
         </div>
@@ -158,7 +160,7 @@ public:
 	void RenderRect(int x, int y, int width, int height);
 
 	Actor* GetCollidingActor(Actor* other, ECollision_Type collisionType);
-	std::vector<Actor*> GetAllCollidingActors(Actor* other, ECollision_Type collisionType);
+	std::vector&lt;Actor*&gt; GetAllCollidingActors(Actor* other, ECollision_Type collisionType);
 
 	SDL_Renderer* GetRenderer();
 
@@ -259,7 +261,7 @@ void Game::Init(const char* title, int xPos, int yPos, int width, int height, bo
         window = SDL_CreateWindow(title, xPos, yPos, width, height, flags);
         if (window)
         {
-            std::cout << "Window created!" << std::endl;
+            std::cout &lt;&lt; "Window created!" &lt;&lt; std::endl;
         }
 
 
@@ -268,7 +270,7 @@ void Game::Init(const char* title, int xPos, int yPos, int width, int height, bo
         if (renderer)
         {
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-            std::cout << "Renderer Created!" << std::endl;
+            std::cout &lt;&lt; "Renderer Created!" &lt;&lt; std::endl;
         }
 
 
@@ -318,9 +320,9 @@ void Game::Update()
         player->Update();
     }
 
-    for (int x = 0; x < worldGenerator->WORLD_WIDTH; x++)
+    for (int x = 0; x &lt; worldGenerator->WORLD_WIDTH; x++)
     {
-        for (int y = 0; y < worldGenerator->WORLD_HEIGHT; y++)
+        for (int y = 0; y &lt; worldGenerator->WORLD_HEIGHT; y++)
         {
             Block* block = worldGenerator->worldGrid[x][y];
 
@@ -345,9 +347,9 @@ void Game::Render()
     SDL_RenderClear(renderer);
 
     // background grid
-    for (int x = -50; x <= 50; x++)
+    for (int x = -50; x &lt;= 50; x++)
     {
-        for (int y = -50; y <= 50; y++)
+        for (int y = -50; y &lt;= 50; y++)
         {
             if ((x + y) % 2 == 0)
             {
@@ -368,9 +370,9 @@ void Game::Render()
 
     if (worldGenerator->worldGrid != nullptr)
     {
-        for (int x = 0; x < worldGenerator->WORLD_WIDTH; x++)
+        for (int x = 0; x &lt; worldGenerator->WORLD_WIDTH; x++)
         {
-            for (int y = 0; y < worldGenerator->WORLD_HEIGHT; y++)
+            for (int y = 0; y &lt; worldGenerator->WORLD_HEIGHT; y++)
             {
                 if (worldGenerator->worldGrid[x][y] != nullptr)
                 {
@@ -395,7 +397,7 @@ void Game::Clean()
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
-    std::cout << "Game Cleaned" << std::endl;
+    std::cout &lt;&lt; "Game Cleaned" &lt;&lt; std::endl;
 }
 
 
@@ -420,7 +422,7 @@ void Game::RenderRect(int x, int y, int width, int height)
 
 Actor* Game::GetCollidingActor(Actor* actor, ECollision_Type collisionType)
 {
-    for (int i = 0; i < max_Actors; i++)
+    for (int i = 0; i &lt; max_Actors; i++)
     {
         if (actors[i] == actor)
             continue;
@@ -443,16 +445,16 @@ Actor* Game::GetCollidingActor(Actor* actor, ECollision_Type collisionType)
     return nullptr;
 }
 
-std::vector<Actor*> Game::GetAllCollidingActors(Actor* actor, ECollision_Type collisionType)
+std::vector&lt;Actor*&gt; Game::GetAllCollidingActors(Actor* actor, ECollision_Type collisionType)
 {
-    std::vector<Actor*> collidingActors;
+    std::vector&lt;Actor*&gt; collidingActors;
     collidingActors.clear();
 
     if (worldGenerator->worldGrid != nullptr)
     {
-        for (int x = 0; x < worldGenerator->WORLD_WIDTH; x++)
+        for (int x = 0; x &lt; worldGenerator->WORLD_WIDTH; x++)
         {
-            for (int y = 0; y < worldGenerator->WORLD_HEIGHT; y++)
+            for (int y = 0; y &lt; worldGenerator->WORLD_HEIGHT; y++)
             {
                 Block* block = worldGenerator->worldGrid[x][y];
 
@@ -524,10 +526,25 @@ int GetFrameCount()
             </section>
 
             <!-- Sidebar -->
-            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
+            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-96 overflow-y-auto">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Game Class</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Game class is the core of the engine, managing initialization, the game loop, event handling, time management and cleanup.
+                </p>
+                <p class="leading-8 py-1">
+                    Initialization sets up the game window, renderer and loads textures.
+                </p>
+                <p class="leading-8 py-1">
+                    Event handling processes player input events and quit requests.
+                </p>
+                <p class="leading-8 py-1">
+                    The game loop continuously updates the game state and renders visuals.
+                </p>
+                <p class="leading-8 py-1">
+                    Time management tracks time, framecount and calculates delta time.
+                </p>
+                <p class="leading-8 py-1">
+                    Cleanup properly shuts down the game and prevents memory leaks.
                 </p>
             </aside>    
         </div>
@@ -537,7 +554,14 @@ int GetFrameCount()
             <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Input Manager</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The InputManager class handles keyboard and mouse input using SDL events. 
+                </p>
+                <p class="leading-8 py-1">
+                    It tracks key and mouse button states, detecting if its pressed, held or released.
+                    It also keeps track of the mouse position.
+                </p>
+                <p class="leading-8 py-1">
+                    All inputs are frame-accurate, ensuring accurate and responsive input handling.
                 </p>
             </section>
 
@@ -611,7 +635,6 @@ private:
 	int mouseX = 0;
 	int mouseY = 0;
 };
-
                         </code>
                     </pre>
                 </div>
@@ -777,7 +800,7 @@ private:
 
 	TextureManager() { }
 
-	std::unordered_map<std::string, SDL_Texture*> textureMap;
+	std::unordered_map&lt;std::string, SDL_Texture*&gt; textureMap;
 };
 
                         </code>
@@ -839,7 +862,16 @@ void TextureManager::Clean()
             <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Texture Manager</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Texture Manager class handles loading, rendering and cleanup of textures.
+                </p>
+                <p class="leading-8 py-1">
+                    Textures are loaded from files and stored in a map.
+                </p>
+                <p class="leading-8 py-1">
+                    Rendering draws textures at specified positions and sizes.
+                </p>
+                <p class="leading-8 py-1">
+                    Cleaning up frees allocated memory to prevent memory leaks when game quits.
                 </p>
             </aside>    
         </div>
@@ -850,7 +882,13 @@ void TextureManager::Clean()
             <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Collision</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The AABB (Axis-Aligned Bounding Box) struct represent a 2D rectangle used for collision detection.
+                </p>
+                <p class="leading-8 py-1">
+                    FromPositionSize takes a position and a size and converts it into an AABB by calculating the min and max corners.
+                </p>
+                <p class="leading-8 py-1">
+                    aabbOverlap is an overlap check that compare two AABB and return if they are overlapping or not.
                 </p>
             </section>
 
@@ -1002,7 +1040,16 @@ glm::vec2 Camera::ScreenToWorld(glm::vec2 vector)
             <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Camera</h2>
                 <p class="leading-8 py-1">
-                        Sample Text!
+                    The Camera class managees it's position and converts coordinates between world space and screen space, which is essential for interacting with objetcs on screen.
+                </p>
+                <p class="leading-8 py-1">
+                    The camera position is currently set to follow the player's position.
+                </p>
+                <p class="leading-8 py-1">
+                    The WorldToScreen converts world coordinates to screen coordinates based on the camera's position.
+                </p>
+                <p class="leading-8 py-1">
+                    The ScreenToWorld converts screen coordinates to world coordinates.
                 </p>
             </aside>    
         </div>
@@ -1012,7 +1059,16 @@ glm::vec2 Camera::ScreenToWorld(glm::vec2 vector)
             <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Player Class</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Player class represents the player character and inherits from the Actor class.
+                </p>
+                <p class="leading-8 py-1">
+                    Player movement includes horizontal movement, jumping and gravity. 
+                </p>
+                <p class="leading-8 py-1">
+                    To resolve collisions, the player's position is adjusted based on the smallest overlap with other objects.
+                </p>
+                <p class="leading-8 py-1">
+                    The player can interact with the world using mouse inputs to either place or break blocks. 
                 </p>
             </section>
 
@@ -1053,10 +1109,10 @@ public:
 	void HandleGravity();
 	void HandleJump();
 
-	bool IsGrounded(const AABB& actor, const std::vector<AABB>& collidingActors, float extendedAmount) override;
+	bool IsGrounded(const AABB& actor, const std::vector&lt;AABB&gt;& collidingActors, float extendedAmount) override;
 
 	bool IsColliding(const AABB& a, const AABB& b, glm::vec2& outOverlap) override;
-	void ResolveCollision(Actor* actor, const std::vector<AABB>& collidingActors) override;
+	void ResolveCollision(Actor* actor, const std::vector&lt;AABB&gt;& collidingActors) override;
 
 	void Use(int i);
 
@@ -1103,8 +1159,8 @@ Player::Player(glm::vec2 position)
 
 void Player::Update()
 {
-	std::vector<Actor*> collidingActors = Game::Instance().GetAllCollidingActors(this, ECollision_Type::Block);
-	std::vector<AABB> actorsAABB;
+	std::vector&lt;Actor*&gt; collidingActors = Game::Instance().GetAllCollidingActors(this, ECollision_Type::Block);
+	std::vector&lt;AABB&gt; actorsAABB;
 
 	for (Actor* a : collidingActors)
 	{
@@ -1185,8 +1241,8 @@ void Player::HandleMovement()
 
 void Player::HandleGravity()
 {
-	std::vector<Actor*> collidingActors = Game::Instance().GetAllCollidingActors(this, ECollision_Type::Block);
-	std::vector<AABB> actorsAABB;
+	std::vector&lt;Actor*&gt; collidingActors = Game::Instance().GetAllCollidingActors(this, ECollision_Type::Block);
+	std::vector&lt;AABB&gt; actorsAABB;
 
 	AABB player = AABB::FromPositionSize(this->position, this->size);
 
@@ -1219,7 +1275,7 @@ void Player::HandleJump()
 	movementDirection.y = velocity.y;
 }
 
-bool Player::IsGrounded(const AABB& actor, const std::vector<AABB>& collidingActors, float extendedAmount)
+bool Player::IsGrounded(const AABB& actor, const std::vector&lt;AABB&gt;& collidingActors, float extendedAmount)
 {
 	glm::vec2 newPos = glm::vec2(position.x, position.y + (size.y * 0.5f));
 	glm::vec2 newSize = glm::vec2(size.x * 0.75, (size.y * 0.25f));
@@ -1252,7 +1308,7 @@ bool Player::IsColliding(const AABB& a, const AABB& b, glm::vec2& outOverlap)
 	return false;
 }
 
-void Player::ResolveCollision(Actor* actor, const std::vector<AABB>& collidingActors)
+void Player::ResolveCollision(Actor* actor, const std::vector&lt;AABB&gt;& collidingActors)
 {
 	glm::vec2 overlap;
 
@@ -1278,9 +1334,9 @@ void Player::ResolveCollision(Actor* actor, const std::vector<AABB>& collidingAc
 		}
 
 
-		if (overlap.x < overlap.y) // checks smallest axis overlap - x or y?
+		if (overlap.x &lt; overlap.y) // checks smallest axis overlap - x or y?
 		{
-			if (actor->position.x < cA.min.x)
+			if (actor->position.x &lt; cA.min.x)
 			{
 				actor->position.x -= overlap.x; // adjust position left
 			}
@@ -1292,7 +1348,7 @@ void Player::ResolveCollision(Actor* actor, const std::vector<AABB>& collidingAc
 		}
 		else
 		{
-			if (actor->position.y < cA.min.y)
+			if (actor->position.y &lt; cA.min.y)
 			{
 				actor->position.y -= overlap.y; // adjust position down
 			}
@@ -1317,12 +1373,12 @@ void Player::Use(int i)
 
 	glm::vec2 gridPos = glm::floor(worldMousePos / blockSize);
 
-	std::cout << "Mouse is over grid cell: " << (int)gridPos.x << ", " << (int)gridPos.y << std::endl;
+	std::cout &lt;&lt; "Mouse is over grid cell: " &lt;&lt; (int)gridPos.x &lt;&lt; ", " &lt;&lt; (int)gridPos.y &lt;&lt; std::endl;
 
 	int gridWidth = Game::Instance().GetWorldGenerator()->WORLD_WIDTH;
 	int gridHeight = Game::Instance().GetWorldGenerator()->WORLD_HEIGHT;
 
-	if (gridPos.x >= 0 && gridPos.x <= gridWidth && gridPos.y >= 0 && gridPos.y <= gridHeight)
+	if (gridPos.x >= 0 && gridPos.x &lt;= gridWidth && gridPos.y >= 0 && gridPos.y &lt;= gridHeight)
 	{
 		if (i == 0) // break
 		{
@@ -1424,11 +1480,16 @@ void Block::Hit(int damage)
             <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
                 <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Block Class</h2>
                 <p class="leading-8 py-1">
-                        Sample Text!
+                    The Block class represent an in-game block and inherits from the Actor class.
+                </p>
+                <p class="leading-8 py-1">
+                    Currently, it doesn't have any complex logic but is designed to be expanded upon later.
+                </p>
+                <p class="leading-8 py-1">
+                    The Hit method will handle block damage, allowing blocks to have durability instead of being instantly destroyed.
                 </p>
             </aside>    
         </div>
-
 
     </main>
 
