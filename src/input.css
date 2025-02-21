@@ -41,7 +41,7 @@ html {
 
 /* Style the image inside the viewer */
 .viewer-canvas img {
-    @apply rounded-2xl object-cover w-full h-full;
+    @apply rounded-2xl;
 }
 
 

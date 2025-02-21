@@ -1021,11 +1021,7 @@ html {
 /* Style the image inside the viewer */
 
 .viewer-canvas img {
-  height: 100%;
-  width: 100%;
   border-radius: 1rem;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .social-link-icon {
