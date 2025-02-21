@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.1/viewer.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.1/viewer.min.js"></script>
 </head>
 
 <body class="bg-teal-900 text-white font-exo2">
@@ -73,14 +76,14 @@
                 <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">My Contribution</h2>
                 <div>
                     <p class="leading-8 text-xl py-4">
-                        For this project I mainly worked on AI using Unreal Engines Behavior Tree. I also did a bit of UI.
+                        For this project I mainly worked on AI using Unreal Engine's Behavior Tree. I also worked on the UI.
                     </p>
                     <p class="leading-8 text-xl py-4">
-                        The AI for this project is a friendly character that would help and guide the player through out the game. 
-                        It needed to be able to wait for the player based on distance and progression, and also change behavior based on the state of progression.
+                        The AI is a friendly character that is designed to help and guide the player throughout the game. 
+                        It needed to perform various tasks based on the player's distance and overall game progression.
                     </p>
                     <p class="leading-8 text-xl py-4">
-                        The UI part I worked on was the Main menu and a option menu, including general settings and key binding.
+                        For the UI, I worked on the main menu and an options menu, which included general game settings and key binding functionality.
                     </p>
             </aside>
         </div>
@@ -89,19 +92,17 @@
             <iframe class="my-8 border-4 border-teal-950 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/VP8Lf0wo_jU?si=NGo-T_lzRchBsgAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
-        <div class="hidden">
-
+        
         <!-- Code Snippets Buttons -->
         <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
             <button class="code-snippet-button" onclick="scrollToElement('top')">↑</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Example 1</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Example 2</button>      
-            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Example 3</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Example 4</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Example 5</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Example 6</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Example 7</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code8example')">Example 8</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Explore</button>
+            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Follow</button>      
+            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Waypoint</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Wait</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Out of Range</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Talk</button>    
+            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Show Glyph</button>    
         </div>
         
 
@@ -109,22 +110,29 @@
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code1pre')">
-                ⇅
+                class="toggleButton absolute top-4 right-4"
+                onclick="toggleImage('bpimage1')">
+                ↺
                 </button>
-                <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <div class="p-6 h-fit flex justify-center items-center">
+                    <div id="image-container">
+                        <img id="bpimage1" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Explore.png" alt="">
+                    </div>
+                </div>
             </section>
 
             <!-- Sidebar -->
             <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Explore Task</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Explore Behavior simulates the AI being curious and exploring it's environment.
+                </p>
+                <p class="leading-8 py-1">
+                    It is also functions as a Wait behavior, but instead of standing still, the AI is moves around while waiting for the player.
+                </p>
+                <p class="leading-8 py-1">
+                    This Task clears the AI's focus target, selects a random postion within a set radius around the player, and moves to that position.
+                    Before selecting a new position, the AI pauses briefly.
                 </p>
             </aside>    
         </div>
@@ -132,24 +140,30 @@ Sample Code!
         <!-- Code Example 2 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Follow Task</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Follow Behavior is straightforward, it simply follows the player.
+                </p>
+                <p class="leading-8 py-1">
+                    First, it clears the AI's target, then moves to the player's position until it reaches a certain threshold. It then sets its focus on the player.
+                </p>
+                <p class="leading-8 py-1">
+                    Before looping back, the AI pauses for a second to prevent it from instantly resuming movement.
                 </p>
             </section>
 
             <!-- Sidebar -->
             <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code2pre')">
-                ⇅
+                class="toggleButton absolute top-4 right-4"
+                onclick="toggleImage('bpimage2')">
+                ↺
                 </button>
-                <pre id="code2pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
+                <div class="p-6 h-fit flex justify-center items-center">
+                    <div id="image-container">
+                        <img id="bpimage2" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Follow.png" alt="">
+                    </div>
+                </div>
             </aside>
         </div>
 
@@ -157,22 +171,28 @@ Sample Code!
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code3pre')">
-                ⇅
+                class="toggleButton absolute top-4 right-4"
+                onclick="toggleImage('bpimage3')">
+                ↺
                 </button>
-                <pre id="code3pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <div class="p-6 h-fit flex justify-center items-center">
+                    <div id="image-container">
+                        <img id="bpimage3" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Waypoint.png" alt="">
+                    </div>
+                </div>
             </section>
 
             <!-- Sidebar -->
             <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Waypoint Task</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Waypoint Behavior moves the AI to a specific position or along a predefined sequence.
+                </p>
+                <p class="leading-8 py-1">
+                    It begins by clearing the AI's target, then locates the correct waypoint and moves toward it.
+                </p>
+                <p class="leading-8 py-1">
+                    After reaching the waypoint, the AI's state is updated based on the next intended action.
                 </p>
             </aside>    
         </div>
@@ -180,24 +200,27 @@ Sample Code!
         <!-- Code Example 4 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Wait Task</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Wait Behavior is also straightforward, it keeps the AI in place until told otherwise.
+                </p>
+                <p class="leading-8 py-1">
+                    The AI performs two actions, it clears its target and then sets its target to the player.
                 </p>
             </section>
 
             <!-- Sidebar -->
             <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code4pre')">
-                ⇅
+                class="toggleButton absolute top-4 right-4"
+                onclick="toggleImage('bpimage4')">
+                ↺
                 </button>
-                <pre id="code4pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
+                <div class="p-6 h-fit flex justify-center items-center">
+                    <div id="image-container">
+                        <img id="bpimage4" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Wait.png" alt="">
+                    </div>
+                </div>
             </aside>
         </div>
 
@@ -205,22 +228,30 @@ Sample Code!
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code5pre')">
-                ⇅
+                class="toggleButton absolute top-4 right-4"
+                onclick="toggleImage('bpimage5')">
+                ↺
                 </button>
-                <pre id="code5pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <div class="p-6 h-fit flex justify-center items-center">
+                    <div id="image-container">
+                        <img id="bpimage5" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_OutOfRange.png" alt="">
+                    </div>
+                </div>
             </section>
 
             <!-- Sidebar -->
             <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Out of Range Task</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Out of Range Behavior ensures the AI never strays too far away from the player. 
+                    It is primarily used when the AI is leading and guiding the player.
+                </p>
+                <p class="leading-8 py-1">
+                    If the player moves outside a predefined range, the AI clears its target and pauses briefly.
+                    It then begins moving towards the player until it reaches a set threshold.
+                </p>
+                <p class="leading-8 py-1">
+                    Once the threshold is reached, the AI stops, waits, and focuses on the player until they catch up again.
                 </p>
             </aside>    
         </div>
@@ -229,24 +260,33 @@ Sample Code!
         <!-- Code Example 6 -->
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
             <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Talk Task</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Talk Behavior helps the player solve puzzles and decode game's language.
+                <p class="leading-8 py-1">
+                    It begins by clearing the AI's focus target, then moves in front of the player within a set range and focuses on them. 
+                </p>
+                <p class="leading-8 py-1">
+                    The AI then "speaks" with the player by displaying a glyph with a specific meaning.
+                    The glyph remains visible for a short time before the AI stops displaying it.
+                </p>
+                <p class="leading-8 py-1">
+                    Lastly the AI's state is updated based on the next intended action.
                 </p>
             </section>
 
             <!-- Sidebar -->
             <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code6pre')">
-                ⇅
+                class="toggleButton absolute top-4 right-4"
+                onclick="toggleImage('bpimage6')">
+                ↺
                 </button>
-                <pre id="code6pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
+                <div class="p-6 h-fit flex justify-center items-center">
+                    <div id="image-container">
+                        <img id="bpimage6" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Talk.png" alt="">
+                    </div>
+                </div>
             </aside>
         </div>
 
@@ -254,52 +294,31 @@ Sample Code!
         <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
             <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code7pre')">
-                ⇅
+                class="toggleButton absolute top-4 right-4"
+                onclick="toggleImage('bpimage7')">
+                ↺
                 </button>
-                <pre id="code7pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!
-                    </code>
-                </pre>
+                <div class="p-6 h-fit flex justify-center items-center">
+                    <div id="image-container">
+                        <img id="bpimage7" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_ShowGlyph.png" alt="">
+                    </div>
+                </div>
             </section>
 
             <!-- Sidebar -->
             <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Show Glyph Task</h2>
                 <p class="leading-8 py-1">
-                    Sample Text!
+                    The Show Glyph Behavior is almost identical to the Talk Behavior. 
+                </p>
+                <p class="leading-8 py-1">
+                    The main difference is that the AI does not move to the player to display a glyph, it simply shows it from its current position.
+                </p>
+                <p class="leading-8 py-1">
+                    It begins be resetting its focus on the player, displays the glyph for a short time, and then updateds its state.
                 </p>
             </aside>    
         </div>
-
-
-        <!-- Code Example 8 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code8example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Sample Text!</h2>
-                <p class="leading-8 py-1">
-                    Sample Text!
-                </p>
-            </section>
-
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
-                <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code8pre')">
-                ⇅
-                </button>
-                <pre id="code8pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
-                    <code class="language-csharp">
-Sample Code!        
-                    </code>
-                </pre>
-            </aside>
-        </div>
-
-    </div>
 
     </main>
 
@@ -308,6 +327,40 @@ Sample Code!
             const element = document.getElementById(id);
             if (element) {
                 element.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+    </script>
+
+    <script>
+        const viewers = {};
+
+        document.querySelectorAll('.image-example').forEach((image) => {
+            const viewerInstance = new Viewer(image, {
+                inline: true,
+                button: false,
+                zoomable: true,
+                scalable: false,
+                movable: true,
+                toolbar: false,
+                backdrop: false,
+                navbar: false,
+                title: false,
+                tooltip: false,
+                initialCoverage: 1,
+
+                viewed() {
+                    viewerInstance.zoomTo(.55);
+                }
+            });
+
+            viewers[image.id] = viewerInstance;
+        });
+
+        function toggleImage(id) {
+            if (viewers[id]) 
+            {
+                viewers[id].reset();
+                viewers[id].zoomTo(0.55);
             }
         }
     </script>

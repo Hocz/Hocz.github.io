@@ -33,6 +33,18 @@ html {
     background: transparent;
 }
 
+
+/* Style the main viewer container */
+.viewer-container {
+    @apply rounded-2xl border-2 border-teal-900 overflow-hidden bg-neutral-900;
+}
+
+/* Style the image inside the viewer */
+.viewer-canvas img {
+    @apply rounded-2xl object-cover w-full h-full;
+}
+
+
 .social-link-icon 
 {
     @apply w-8 h-8 hover:scale-125 transition-transform duration-200 ease-in-out;
