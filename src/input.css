@@ -94,10 +94,6 @@ html {
     @apply px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500
 }
 
-.study-button{
-    @apply px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500
-}
-
 .skill {
     @apply bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl my-2
 }

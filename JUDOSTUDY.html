@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap">
 </head>
 
-<body class="bg-teal-900 text-white font-exo2">
+<body class="bg-neutral-100 text-white font-exo2">
 
     <!-- Header -->
-    <header class="header-section">
+    <header class="flex flex-col md:flex-row justify-between items-start bg-neutral-100 bg-opacity-80 shadow-lg p-4">
         <div>
-            <h1 class="header-title text-green-500">JUDO STUDY</h1>
+            <h1 class="header-title text-red-500">JUDO STUDY</h1>
+            <p class="text-black pt-2 font-semibold">
+                This is a Hidden Page, only accessible throught the correct URL.
+                <br>If you've reached this page on your own, Congratulation!
+            </p>
+        </div>
+        <div>
+
         </div>
     </header>
 
@@ -21,72 +28,54 @@
         <!-- Content Area -->
         <div class="flex flex-col md:flex-row md:space-x-8">
             <!-- Main Content -->
-            <section class="md:w-1/3">
-                <div class="bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
-                    <h2 class="text-3xl text-green-500 font-semibold pb-2">About</h2>
-                    <div class="flex justify-between">
-                        <div class="text-sm md:text-lg font-medium">
-                            <p>
-                                This is a Hidden Page, only accessible throught the correct URL.
-                                If you've reached this page on your own, Congratulation!
-                            </p>
-                            <p>
-                                Feel free to use this page to study Judo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-transparent md:my-0">
+            <section class="">
                 <div class="bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
                     <!-- Code Snippets Buttons-->
                     <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2">
-                        <button class="study-button" onclick="scrollToElement('top')">↑</button>
-                        <button class="study-button" onclick="scrollToElement('words')">Words</button>
-                        <button class="study-button" onclick="scrollToElement('kata')">Nage No Kata</button>  
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500" onclick="scrollToElement('words')">Words</button>
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500" onclick="scrollToElement('kata')">Nage No Kata</button>  
                     </div>
                 </div>
-            </aside>
+            </section>
         </div>
 
-        <section class="words bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
+        <section class="words bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4 flex items-center justify-between">
+            
             <!-- Language Selection -->
-            <div class="flex justify-start mb-6">
-                <button id="languageToggleBtn" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white font-semibold hover:text-green-500" onclick="toggleLanguage()">
+            <div class="self-start">
+                <button id="languageToggleBtn" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 h-fit" onclick="toggleLanguage()">
                     Japanese
                 </button>
             </div>
-
             
-
-            <!-- Flashcards -->
-            <div class="flex justify-center mb-6">
-                <!-- Arrows for navigation -->
-                <button id="prevButton" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500 mr-4 my-4" onclick="navigateCard('prev')">
-                    ←
-                </button>
-
+            <div class="flex-1 flex flex-col items-center">
                 <!-- Flashcards Container -->
                 <section id="flashcardsContainer" class="flex justify-center items-center">
                     <!-- Cards will be inserted here -->
-                </section> 
+                </section>
+                
+                <!-- Flashcards -->
+                <div class="flex justify-center">
+                    <!-- Arrows for navigation -->
+                    <button id="prevButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 mr-4 my-4" onclick="navigateCard('prev')">
+                        ←
+                    </button>
 
-                <button id="nextButton" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500 ml-4 my-4" onclick="navigateCard('next')">
-                    →
-                </button>
+                    <!-- Random Word Button -->
+                    <button id="randomButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 my-4" onclick="showRandomWord()">
+                        Random
+                    </button>
+
+                    <button id="nextButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 ml-4 my-4" onclick="navigateCard('next')">
+                        →
+                    </button>
+                </div>
             </div>
-
-            <!-- Random Word Button -->
-            <div class="flex justify-center mb-6">
-                <button id="randomButton" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white font-semibold hover:text-green-500" onclick="showRandomWord()">
-                    Random
-                </button>
-            </div>
-
             
         </section>
+
+
+
 
         <section class="kata bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
 
@@ -325,7 +314,7 @@
 
             const word = words[currentIndex];
             const card = document.createElement("div");
-            card.className = "bg-neutral-900 bg-opacity-80 text-white text-center p-6 rounded-xl shadow-lg cursor-pointer select-none flex items-center justify-center text-2xl font-bold w-80 h-40";
+            card.className = "bg-red-500 bg-opacity-80 text-white text-center p-2 rounded-xl shadow-lg cursor-pointer select-none flex items-center justify-center text-2xl font-bold w-80 h-40";
             
             // Show the correct word based on the current language
             const showOriginal = currentLanguage === "original";
