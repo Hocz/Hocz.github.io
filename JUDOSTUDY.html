@@ -40,7 +40,7 @@
 
             <!-- Sidebar -->
             <aside class="md:w-2/3 bg-transparent md:my-0">
-                <div class="bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-2">
+                <div class="bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
                     <!-- Code Snippets Buttons-->
                     <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2">
                         <button class="study-button" onclick="scrollToElement('top')">↑</button>
@@ -52,13 +52,315 @@
         </div>
 
         <section class="words bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
+            <!-- Language Selection -->
+            <div class="flex justify-start mb-6">
+                <button id="languageToggleBtn" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white font-semibold hover:text-green-500" onclick="toggleLanguage()">
+                    Japanese
+                </button>
+            </div>
 
+            
+
+            <!-- Flashcards -->
+            <div class="flex justify-center mb-6">
+                <!-- Arrows for navigation -->
+                <button id="prevButton" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500 mr-4 my-4" onclick="navigateCard('prev')">
+                    ←
+                </button>
+
+                <!-- Flashcards Container -->
+                <section id="flashcardsContainer" class="flex justify-center items-center">
+                    <!-- Cards will be inserted here -->
+                </section> 
+
+                <button id="nextButton" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500 ml-4 my-4" onclick="navigateCard('next')">
+                    →
+                </button>
+            </div>
+
+            <!-- Random Word Button -->
+            <div class="flex justify-center mb-6">
+                <button id="randomButton" class="px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white font-semibold hover:text-green-500" onclick="showRandomWord()">
+                    Random
+                </button>
+            </div>
+
+            
         </section>
 
         <section class="kata bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
 
         </section>
     </main>
+
+    <script>
+        function scrollToElement(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+    </script>
+
+    <script>
+        // Word dictionary
+        const words = [
+            // A
+            { original: "Age", translated: "Lyfta upp" },
+            { original: "Arashi", translated: "Storm" },
+            { original: "Arigato", translated: "Tack" },
+            { original: "Ashi", translated: "Fot" },
+            { original: "Ashi kubi", translated: "Fotled" },
+            { original: "Atama", translated: "Huvud" },
+            { original: "Atemi waza", translated: "Slag teknik" },
+            { original: "Atemi", translated: "Slag" },
+            { original: "Awasete", translated: "Sammanlagt" },
+            { original: "Ayumi ashi", translated: "Gångstil, (när tori går mot)" },
+            // B
+            { original: "Barai", translated: "Stort svep i sidled, sopa bort" },
+            { original: "Budo", translated: "Krigskonster" },
+            { original: "Bujin", translated: "Krigsman" },
+            { original: "Bushido", translated: "Ärokodex för en bujin" },
+            // C
+            { original: "Chikara", translated: "Kraft" },
+            { original: "Choshi", translated: "Stämning, Harmoni, Takt" },
+            { original: "Chui", translated: "Anmärkning, Motsvarar 5p" },
+            // D
+            { original: "De", translated: "Föra framåt" },
+            { original: "Do", translated: "Väg" },
+            { original: "Dojo", translated: "Träningslokal" },
+            // E
+            { original: "Eri", translated: "Slag (på judogin)" },
+            { original: "Empi", translated: "Armbåge" },
+            // G
+            { original: "Gaeshi", translated: "Motanfall" },
+            { original: "Gaeshi waza", translated: "Motkast tekniker" },
+            { original: "Gari", translated: "Liten svepning, meja" },
+            { original: "Gake", translated: "Kroka, Haka" },
+            { original: "Garami", translated: "Böja, Vrida, Fläta" },
+            { original: "Gatame", translated: "Fasthålla (katame)" },
+            { original: "Geiko", translated: "Övning" },
+            { original: "Go", translated: "Fem" },
+            { original: "Gonosen no kata", translated: "Motkast form" },
+            { original: "Goshi", translated: "Höft" },
+            { original: "Goyko", translated: "Fem principer" },
+            { original: "Guruma", translated: "Hjul, Sväng" },
+            { original: "Gyaku", translated: "Omvänd" },
+            // H
+            { original: "Hadaka", translated: "Naken" },
+            { original: "Hajime", translated: "Börja" },
+            { original: "Hane", translated: "Vinge" },
+            { original: "Hantei", translated: "Domslut" },
+            { original: "Hansoku make", translated: "Diskvalifiserad" },
+            { original: "Hara", translated: "Nedre delen av buken" },
+            { original: "Harai", translated: "Svep" },
+            { original: "Hiji", translated: "Armbåge" },
+            { original: "Hidari", translated: "Vänster" },
+            { original: "Hikiwake", translated: "Oavgjord match" },
+            { original: "Hikomi waza", translated: "Övergångsteknik från tachi waza till ne waza" },
+            { original: "Hishigi", translated: "Bryta" },
+            { original: "Hiza", translated: "Knä" },
+            { original: "Hon", translated: "Bas, Ursprung" },
+            // I
+            { original: "Ippon", translated: "Full poäng (10p)" },
+            { original: "Itsutsu no kata", translated: "De fem principernas kata" },
+            { original: "", translated: "" },
+            // J
+            { original: "Jigotai", translated: "Försvarsställning i judo" },
+            { original: "Jime", translated: "Strypa (shime)" },
+            { original: "Ju", translated: "Mjuk" },
+            { original: "Judogi", translated: "Judodräkt" },
+            { original: "Juji", translated: "Kors, Över" },
+            { original: "Jikan", translated: "Tid, Klocka" },
+            { original: "Jo", translated: "Plats" },
+            { original: "Judo", translated: "Den mjuka vägen" },
+            { original: "Judoka", translated: "Judoutövare" },
+            // K
+            { original: "Kaeshi waza", translated: "Kontringsteknik" },
+            { original: "Kagato", translated: "Häl" },
+            { original: "Kake", translated: "Kast" },
+            { original: "Kami", translated: "Hög ovanför" },
+            { original: "Kannuki", translated: "Regel, Lås" },
+            { original: "Kansetsu", translated: "Led, Knoge" },
+            { original: "Kansetsu waza", translated: "Armlåsteknik" },
+            { original: "Kata", translated: "Skuldra" },
+            { original: "Kata", translated: "Form (arrangerad judo)" },
+            { original: "Katame", translated: "Fasthållning" },
+            { original: "Katame no kata", translated: "Mattekniksform" },
+            { original: "Kataha", translated: "Envigad, Hälften" },
+            { original: "Keikoku", translated: "Varning (motsvarar 7p)" },
+            { original: "Kesa", translated: "Krage, Slag" },
+            { original: "Kime no kata", translated: "Självförsvarsform" },
+            { original: "Ko", translated: "Liten" },
+            { original: "Koho", translated: "Rygg" },
+            { original: "Koho ukemi", translated: "Bakåtfall" },
+            { original: "Koka", translated: "Lätt övertag (3p)" },
+            { original: "Komi", translated: "Dra intill" },
+            { original: "Koshi", translated: "Höft (goshi)" },
+            { original: "Kubi", translated: "Nacke" },
+            { original: "Kumi kata", translated: "Greppteknik i judogin" },
+            { original: "Kusushi waza", translated: "Balansbrytningsteknik" },
+            { original: "Kuzure", translated: "Variant" },
+            { original: "Kuzushi", translated: "Balansbrytning" },
+            { original: "Kyu", translated: "Grad, elevgrad" },
+            // M
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" },
+            { original: "", translated: "" }
+        ];
+
+        const flashcardsContainer = document.getElementById("flashcardsContainer");
+        const languageToggleBtn = document.getElementById("languageToggleBtn");
+        let currentIndex = 0; // Track the current word index
+        let currentLanguage = "original"; // Default language
+
+        // Function to toggle between languages
+        function toggleLanguage() {
+            // Toggle between original and translated
+            currentLanguage = currentLanguage === "original" ? "translated" : "original";
+            
+            // Change the button text based on the selected language
+            if (currentLanguage === "original") {
+                languageToggleBtn.innerText = "Japanese";
+            } else {
+                languageToggleBtn.innerText = "Swedish";
+            }
+
+            // Re-render flashcards with selected language
+            renderFlashcard();
+        }
+
+
+        // Function to render the current flashcard
+        function renderFlashcard() {
+            flashcardsContainer.innerHTML = ""; // Clear existing card
+
+            const word = words[currentIndex];
+            const card = document.createElement("div");
+            card.className = "bg-neutral-900 bg-opacity-80 text-white text-center p-6 rounded-xl shadow-lg cursor-pointer select-none flex items-center justify-center text-2xl font-bold w-80 h-40";
+            
+            // Show the correct word based on the current language
+            const showOriginal = currentLanguage === "original";
+            card.innerText = showOriginal ? word.original : word.translated;
+
+            // Add click event to toggle language when the card is clicked
+            card.addEventListener("click", function() {
+                // Toggle the language on click
+                currentLanguage = currentLanguage === "original" ? "translated" : "original";
+                renderFlashcard(); // Re-render the card with the new language
+            });
+
+            flashcardsContainer.appendChild(card);
+        }
+
+        // Function to navigate between cards
+        function navigateCard(direction) {
+            if (direction === 'prev') {
+                currentIndex = (currentIndex - 1 + words.length) % words.length; // Loop to last item if at start
+            } else if (direction === 'next') {
+                currentIndex = (currentIndex + 1) % words.length; // Loop to first item if at end
+            }
+            renderFlashcard();
+        }
+
+        // Function to show random word
+        function showRandomWord() {
+            const randomIndex = Math.floor(Math.random() * words.length);
+            currentIndex = randomIndex;
+            renderFlashcard();
+        }
+
+        // Initial render (first card)
+        renderFlashcard();
+    </script>
 
 </body>
 </html>
