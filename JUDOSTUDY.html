@@ -28,27 +28,26 @@
         <!-- Content Area -->
         <div class="flex flex-col md:flex-row md:space-x-8">
             <!-- Main Content -->
-            <section class="">
-                <div class="bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
-                    <!-- Code Snippets Buttons-->
-                    <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2">
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500" onclick="scrollToElement('words')">Words</button>
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500" onclick="scrollToElement('kata')">Nage No Kata</button>  
-                    </div>
+            <section class="bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
+                <!-- Code Snippets Buttons-->
+                <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2">
+                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500" onclick="scrollToElement('words')">Words</button>
+                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500" onclick="scrollToElement('kata')">Nage No Kata</button>  
                 </div>
             </section>
         </div>
 
-        <section class="words bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4 flex items-center justify-between">
+        <div class="flex flex-col md:flex-row md:space-x-8 mt-4">
+            <section class="md:w-1/3 words bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
             
-            <!-- Language Selection -->
-            <div class="self-start">
+                <!-- Language Selection -->
                 <button id="languageToggleBtn" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 h-fit" onclick="toggleLanguage()">
                     Japanese
                 </button>
-            </div>
-            
-            <div class="flex-1 flex flex-col items-center">
+
+            </section>
+    
+            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
                 <!-- Flashcards Container -->
                 <section id="flashcardsContainer" class="flex justify-center items-center">
                     <!-- Cards will be inserted here -->
@@ -70,11 +69,10 @@
                         →
                     </button>
                 </div>
-            </div>
-            
-        </section>
+            </aside>
+        </div>
 
-
+        
 
 
         <section class="kata bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
@@ -193,97 +191,107 @@
             { original: "Kuzushi", translated: "Balansbrytning" },
             { original: "Kyu", translated: "Grad, elevgrad" },
             // M
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" },
-            { original: "", translated: "" }
+            { original: "Mae", translated: "Framsida, Framåt" },
+            { original: "Mae ukemi", translated: "Framåtfall" },
+            { original: "Maki", translated: "Rulla in, Vride" },
+            { original: "Maki komi waza", translated: "Kastteknik, (där tori håller full kontakt ända ner i mattan)" },
+            { original: "Masutemi waza", translated: "Offerkast bakåt" },
+            { original: "Mata", translated: "Lår" },
+            { original: "Mate", translated: "Bryt" },
+            { original: "Migi", translated: "Höger" },
+            { original: "Morote", translated: "Tvåhands" },
+            { original: "Mune", translated: "Bröstkorg" },
+            
+            { original: "Nage", translated: "Kast" },
+            { original: "Nage no kata", translated: "Kasttekniksform" },
+            { original: "Nage waza", translated: "Kastteknik" },
+            { original: "Ne", translated: "På marken" },
+            { original: "Ne waza", translated: "Golvteknik" },
+            { original: "No", translated: "Av" },
+            
+            { original: "O", translated: "Stor" },
+            { original: "Obi", translated: "Bälte" },
+            { original: "Okuri", translated: "Glida, Två, Par" },
+            { original: "Osae", translated: "Hålla, Trycka" },
+            { original: "Osae komi waza", translated: "Fasthållningsteknik" },
+            { original: "Oshi", translated: "Knuffa" },
+            { original: "Otoshi", translated: "Falla" },
+            
+            { original: "Randori", translated: "Fri övning träning" },
+            { original: "Rei", translated: "Hälsning" },
+            { original: "Renraku waza", translated: "Kombinationsteknik" },
+            { original: "Ritsurei", translated: "Stående hälsning" },
+            { original: "Ryote", translated: "Tvåhands" },
+            
+            { original: "Sabaki", translated: "Vända bort, Vrida" },
+            { original: "Sankaku", translated: "Triangel" },
+            { original: "Sasae", translated: "Låg blockering" },
+            { original: "Sensei", translated: "Tränare" },
+            { original: "Se, Senaka", translated: "Rygg" },
+            { original: "Seoi", translated: "Skuldra, ta upp på ryggen" },
+            { original: "Shiai", translated: "Tävling" },
+            { original: "Shido", translated: "Tillsägelse (motsvarar 3p)" },
+            { original: "Shiho", translated: "Fyra riktningar" },
+            { original: "Shime waza", translated: "Halslåsteknik" },
+            { original: "Shintai", translated: "Att förflytta sig på rätt sätt" },
+            { original: "Shizen hontai", translated: "Grundställning / Hållning" },
+            { original: "Shumatsu", translated: "Frysa rörelser" },
+            { original: "Sode", translated: "Ärm" },
+            { original: "Sonomama", translated: "Rör er inte (tävling)" },
+            { original: "Soremade", translated: "Slut (tävling)" },
+            { original: "Soto", translated: "Utsida" },
+            { original: "Sukui", translated: "Skyffla, Ösa" },
+            { original: "Sumi", translated: "Örn" },
+            { original: "Sutemi", translated: "Uppoffra" },
+            { original: "Sutemi waza", translated: "Offerkastteknik" },
+
+            { original: "Tachi waza", translated: "Stående teknik" },
+            { original: "Tai", translated: "Kropp" },
+            { original: "Tai sabaki", translated: "Kroppsvridning" },
+            { original: "Tanden", translated: "Buk" },
+            { original: "Tani", translated: "Dal" },
+            { original: "Tatami", translated: "Rismatta" },
+            { original: "Tate", translated: "Vertikal" },
+            { original: "Te", translated: "Hand, Arm" },
+            { original: "Te kubi", translated: "Handled" },
+            { original: "Te waza", translated: "Handkastteknik" },
+            { original: "Toketa", translated: "Fasthållning bruten" },
+            { original: "Tokui waza", translated: "Favoritteknik" },
+            { original: "Tomoe", translated: "Cirkel, Hjul" },
+            { original: "Tori", translated: "Den som utför tekniken" },
+            { original: "Tsugi ashi", translated: "Gångstil, (tori utför teknik i Nage no kata)" },
+            { original: "Tsukuri", translated: "Ingång" },
+            { original: "Tsukkomi jime", translated: "Frånskjutet halslås" },
+            { original: "Tsuri", translated: "Lyfta" },
+
+            { original: "Uchi", translated: "Insida, Inre" },
+            { original: "Uchi komi", translated: "Upprepningsträning" },
+            { original: "Ude", translated: "Arm" },
+            { original: "Uke", translated: "Den som tekniken blir utförd på" },
+            { original: "Ukemi waza", translated: "Fallteknik" },
+            { original: "Uki", translated: "Flyta, Flyga" },
+            { original: "Ura", translated: "Resa sig" },
+            { original: "Ushiro", translated: "Bakåt" },
+            { original: "Ushiro ukemi", translated: "Bakåtfall" },
+            { original: "Utsuri", translated: "Ändra, Skifta" },
+            
+            { original: "Waki", translated: "Armhåla" },
+            { original: "Wakare", translated: "Dra, Rycka" },
+            { original: "Waza", translated: "Teknik" },
+            { original: "Wazari", translated: "Näst högsta poäng (7p)" },
+
+            { original: "Yaku soku geiko", translated: "Kast varannan gång i rörelse" },
+            { original: "Yoko", translated: "Sida" },
+            { original: "Yoko sutemi waza", translated: "Offerkast åt sidan" },
+            { original: "Yoko ukemi", translated: "Sidofall" },
+            { original: "Yoshi", translated: "Starta, Sätt igång" },
+            { original: "Yubi", translated: "Fingrar" },
+            { original: "Yudansha", translated: "Dangradsbärare" },
+            { original: "Yuko", translated: "Poäng i tävling (5p)" },
+            
+            { original: "Zarei", translated: "Hälsning på knä" },
+            { original: "Zazen", translated: "Koncentrationsställning" },
+            { original: "Zempo", translated: "Framåt" },
         ];
 
         const flashcardsContainer = document.getElementById("flashcardsContainer");
