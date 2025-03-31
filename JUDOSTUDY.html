@@ -72,16 +72,16 @@
                 <!-- Flashcards -->
                 <div class="flex justify-center">
                     <!-- Arrows for navigation -->
-                    <button id="prevButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 mr-4 my-4" onclick="navigateCard('prev')">
+                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 mr-4 my-4" onclick="navigateCard('prev')">
                         ←
                     </button>
 
                     <!-- Random Word Button -->
-                    <button id="randomButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 my-4" onclick="showRandomWord()">
+                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 my-4" onclick="showRandomWord()">
                         Random
                     </button>
 
-                    <button id="nextButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 ml-4 my-4" onclick="navigateCard('next')">
+                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 ml-4 my-4" onclick="navigateCard('next')">
                         →
                     </button>
                 </div>
@@ -95,27 +95,129 @@
                 </button>
                 
                 <!-- Dropdown Menu -->
-                <select id="wordSelector" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 mx-4 h-fit text-center" onchange="selectWord()">
+                <select id="wordSelector" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 mx-4 h-fit" onchange="selectWord()">
                     Words
                 </select>
                 
             </aside>
         </div>
 
+
         <!-- Nage No Kata Section -->
-        <div id="kata" class="section hidden bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
+        <div id="kata" class="section hidden bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
             <h2 class="text-xl font-bold">Nage No Kata</h2>
             <p>This section will contain information about Nage No Kata.</p>
         </div>
 
+
         <!-- 100 Techniques Section -->
-        <div id="techniques" class="section hidden bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl mt-4">
+        <div id="techniques" class="section hidden bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
             <h2 class="text-xl font-bold">100 Techniques</h2>
-            <p>This section will contain the 100 Judo techniques.</p>
+            <p>This section will contain the 100 Judo techniques. WORK IN PROGRESS</p>
+            
+            <section class="md:w-2/3 words bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
+                <div id="player" class="w-full h-64 mb-4">
+
+                </div>
+            </section>
+
+            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4 flex justify-around">
+                 <!-- Custom Controls -->
+                <div class="flex justify-center">
+                    
+                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="rewindVideo()">⏴</button>
+
+                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="slowDown()">⏷</button>
+
+                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit" onclick="playPauseVideo()">▶</button>
+
+                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="speedUp()">⏶</button>
+
+                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="fastForwardVideo()">⏵</button>
+
+
+
+                </div>
+            </aside>
+            
         </div>
 
 
     </main>
+
+    <script src="https://www.youtube.com/iframe_api" defer></script>
+
+
+    <script>
+        // YouTube Player API setup
+        let player;
+        let isPlaying = false;
+        let playbackRate = 1;
+
+        // Create YouTube Player when API is ready
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '390',
+                width: '640',
+                videoId: 'zIq0xI0ogxk', // Replace with your video ID
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // When the player is ready
+        function onPlayerReady(event) {
+            console.log('Player is ready');
+            player.mute();
+        }
+
+        // When the player state changes
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                document.getElementById('playPauseButton').textContent = '❚❚';
+            } else if (event.data === YT.PlayerState.PAUSED) {
+                isPlaying = false;
+                document.getElementById('playPauseButton').textContent = '▶';
+            }
+        }
+
+        // Play/Pause video
+        function playPauseVideo() {
+            if (isPlaying) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        }
+
+        // Rewind 1 second
+        function rewindVideo() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime - 1); // Go back 1 second
+        }
+
+        // Fast forward 1 second
+        function fastForwardVideo() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime + 1); // Go forward 1 second
+        }
+
+        // Slow down the video speed (e.g., -0.25x speed)
+        function slowDown() {
+            playbackRate -= 0.25;
+            player.setPlaybackRate(playbackRate); 
+        }
+
+        // Speed up the video (e.g., +0.25x speed)
+        function speedUp() {
+            playbackRate += 0.25;
+            player.setPlaybackRate(playbackRate); 
+        }
+    </script>
+
 
     <script>
         function showSection(sectionId) {
