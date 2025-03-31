@@ -116,7 +116,7 @@
             <p>This section will contain the 100 Judo techniques. WORK IN PROGRESS</p>
             
             <section class="md:w-2/3 words bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-                <div id="player" class="w-full aspect-w-16 aspect-h-9 mb-4">
+                <div id="player" class="w-full aspect-w-16 aspect-h-9 mb-4 relative">
 
                 </div>
             </section>
@@ -157,8 +157,8 @@
         // Create YouTube Player when API is ready
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '390',
-                width: '640',
+                height: '270',
+                width: '480',
                 videoId: 'zIq0xI0ogxk', // Replace with your video ID
                 events: {
                     'onReady': onPlayerReady,
