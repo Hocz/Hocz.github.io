@@ -49,9 +49,9 @@
             <h1 class="header-title text-red-500">JUDO STUDY</h1>
 
             <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-1 pt-4">
-                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:text-red-500" onclick="showSection('words')">Words</button>
-                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:text-red-500" onclick="showSection('kata')">Nage No Kata</button>  
-                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:text-red-500" onclick="showSection('techniques')">100 Techniques</button>  
+                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:scale-110 transition-transform duration-200 ease-in-out" onclick="showSection('words')">Words</button>
+                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:scale-110 transition-transform duration-200 ease-in-out" onclick="showSection('kata')">Nage No Kata</button>  
+                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:scale-110 transition-transform duration-200 ease-in-out" onclick="showSection('techniques')">100 Techniques</button>  
             </div>
         </div>
     </header>
@@ -59,47 +59,51 @@
     <main class="container mx-auto px-4 py-8">
 
         <!-- Words Section -->
-        <div id="words" class="section flex flex-col md:flex-row md:space-x-8 mt-4">
-            <section class="md:w-2/3 words bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-                <!-- Flashcards Container -->
-                <section id="flashcardsContainer" class="flex justify-center items-center">
-                    <!-- Cards will be inserted here -->
-                    <div id="card" class="bg-white bg-opacity-95 border-2 border-red-500 text-black text-center p-2 rounded-2xl shadow-lg cursor-pointer select-none flex items-center justify-center text-2xl font-bold w-80 h-40"">
-                        <p id="wordDisplay" class="text-xl font-bold"></p>
+        <div id="words" class="section bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
+            <h2 class="text-xl font-bold">Word List</h2>
+
+            <div class="flex flex-col md:flex-row md:space-x-8">
+                <section class="md:w-1/2 words bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
+                    <!-- Flashcards Container -->
+                    <section id="flashcardsContainer" class="flex justify-center items-center">
+                        <!-- Cards will be inserted here -->
+                        <div id="card" class="bg-white bg-opacity-95 border-2 border-red-500 text-black text-center p-2 rounded-2xl shadow-md shadow-red-500 cursor-pointer select-none flex items-center justify-center text-2xl font-bold w-80 h-40 mb-2 hover:scale-110 transition-transform duration-200 ease-in-out">
+                            <p id="wordDisplay" class="text-xl font-bold"></p>
+                        </div>
+                    </section>
+                    
+                    <!-- Flashcards -->
+                    <div class="flex justify-center gap-4">
+                        <!-- Arrows for navigation -->
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out my-4" onclick="navigateCard('prev')">
+                            ← Back
+                        </button>
+    
+                        <!-- Random Word Button -->
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out my-4" onclick="showRandomWord()">
+                            Random
+                        </button>
+    
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out my-4" onclick="navigateCard('next')">
+                            Next →
+                        </button>
                     </div>
                 </section>
-                
-                <!-- Flashcards -->
-                <div class="flex justify-center">
-                    <!-- Arrows for navigation -->
-                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 mr-4 my-4" onclick="navigateCard('prev')">
-                        ←
+        
+                <aside class="md:w-1/2 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4 flex justify-around h-fit">
+                    
+                    <!-- Language Selection -->
+                    <button id="languageToggleBtn" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out h-fit" onclick="toggleLanguage()">
+                        Japanese
                     </button>
-
-                    <!-- Random Word Button -->
-                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 my-4" onclick="showRandomWord()">
-                        Random
-                    </button>
-
-                    <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 ml-4 my-4" onclick="navigateCard('next')">
-                        →
-                    </button>
-                </div>
-            </section>
-    
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4 flex justify-around">
-                
-                <!-- Language Selection -->
-                <button id="languageToggleBtn" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 h-fit" onclick="toggleLanguage()">
-                    Japanese
-                </button>
-                
-                <!-- Dropdown Menu -->
-                <select id="wordSelector" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:text-red-500 mx-4 h-fit" onchange="selectWord()">
-                    Words
-                </select>
-                
-            </aside>
+                    
+                    <!-- Dropdown Menu -->
+                    <select id="wordSelector" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out h-fit" onchange="selectWord()">
+                        Words
+                    </select>
+                    
+                </aside>
+            </div>
         </div>
 
 
@@ -115,30 +119,40 @@
             <h2 class="text-xl font-bold">100 Techniques</h2>
             <p>This section will contain the 100 Judo techniques. WORK IN PROGRESS</p>
             
-            <section class="md:w-2/3 words bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-                <div id="player" class="w-full aspect-w-16 aspect-h-9 mb-4 relative">
+            <div class="flex flex-col md:flex-row md:space-x-8">
+                <section class="md:w-3/4 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
+                    <div id="player" class="w-full aspect-w-16 aspect-h-9 mb-4 relative">
+    
+                    </div>
 
-                </div>
-            </section>
+                    <!-- Custom Controls -->
+                    <div class="flex justify-between gap-2 text-sm">
 
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4 flex justify-around">
-                 <!-- Custom Controls -->
-                <div class="flex justify-center">
-                    
-                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="rewindVideo()">⏴</button>
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="rewindOneSec()">1 Sec <br>←</button>
+    
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="slowDown()">0.25x <br>↓</button>
+    
+                        <button id="playPauseButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="playPauseVideo()">➤</button>
+    
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="speedUp()">0.25x <br>↑</button>
+    
+                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="skipOneSec()">1 Sec <br>→</button>
 
-                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="slowDown()">⏷</button>
+                    </div>
 
-                    <button id="playPauseButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit" onclick="playPauseVideo()">▶</button>
+                    <div class="flex justify-center mt-2">
+                        <p id="playbackSpeed">
+                            1.0x
+                        </p>
+                    </div>
+                </section>
+    
+                <aside class="md:w-1/4 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
+                     
+                </aside>
+            </div>
 
-                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="speedUp()">⏶</button>
-
-                    <button class="px-1 py-1 bg-transparent border-2 border-red-500 rounded-md text-white hover:text-red-500 h-fit mx-1" onclick="fastForwardVideo()">⏵</button>
-
-
-
-                </div>
-            </aside>
+            
             
         </div>
 
@@ -159,7 +173,14 @@
             player = new YT.Player('player', {
                 height: '270',
                 width: '480',
-                videoId: 'zIq0xI0ogxk', // Replace with your video ID
+                videoId: 'zIq0xI0ogxk',
+                playerVars: {
+                    controls: 0,
+                    modestbranding: 0,
+                    rel: 0,
+                    fs: 1,
+                    mute: 1,
+                },
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
@@ -170,17 +191,17 @@
         // When the player is ready
         function onPlayerReady(event) {
             console.log('Player is ready');
-            player.mute();
+            document.getElementById('playbackSpeed').textContent = playbackRate + 'x';
         }
 
         // When the player state changes
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 isPlaying = true;
-                document.getElementById('playPauseButton').textContent = '❚❚';
+                document.getElementById('playPauseButton').textContent = '||';
             } else if (event.data === YT.PlayerState.PAUSED) {
                 isPlaying = false;
-                document.getElementById('playPauseButton').textContent = '▶';
+                document.getElementById('playPauseButton').textContent = '➤';
             }
         }
 
@@ -194,27 +215,55 @@
         }
 
         // Rewind 1 second
-        function rewindVideo() {
+        function rewindOneSec() {
             let currentTime = player.getCurrentTime();
             player.seekTo(currentTime - 1); // Go back 1 second
         }
 
+        // Rewind 5 seconds
+        function rewindFiveSec() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime - 5); // Go back 5 seconds
+        }
+
+        // Rewind 10 seconds
+        function rewindTenSec() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime - 10); // Go back 10 seconds
+        }
+        
         // Fast forward 1 second
-        function fastForwardVideo() {
+        function skipOneSec() {
             let currentTime = player.getCurrentTime();
             player.seekTo(currentTime + 1); // Go forward 1 second
         }
 
+        // Fast forward 5 seconds
+        function skipFiveSec() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime + 5); // Go forward 5 seconds
+        }
+        
+        // Fast forward 10 seconds
+        function skipTenSec() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime + 10); // Go forward 10 seconds
+        }
+
         // Slow down the video speed (e.g., -0.25x speed)
         function slowDown() {
+            if (playbackRate <= 0.25) return;
             playbackRate -= 0.25;
             player.setPlaybackRate(playbackRate); 
+            document.getElementById('playbackSpeed').textContent = playbackRate + 'x';
         }
 
         // Speed up the video (e.g., +0.25x speed)
         function speedUp() {
+            if (playbackRate >= 2) return;
             playbackRate += 0.25;
             player.setPlaybackRate(playbackRate); 
+            document.getElementById('playbackSpeed').textContent = playbackRate + 'x';
         }
     </script>
 
