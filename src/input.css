@@ -101,3 +101,13 @@ html {
 .toggleButton {
     @apply bg-transparent border-green-500 border-2 text-white px-2 py-1 text-lg rounded-2xl hover:text-green-500 transition
 }
+
+
+/* Judo stuff */
+.judo-nav-button {
+    @apply bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-lg hover:scale-110 transition-transform duration-200 ease-in-out
+}
+
+.judo-tech-button {
+    @apply border-2 border-red-500 p-1.5 m-0.5 text-left w-full rounded-lg hover:scale-105 transition-transform duration-200 ease-in-out
+}
