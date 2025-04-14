@@ -47,14 +47,14 @@
     <main class="container mx-auto px-4 py-8">
 
         <!-- Navigation Buttons -->
-        <div class="bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4 flex justify-evenly">
+        <div class="sticky top-2 p-4 my-4 flex justify-evenly">
             <button class="judo-nav-button" onclick="scrollToElement('words')">
                 Words
             </button>
             <button class="judo-nav-button" onclick="scrollToElement('techniques')">
                 Techniques
             </button>
-            <button class="judo-nav-button">
+            <button class="judo-nav-button" onclick="scrollToElement('kata')">
                 Kata
             </button>
         </div>
@@ -73,38 +73,66 @@
                         example 2
                     </button>
                 </div>
-                <div class="bg-neutral-900 bg-opacity-50 p-4">
-                    n
+
+                <div class="bg-neutral-900 bg-opacity-50 p-4 flex flex-col">
+                
+
                 </div>
+                
             </section>
         </div>
 
         <!-- Techniques -->
         <div id="techniques" class="bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4">
-            <h1 class="text-4xl font-bold text-center my-2">Techniques</h1>
+            <h1 class="text-4xl font-bold text-center my-4">Techniques</h1>
             <section class="flex flex-row md:flex-row justify-between md:space-x-8">
 
-                <div class="bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4 w-full">
+                <div class="p-4 my-4 w-full">
                     
                     <div id="nage-waza" class="">
 
-                        <div id="te-waza" class="">
-                            <h2 class="text-center">Te-waza</h2>
-                            <div id="seoi-nage" class="bg-orange-300">
-                                Seoi-nage
+                        <div id="te-waza" class="flex flex-col my-4">
+                            <h2 class="text-center text-3xl font-bold">Te-waza</h2>
+                            <div id="seoi-nage" class="border-2 border-red-500 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">背負投 Seoi-nage (shoulder throw) SON</h2>
+                                <p class="text-lg">
+                                    A hand technique throw. 
+                                    Break your opponent’s balance to his front or right front corner, 
+                                    then pivot to the left while allowing the elbow of your right arm to bend and come under his right armpit, 
+                                    then load him onto your back and throw him over your right shoulder.
+                                </p>
                             </div>
-                            <div id="ippon-seoi-nage" class="bg-orange-300">
-                                Ippon-seoi-nage
+                            <div id="ippon-seoi-nage" class="border-2 border-red-500 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">本背負投 Ippon-seoi-nage (one-armed shoulder throw) ISN</h2>
+                                <p class="text-lg">
+                                    A hand technique throw. Float your opponent’s balance to his front,
+                                    then while pivoting to the left,
+                                    grip his right inner sleeve and slip your right arm up from under his chest under his right armpit to grab the top of his right sleeve or shoulder,
+                                    pull him onto your back,
+                                    and throw him over your right shoulder.
+                                </p>
                             </div>
                         </div>
                         
-                        <div id="koshi-waza" class="">
-                            <h2 class="text-center">Koshi-waza</h2>
-                            <div id="uki-goshi" class="bg-orange-300">
-                                Uki-goshi
+                        <div id="koshi-waza" class="flex flex-col my-4">
+                            <h2 class="text-center text-3xl font-bold">Koshi-waza</h2>
+                            <div id="uki-goshi" class="border-2 border-red-500 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">浮腰 Uki-goshi (floating hip throw) UGO</h2>
+                                <p class="text-lg">
+                                    A hip technique throw. 
+                                    Break your opponent’s balance to his front or right front corner, 
+                                    then enter shallowly with your right hip while wrapping your right arm around his waist, 
+                                    and twist to the left to throw him over and around your hips without raising them of bending forward.
+                                </p>
                             </div>
-                            <div id="o-goshi" class="bg-orange-300">
-                                O-goshi
+                            <div id="o-goshi" class="border-2 border-red-500 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">大腰 O-goshi (large hip throw) OGO</h2>
+                                <p class="text-lg">
+                                    A hip technique throw. 
+                                    Break your opponent’s balance to his front or right front corner, 
+                                    enter deeply with your right hip to float him up, 
+                                    and twist to throw him over it.
+                                </p>
                             </div>
                         </div>
 
@@ -116,7 +144,7 @@
                 </div>
                 
                 
-
+                <!-- Navigation Buttons Techniques -->
                 <div class="navigation-button flex flex-col bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4">
                     <h1 class="text-xl text-center font-bold mb-2 px-8">Techniques</h1>
                     
