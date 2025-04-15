@@ -47,14 +47,14 @@
     <main class="container mx-auto px-4 py-8">
 
         <!-- Navigation Buttons -->
-        <div class="sticky top-0 p-4 my-4 flex justify-evenly">
-            <button class="judo-nav-button" onclick="scrollToElement('words')">
+        <div class="sticky top-0 z-10 p-4 my-4 flex justify-evenly">
+            <button class="judo-nav-button" onclick="scrollToElementTop('words')">
                 Words
             </button>
-            <button class="judo-nav-button" onclick="scrollToElement('techniques')">
+            <button class="judo-nav-button" onclick="scrollToElementTop('techniques')">
                 Techniques
             </button>
-            <button class="judo-nav-button" onclick="scrollToElement('kata')">
+            <button class="judo-nav-button" onclick="scrollToElementTop('kata')">
                 Kata
             </button>
         </div>
@@ -86,7 +86,7 @@
         <div id="techniques" class="bg-neutral-900 bg-opacity-40 p-2 shadow-md rounded-xl my-4">
 
             <!-- Toggle button for mobile -->
-            <button id="toggleTechNav" class="md:hidden sticky top-5 left-full z-50 border-2 border-red-500 text-white font-semibold rounded-xl px-2 py-1">
+            <button id="toggleTechNav" class="sticky top-5 left-full z-10 border-2 border-red-500 text-white font-semibold rounded-xl px-2 py-1 hover:scale-110 transition-transform duration-200 ease-in-out">
                 ☰
             </button>
             
@@ -152,19 +152,19 @@
                 
                 
                 <!-- Navigation Buttons Techniques - DESKTOP -->
-                <div class="navigation-button hidden md:block w-full md:w-1/4 sticky top-28 h-fit bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4">
+                <!--<div class="navigation-button hidden md:block w-full md:w-1/4 sticky top-20 h-fit bg-slate-800 bg-opacity-80 p-4 shadow-md rounded-3xl my-4">
                     <h1 class="text-xl text-center font-bold mb-2 px-8">Techniques</h1>
                     
                     <div class="flex flex-col" x-data="{ openNage: false, openTe: false, openKoshi: false }">
                         
-                        <!-- Nage-waza -->
+                        <-- Nage-waza ->
                         <button @click="openNage = !openNage" class="judo-tech-button font-semibold">
                             Nage-waza
                         </button>
                         
                         <div x-show="openNage" class="flex flex-col pl-4">
                             
-                            <!-- Te-waza -->
+                            <-- Te-waza ->
                              <button @click="openTe = !openTe" class="judo-tech-button font-semibold">
                                 Te-waza
                             </button>
@@ -188,7 +188,7 @@
                             </div>
 
 
-                            <!-- Koshi-waza -->
+                            <-- Koshi-waza ->
                             <button @click="openKoshi = !openKoshi" class="judo-tech-button font-semibold">
                                 Koshi-waza
                             </button>
@@ -206,14 +206,15 @@
                     </div>
                     
                 </div>
-                
+            -->
 
 
 
                 <!-- Navigation Buttons Techniques - MOBILE -->
-                <div id="techSidebar" class="navigation-button fixed top-0 right-0 h-full w-64 bg-slate-800 z-40 p-4 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden shadow-lg">
-                    <h1 class="text-xl text-center font-bold mb-2 px-8">Techniques</h1>
+                <div id="techSidebar" class="navigation-button fixed top-0 right-0 h-full w-64 bg-slate-800 z-40 p-4 transform translate-x-full transition-transform duration-300 ease-in-out shadow-lg">
                     
+                    <h2 class="text-xl text-center font-bold my-1">Techniques</h2>
+
                     <div class="flex flex-col" x-data="{ openNage: false, openTe: false, openKoshi: false }">
                         
                         <!-- Nage-waza -->
@@ -386,9 +387,19 @@
     const toggleBtn = document.getElementById('toggleTechNav');
     const techSidebar = document.getElementById('techSidebar');
 
-    toggleBtn.addEventListener('click', () => {
-        techSidebar.classList.toggle('translate-x-full');
-        techSidebar.classList.toggle('translate-x-0');
+    // Open sidebar
+    toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent closing when clicking the button
+        techSidebar.classList.remove('translate-x-full');
+        techSidebar.classList.add('translate-x-0');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!techSidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+            techSidebar.classList.add('translate-x-full');
+            techSidebar.classList.remove('translate-x-0');
+        }
     });
 
 
@@ -396,7 +407,15 @@
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "center" });
-            techSidebar.classList.add('translate-x-full'); // close sidebar on click (mobile)
+            techSidebar.classList.add('translate-x-full');
+            techSidebar.classList.remove('translate-x-0');
+        }
+    }
+
+    function scrollToElementTop(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     }
 </script>
