@@ -47,7 +47,7 @@
     <main class="container mx-auto px-4 py-8">
 
         <!-- Navigation Buttons -->
-        <div class="sticky top-2 p-4 my-4 flex justify-evenly">
+        <div class="sticky top-0 p-4 my-4 flex justify-evenly">
             <button class="judo-nav-button" onclick="scrollToElement('words')">
                 Words
             </button>
@@ -60,7 +60,7 @@
         </div>
 
         <!-- Words -->
-        <div id="words" class="bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4">
+        <div id="words" class="bg-neutral-900 bg-opacity-40 p-2 shadow-md rounded-xl my-4">
             <h1 class="text-4xl font-bold text-center my-2">Words</h1>
             <section class="flex flex-row md:flex-row md:space-x-8">
                 <div class="navigation-button flex flex-col bg-neutral-900 bg-opacity-50 p-4">
@@ -83,15 +83,22 @@
         </div>
 
         <!-- Techniques -->
-        <div id="techniques" class="bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4">
-            <h1 class="text-4xl font-bold text-center my-4">Techniques</h1>
-            <section class="flex flex-row md:flex-row justify-between md:space-x-8">
+        <div id="techniques" class="bg-neutral-900 bg-opacity-40 p-2 shadow-md rounded-xl my-4">
 
-                <div class="p-4 my-4 w-full">
+            <!-- Toggle button for mobile -->
+            <button id="toggleTechNav" class="md:hidden sticky top-5 left-full z-50 border-2 border-red-500 text-white font-semibold rounded-xl px-2 py-1">
+                ☰
+            </button>
+            
+            <h1 class="text-4xl font-bold text-center my-2">Techniques</h1>
+
+            <section class="flex flex-col md:flex-row gap-4 relative justify-between">
+
+                <div class="w-full md:w-3/4 p-4 space-y-8">
                     
                     <div id="nage-waza" class="">
 
-                        <div id="te-waza" class="flex flex-col my-4">
+                        <div id="te-waza" class="space-y-4">
                             <h2 class="text-center text-3xl font-bold">Te-waza</h2>
                             <div id="seoi-nage" class="border-2 border-red-500 rounded-2xl p-8 m-8">
                                 <h2 class="text-xl font-semibold mb-4">背負投 Seoi-nage (shoulder throw) SON</h2>
@@ -114,7 +121,7 @@
                             </div>
                         </div>
                         
-                        <div id="koshi-waza" class="flex flex-col my-4">
+                        <div id="koshi-waza" class="space-y-4">
                             <h2 class="text-center text-3xl font-bold">Koshi-waza</h2>
                             <div id="uki-goshi" class="border-2 border-red-500 rounded-2xl p-8 m-8">
                                 <h2 class="text-xl font-semibold mb-4">浮腰 Uki-goshi (floating hip throw) UGO</h2>
@@ -144,8 +151,8 @@
                 </div>
                 
                 
-                <!-- Navigation Buttons Techniques -->
-                <div class="navigation-button flex flex-col bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4">
+                <!-- Navigation Buttons Techniques - DESKTOP -->
+                <div class="navigation-button hidden md:block w-full md:w-1/4 sticky top-28 h-fit bg-neutral-900 bg-opacity-40 p-4 shadow-md rounded-3xl my-4">
                     <h1 class="text-xl text-center font-bold mb-2 px-8">Techniques</h1>
                     
                     <div class="flex flex-col" x-data="{ openNage: false, openTe: false, openKoshi: false }">
@@ -200,7 +207,67 @@
                     
                 </div>
                 
+
+
+
+                <!-- Navigation Buttons Techniques - MOBILE -->
+                <div id="techSidebar" class="navigation-button fixed top-0 right-0 h-full w-64 bg-slate-800 z-40 p-4 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden shadow-lg">
+                    <h1 class="text-xl text-center font-bold mb-2 px-8">Techniques</h1>
+                    
+                    <div class="flex flex-col" x-data="{ openNage: false, openTe: false, openKoshi: false }">
+                        
+                        <!-- Nage-waza -->
+                        <button @click="openNage = !openNage" class="judo-tech-button font-semibold">
+                            Nage-waza
+                        </button>
+                        
+                        <div x-show="openNage" class="flex flex-col pl-4">
+                            
+                            <!-- Te-waza -->
+                             <button @click="openTe = !openTe" class="judo-tech-button font-semibold">
+                                Te-waza
+                            </button>
+
+                            <div x-show="openTe" class="flex flex-col pl-8">
+                                <button class="judo-tech-button text-sm" onclick="scrollToElement('seoi-nage')">
+                                    Seoi-nage
+                                </button>
+                                <button class="judo-tech-button text-sm" onclick="scrollToElement('ippon-seoi-nage')">
+                                    Ippon-seoi-nage
+                                </button>
+                                <button class="judo-tech-button text-sm">
+                                    example 3
+                                </button>
+                                <button class="judo-tech-button text-sm">
+                                    example 4
+                                </button>
+                                <button class="judo-tech-button text-sm">
+                                    example 5
+                                </button>
+                            </div>
+
+
+                            <!-- Koshi-waza -->
+                            <button @click="openKoshi = !openKoshi" class="judo-tech-button font-semibold">
+                                Koshi-waza
+                            </button>
+
+                            <div x-show="openKoshi" class="flex flex-col pl-8">
+                                <button class="judo-tech-button text-sm" onclick="scrollToElement('uki-goshi')">
+                                    Uki-goshi
+                                </button>
+                                <button class="judo-tech-button text-sm" onclick="scrollToElement('o-goshi')">
+                                    O-goshi
+                                </button>
+                            </div>  
+                        </div>
+
+                    </div>
+                    
+                </div>
+
             </section>
+
         </div>
 
     </main>
@@ -316,10 +383,20 @@
     </script>
 
 <script>
+    const toggleBtn = document.getElementById('toggleTechNav');
+    const techSidebar = document.getElementById('techSidebar');
+
+    toggleBtn.addEventListener('click', () => {
+        techSidebar.classList.toggle('translate-x-full');
+        techSidebar.classList.toggle('translate-x-0');
+    });
+
+
     function scrollToElement(id) {
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "center" });
+            techSidebar.classList.add('translate-x-full'); // close sidebar on click (mobile)
         }
     }
 </script>
