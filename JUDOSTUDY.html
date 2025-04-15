@@ -24,17 +24,6 @@
             background: transparent;
         }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #ef4444;
-            border-radius: 2px;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ef4444;
-        }
-
         ::-webkit-scrollbar-corner {
             background: transparent;
         }
@@ -44,127 +33,287 @@
 <body class="bg-slate-600 text-white font-exo2">
 
     <!-- Header -->
-    <header class="flex flex-col md:flex-row justify-between items-start bg-white bg-opacity-95 shadow-lg shadow-red-500 p-4">
+    <header class="flex flex-col md:flex-row justify-between items-start bg-slate-900 bg-opacity-80 shadow-lg shadow-red-500 p-4">
         <div>
-            <h1 class="header-title text-red-500">JUDO STUDY</h1>
-
-            <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-1 pt-4">
-                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:scale-110 transition-transform duration-200 ease-in-out" onclick="showSection('words')">Words</button>
-                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:scale-110 transition-transform duration-200 ease-in-out" onclick="showSection('kata')">Nage No Kata</button>  
-                <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-black hover:scale-110 transition-transform duration-200 ease-in-out" onclick="showSection('techniques')">100 Techniques</button>  
-            </div>
+            <h1 class="header-title text-transparent bg-clip-text bg-gradient-to-b from-red-300 to-red-500">JUDO STUDY</h1>
         </div>
-        <nav>
-            <ul class="flex space-x-4 text-center py-0 pr-8">
-                <li><a href="judo.html" class="nav-link rounded-xl border-2 border-red-500 text-black">Judo</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main class="container mx-auto px-4 py-8">
 
-        <!-- Words Section -->
-        <div id="words" class="section bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-            <h2 class="text-xl font-bold">Word List</h2>
+        <!-- Navigation Buttons -->
+        <div class="sticky top-0 z-10 p-4 my-4 flex justify-between">
+            <button class="judo-nav-button" onclick="scrollToElementTop('words')">
+                Words
+            </button>
+            <button class="judo-nav-button" onclick="scrollToElementTop('techniques')">
+                Techniques
+            </button>
+            <button class="judo-nav-button" onclick="scrollToElementTop('kata')">
+                Kata
+            </button>
 
-            <div class="flex flex-col md:flex-row md:space-x-8">
-                <section class="md:w-1/2 words bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-                    <!-- Flashcards Container -->
-                    <section id="flashcardsContainer" class="flex justify-center items-center">
+            <!-- Sidebar -->
+            <button id="toggleTechNav" class="judo-nav-button">
+                ☰
+            </button>
+        </div>
+
+        <!-- Words -->
+        <div id="words" class="bg-slate-900 bg-opacity-40 p-2 shadow-sm rounded-xl my-8 shadow-white">
+
+            <h1 class="text-4xl font-bold text-center my-2">Words</h1>
+
+            <section class="flex flex-col md:flex-row gap-4 relative justify-between">
+
+                <div class="w-full md:w-full p-4 space-y-8">
+                    <!-- Card Container -->
+                    <div id="cardContainer" class="flex justify-center">
                         <!-- Cards will be inserted here -->
-                        <div id="card" class="bg-white bg-opacity-95 border-2 border-red-500 text-black text-center p-2 rounded-2xl shadow-md shadow-red-500 cursor-pointer select-none flex items-center justify-center text-2xl font-bold w-80 h-40 mb-2 hover:scale-110 transition-transform duration-200 ease-in-out">
-                            <p id="wordDisplay" class="text-xl font-bold"></p>
+                        <div id="card" class="bg-slate-900 bg-opacity-50 text-white text-center rounded-md shadow-md shadow-white cursor-pointer select-none flex items-center justify-center w-3/4 md:w-1/4 h-52 hover:scale-105 transition-transform duration-100 ease-in-out">
+                            <p id="wordDisplay" class="text-2xl font-bold"></p>
                         </div>
-                    </section>
-                    
-                    <!-- Flashcards -->
+                    </div>
+
                     <div class="flex justify-center gap-4">
-                        <!-- Arrows for navigation -->
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out my-4" onclick="navigateCard('prev')">
+                        <button class="card-button" onclick="navigateCard('prev')">
                             ← Back
                         </button>
     
-                        <!-- Random Word Button -->
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out my-4" onclick="showRandomWord()">
+                        <button class="card-button" onclick="showRandomWord()">
                             Random
                         </button>
     
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out my-4" onclick="navigateCard('next')">
+                        <button class="card-button" onclick="navigateCard('next')">
                             Next →
                         </button>
                     </div>
-                </section>
-        
-                <aside class="md:w-1/2 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4 flex justify-around h-fit">
-                    
-                    <!-- Language Selection -->
-                    <button id="languageToggleBtn" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out h-fit" onclick="toggleLanguage()">
-                        Japanese
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <select id="wordSelector" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out h-fit" onchange="selectWord()">
-                        Words
-                    </select>
-                    
-                </aside>
-            </div>
+                </div>
+                
+            </section>
         </div>
 
+        <!-- Techniques -->
+        <div id="techniques" class="bg-slate-900 bg-opacity-40 p-2 shadow-sm rounded-xl my-8 shadow-white">
 
-        <!-- Nage No Kata Section -->
-        <div id="kata" class="section hidden bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-            <h2 class="text-xl font-bold">Nage No Kata</h2>
-            <p>This section will contain information about Nage No Kata.</p>
+            <h1 class="text-4xl font-bold text-center my-2">Techniques</h1>
+
+            <section class="flex flex-col md:flex-row gap-4 relative justify-between">
+
+                <div class="w-full md:w-full p-4 space-y-8">
+                    
+                    <div id="nage-waza" class="">
+
+                        <div id="te-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold">Te-waza</h2>
+                            <div id="seoi-nage" class="bg-slate-900 bg-opacity-40 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">背負投 Seoi-nage (shoulder throw) SON</h2>
+                                <p class="text-lg">
+                                    A hand technique throw. 
+                                    Break your opponent’s balance to his front or right front corner, 
+                                    then pivot to the left while allowing the elbow of your right arm to bend and come under his right armpit, 
+                                    then load him onto your back and throw him over your right shoulder.
+                                </p>
+                            </div>
+                            <div id="ippon-seoi-nage" class="bg-slate-900 bg-opacity-40 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">本背負投 Ippon-seoi-nage (one-armed shoulder throw) ISN</h2>
+                                <p class="text-lg">
+                                    A hand technique throw. Float your opponent’s balance to his front,
+                                    then while pivoting to the left,
+                                    grip his right inner sleeve and slip your right arm up from under his chest under his right armpit to grab the top of his right sleeve or shoulder,
+                                    pull him onto your back,
+                                    and throw him over your right shoulder.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div id="koshi-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold">Koshi-waza</h2>
+                            <div id="uki-goshi" class="bg-slate-900 bg-opacity-40 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">浮腰 Uki-goshi (floating hip throw) UGO</h2>
+                                <p class="text-lg">
+                                    A hip technique throw. 
+                                    Break your opponent’s balance to his front or right front corner, 
+                                    then enter shallowly with your right hip while wrapping your right arm around his waist, 
+                                    and twist to the left to throw him over and around your hips without raising them of bending forward.
+                                </p>
+                            </div>
+                            <div id="o-goshi" class="bg-slate-900 bg-opacity-40 rounded-2xl p-8 m-8">
+                                <h2 class="text-xl font-semibold mb-4">大腰 O-goshi (large hip throw) OGO</h2>
+                                <p class="text-lg">
+                                    A hip technique throw. 
+                                    Break your opponent’s balance to his front or right front corner, 
+                                    enter deeply with your right hip to float him up, 
+                                    and twist to throw him over it.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="katame-waza">
+    
+                    </div>
+                </div>
+
+
+                <!-- Sidebar Navigation -->
+                <div id="techSidebar" class="navigation-button fixed top-0 right-0 h-full w-1/2 md:w-1/5 bg-slate-800 z-40 p-4 transform translate-x-full transition-transform duration-300 ease-in-out shadow-md shadow-white overflow-y-auto">
+                    
+                    <!-- Words -->
+                    <div>
+                        <h2 class="text-xl text-center font-bold my-2 border-b-4 border-red-500">Words</h2>
+
+                        <div class="flex flex-col" x-data="wordListComponent()">
+                            
+                            <div class="btn-container">
+                                <!-- Word List -->
+                                <button @click="wordList = !wordList" class="judo-word-button font-semibold">
+                                    Word List:
+                                </button>
+                            </div>
+                            
+
+                            <div x-show="wordList" class="flex flex-col">
+                                <template x-for="letter in letters" :key="letter">
+                                    <div class="flex flex-col">
+                                        <!-- Toggle Button for each letter -->
+                                        <div class="btn-container">
+                                            <div class="pl-8">
+                                                <button 
+                                                    class="judo-word-button font-semibold" 
+                                                    @click="openLetter = (openLetter === letter ? null : letter)">
+                                                    <span x-text="letter"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                        
+                                        <!-- Word List Container for that letter -->
+                                        <div 
+                                            class="flex flex-col" 
+                                            :id="'wordList' + letter" 
+                                            x-show="openLetter === letter">
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Techniques -->
+                    <div>
+                        <h2 class="text-xl text-center font-bold my-2 border-b-4 border-red-500">Techniques</h2>
+
+                        <div class="flex flex-col" x-data="{ openNage: false, openTe: false, openKoshi: false }">
+                            
+                            <div class="btn-container">
+                                <!-- Nage-waza -->
+                                <button @click="openNage = !openNage" class="judo-tech-button font-semibold">
+                                    Nage-waza
+                                </button>
+                            </div>
+                            
+                            
+                            <div x-show="openNage" class="flex flex-col">
+                                
+                                <div class="btn-container">
+                                    <div class="pl-8">
+                                        <!-- Te-waza -->
+                                        <button @click="openTe = !openTe" class="judo-tech-button font-semibold">
+                                            Te-waza
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div x-show="openTe" class="flex flex-col">
+
+                                    <div class="btn-container">
+                                        <div class="pl-16">
+                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('seoi-nage')">
+                                                Seoi-nage
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="btn-container">
+                                        <div class="pl-16">
+                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('ippon-seoi-nage')">
+                                                Ippon-seoi-nage
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-container">
+                                        <div class="pl-16">
+                                            <button class="judo-tech-button text-sm">
+                                                example 3
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-container">
+                                        <div class="pl-16">
+                                            <button class="judo-tech-button text-sm">
+                                                example 4
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="btn-container">
+                                    <div class="pl-8">
+                                        <!-- Koshi-waza -->
+                                        <button @click="openKoshi = !openKoshi" class="judo-tech-button font-semibold">
+                                            Koshi-waza
+                                        </button>
+                                    </div>
+                                </div>
+                                
+
+                                <div x-show="openKoshi" class="flex flex-col">
+
+                                    <div class="btn-container">
+                                        <div class="pl-16">
+                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('uki-goshi')">
+                                                Uki-goshi
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="btn-container">
+                                        <div class="pl-16">
+                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('o-goshi')">
+                                                O-goshi
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+
+            </section>
+
         </div>
-
-
-        <!-- 100 Techniques Section -->
-        <div id="techniques" class="section hidden bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-            <h2 class="text-xl font-bold">100 Techniques</h2>
-            <p>This section will contain the 100 Judo techniques. WORK IN PROGRESS</p>
-            
-            <div class="flex flex-col md:flex-row md:space-x-8">
-                <section class="md:w-3/4 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-                    <div id="player" class="w-full aspect-w-16 aspect-h-9 mb-4 relative">
-    
-                    </div>
-
-                    <!-- Custom Controls -->
-                    <div class="flex justify-between gap-2 text-sm">
-
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="rewindOneSec()">1 Sec <br>←</button>
-    
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="slowDown()">0.25x <br>↓</button>
-    
-                        <button id="playPauseButton" class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="playPauseVideo()">➤</button>
-    
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="speedUp()">0.25x <br>↑</button>
-    
-                        <button class="px-4 py-2 bg-transparent border-2 border-red-500 rounded-md text-white font-semibold hover:scale-110 transition-transform duration-200 ease-in-out" onclick="skipOneSec()">1 Sec <br>→</button>
-
-                    </div>
-
-                    <div class="flex justify-center mt-2">
-                        <p id="playbackSpeed">
-                            1.0x
-                        </p>
-                    </div>
-                </section>
-    
-                <aside class="md:w-1/4 bg-neutral-900 bg-opacity-40 p-6 shadow-md rounded-3xl mt-4">
-                     
-                </aside>
-            </div>
-
-            
-            
-        </div>
-
 
     </main>
 
     <script src="https://www.youtube.com/iframe_api" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 
     <script>
@@ -272,23 +421,43 @@
         }
     </script>
 
-
     <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.add('hidden');
-            });
+        const toggleBtn = document.getElementById('toggleTechNav');
+        const techSidebar = document.getElementById('techSidebar');
 
-            // Show only the selected section
-            document.getElementById(sectionId).classList.remove('hidden');
+        // Open sidebar
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing when clicking the button
+            techSidebar.classList.remove('translate-x-full');
+            techSidebar.classList.add('translate-x-0');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!techSidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                techSidebar.classList.add('translate-x-full');
+                techSidebar.classList.remove('translate-x-0');
+            }
+        });
+
+
+        function scrollToElement(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "center" });
+                techSidebar.classList.add('translate-x-full');
+                techSidebar.classList.remove('translate-x-0');
+            }
         }
 
-        // Set the default section to show
-        document.addEventListener("DOMContentLoaded", function () {
-            showSection('words');
-        });
+        function scrollToElementTop(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
     </script>
+
 
     <script>
         // Word dictionary
@@ -494,67 +663,76 @@
             { original: "Zempo", translated: "Framåt" },
         ];
 
-        const flashcardsContainer = document.getElementById("flashcardsContainer");
-        const languageToggleBtn = document.getElementById("languageToggleBtn");
-        let currentIndex = 0; // Track the current word index
-        let currentLanguage = "original"; // Default language
+        const flashcardsContainer = document.getElementById("cardContainer");
+        let currentIndex = 0; 
+        let currentLanguage = "original";
         let isShowingOriginal = true;
 
-        function populateDropdown() {
-            const dropdown = document.getElementById("wordSelector");
-            dropdown.innerHTML = '<option class="bg-slate-500 text-black" value="">Words</option>';
-            words.forEach((word, index) => {
-                const option = document.createElement("option");
-                option.value = index;
-                option.textContent = word.original;
-                
-                option.classList.add("bg-slate-500","text-black");
 
-                dropdown.appendChild(option);
+
+        function wordListComponent() {
+            const usedLetters = new Set(words.map(w => w.original[0].toUpperCase()));
+
+            return {
+                wordList: false,
+                openLetter: null,
+                letters: Array.from(usedLetters).sort(),
+            }
+        }
+
+
+        function populateAllLetters() {
+            for (let i = 65; i <= 90; i++) {
+                populateByLetter(String.fromCharCode(i));
+            }
+        }
+
+
+        function populateByLetter(letter) {
+            const filtered = words
+                .map((word, index) => ({ ...word, index }))
+                .filter(word => word.original.startsWith(letter));
+
+            if (filtered.length === 0) return;
+
+            const wordList = document.getElementById(`wordList${letter}`);
+            if (!wordList) return;
+
+            filtered.forEach(word => {
+                const container = document.createElement('div');
+                container.classList.add('btn-container');
+
+                const innerDiv = document.createElement('div');
+                innerDiv.classList.add('pl-16');
+
+                const button = document.createElement('button');
+                button.classList.add('judo-word-button', 'text-sm');
+                button.textContent = word.original;
+
+                button.addEventListener('click', () => {
+                    const wordDisplay = document.getElementById('wordDisplay');
+                    if (wordDisplay) {
+                        wordDisplay.textContent = word.original;
+                        currentIndex = word.index;
+                        scrollToElement('words');
+                    }
+                });
+
+                innerDiv.appendChild(button);
+                container.appendChild(innerDiv);
+                wordList.appendChild(container);
             });
         }
 
-        function selectWord() {
-            const dropdown = document.getElementById("wordSelector");
-            const selectedIndex = dropdown.value;
-            if (selectedIndex !== "") {
-                currentIndex = parseInt(selectedIndex);
-                updateFlashcard();
-            }
-        }
+
 
         function updateFlashcard() {
-        const wordDisplay = document.getElementById("wordDisplay");
-        if (words.length > 0) {
-            wordDisplay.textContent = isShowingOriginal 
-                ? words[currentIndex].original 
-                : words[currentIndex].translated;
-        }
-    }
-
-
-        // Function to toggle between languages
-        function toggleLanguage() {
-            // Toggle between original and translated
-            currentLanguage = currentLanguage === "original" ? "translated" : "original";
-            
-            // Change the button text based on the selected language
-            if (currentLanguage === "original") {
-                languageToggleBtn.innerText = "Japanese";
-            } 
-            else {
-                languageToggleBtn.innerText = "Swedish";
+            const wordDisplay = document.getElementById('wordDisplay');
+            if (words.length > 0) {
+                wordDisplay.textContent = isShowingOriginal 
+                    ? words[currentIndex].original 
+                    : words[currentIndex].translated;
             }
-
-            isShowingOriginal = !isShowingOriginal;
-            updateFlashcard();
-            if (isShowingOriginal) {
-                document.getElementById("wordSelector").value = currentIndex;
-            }
-            else {
-                document.getElementById("wordSelector").innerHTML = '<option value="">Words</option>';
-            }
-            populateDropdown();
         }
 
 
@@ -566,20 +744,8 @@
             else if (direction === 'next') {
                 currentIndex = (currentIndex + 1) % words.length; // Loop to first item if at end
             }
-            
-            if (currentLanguage === "original") {
-                languageToggleBtn.innerText = "Japanese";
-                isShowingOriginal = true; // Reset to original when switching words
-                updateFlashcard();
-                document.getElementById("wordSelector").value = currentIndex;
-            } 
-            else {
-                languageToggleBtn.innerText = "Swedish";
-                updateFlashcard();
-                document.getElementById("wordSelector").innerHTML = '<option value="">Words</option>';
-                populateDropdown();
-            }
 
+            updateFlashcard();
         }
 
         // Function to show random word
@@ -587,26 +753,9 @@
             const randomIndex = Math.floor(Math.random() * words.length);
             currentIndex = randomIndex;
             
-            if (currentLanguage === "original") {
-                languageToggleBtn.innerText = "Japanese";
-                isShowingOriginal = true; // Reset to original when switching words
-            } else {
-                languageToggleBtn.innerText = "Swedish";
-            }
-            
-            if (currentLanguage === "original") {
-                languageToggleBtn.innerText = "Japanese";
-                isShowingOriginal = true; // Reset to original when switching words
-                updateFlashcard();
-                document.getElementById("wordSelector").value = currentIndex;
-            } 
-            else {
-                languageToggleBtn.innerText = "Swedish";
-                updateFlashcard();
-                document.getElementById("wordSelector").innerHTML = '<option value="">Words</option>';
-                populateDropdown();
-            }
+            updateFlashcard();
         }
+
 
         // Toggle word translation when clicking on the flashcard
         document.getElementById("card").addEventListener("click", function() {
@@ -615,10 +764,10 @@
         });
         
         document.addEventListener("DOMContentLoaded", function () {
-            showSection('words');
-            populateDropdown();
             updateFlashcard();
+            populateAllLetters();
         });
+
     </script>
 
 </body>
