@@ -33,7 +33,7 @@
 <body class="bg-slate-600 text-white font-exo2">
 
     <!-- Header -->
-    <header class="flex flex-col md:flex-row justify-between items-start bg-slate-900 bg-opacity-80 shadow-lg shadow-red-500 p-4">
+    <header class="flex flex-col md:flex-row justify-between items-start bg-slate-900 bg-opacity-80 shadow-lg shadow-white p-4">
         <div>
             <h1 class="header-title text-slate-100">JUDO STUDY</h1>
         </div>
@@ -70,7 +70,7 @@
                     <!-- Card Container -->
                     <div id="cardContainer" class="flex justify-center">
                         <!-- Cards will be inserted here -->
-                        <div id="card" class="bg-slate-900 bg-opacity-50 text-white text-center rounded-md shadow-md shadow-white cursor-pointer select-none flex items-center justify-center w-3/4 md:w-1/4 h-52 hover:scale-105 transition-transform duration-100 ease-in-out">
+                        <div id="card" class="bg-slate-900 bg-opacity-80 text-white text-center rounded-md shadow-md shadow-white cursor-pointer select-none flex items-center justify-center w-3/4 md:w-1/4 h-52 hover:scale-105 transition-transform duration-100 ease-in-out">
                             <p id="wordDisplay" class="text-2xl font-bold"></p>
                         </div>
                     </div>
@@ -108,7 +108,21 @@
                             <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Te-waza</h2>
                             <div id="seoi-nage" class="bg-slate-900 bg-opacity-40 rounded-lg p-2 m-2 md:p-8 md:m-8">
                                 
-                                <div id="player" class="w-full md:w-1/2 aspect-w-16 aspect-h-9 mb-4 rounded-md border-2 border-slate-900 place-self-center">
+                                <div class="relative">
+
+                                    <div id="player1" class="video-player aspect-w-16 aspect-h-9">
+
+                                    </div>
+                                
+                                    <!-- Custom control bar overlay -->
+                                    <div id="videoOverlay" class="absolute bottom-0 left-0 right-0 bg-slate-900 bg-opacity-80 text-white flex justify-evenly p-2 z-10 w-full md:w-1/2 place-self-center">
+                                        <button onclick="togglePlay('1')">
+                                            Play
+                                        </button>
+                                        <button onclick="setFullscreen('1')">
+                                            ⛶
+                                        </button>
+                                    </div>
                                     
                                 </div>
 
@@ -126,7 +140,7 @@
 
                             <div id="ippon-seoi-nage" class="bg-slate-900 bg-opacity-40 rounded-lg p-2 m-2 md:p-8 md:m-8">
 
-                                <div id="player" class="w-full md:w-1/2 aspect-w-16 aspect-h-9 mb-4 rounded-md border-2 border-slate-900 place-self-center">
+                                <div id="player2" class="video-player aspect-w-16 aspect-h-9">
                                     
                                 </div>
 
@@ -335,33 +349,69 @@
 
     <script>
         // YouTube Player API setup
-        let player;
+        let players = [];
         let isPlaying = false;
         let playbackRate = 1;
 
+        const videoList = [
+            { id: 'zIq0xI0ogxk', technique: 'seoi-nage' },
+            { id: 'FQnOlCxo4oI', technique: 'ippon-seoi-nage' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+            { id: '', technique: '' },
+        ];
+
         // Create YouTube Player when API is ready
         function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '270',
-                width: '480',
-                videoId: 'zIq0xI0ogxk',
-                playerVars: {
-                    controls: 0,
-                    modestbranding: 0,
-                    rel: 0,
-                    fs: 1,
-                    mute: 1,
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+
+            videoList.forEach((video, index) => {
+                if (video.id) {
+                    const playerId = `player${index + 1}`;
+                    const container = document.getElementById(playerId);
+
+                    if (container) {
+                        const player = new YT.Player(playerId, {
+                            height: '270',
+                            width: '480',
+                            videoId: video.id,
+                            playerVars: {
+                                controls: 0,
+                                modestbranding: 0,
+                                rel: 0,
+                                fs: 1,
+                                mute: 1,
+                            },
+                            events: {
+                                'onReady': onPlayerReady,
+                                'onStateChange': onPlayerStateChange
+                            }
+                        });
+                        players.push(player);
+                    }
                 }
             });
         }
 
         // When the player is ready
         function onPlayerReady(event) {
-            console.log('Player is ready');
+            console.log('Player is ready', event.target.getIframe().id);
+
             document.getElementById('playbackSpeed').textContent = playbackRate + 'x';
         }
 
@@ -376,66 +426,24 @@
             }
         }
 
-        // Play/Pause video
-        function playPauseVideo() {
-            if (isPlaying) {
+        function togglePlay(id) {
+            const player = players[id]; // Adjust index as needed
+            const state = player.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
                 player.pauseVideo();
             } else {
                 player.playVideo();
             }
         }
 
-        // Rewind 1 second
-        function rewindOneSec() {
-            let currentTime = player.getCurrentTime();
-            player.seekTo(currentTime - 1); // Go back 1 second
+        function setFullscreen(id) {
+            const iframe = players[id].getIframe();
+            if (iframe.requestFullscreen) iframe.requestFullscreen();
+            else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
+            else if (iframe.mozRequestFullScreen) iframe.mozRequestFullScreen();
+            else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
         }
 
-        // Rewind 5 seconds
-        function rewindFiveSec() {
-            let currentTime = player.getCurrentTime();
-            player.seekTo(currentTime - 5); // Go back 5 seconds
-        }
-
-        // Rewind 10 seconds
-        function rewindTenSec() {
-            let currentTime = player.getCurrentTime();
-            player.seekTo(currentTime - 10); // Go back 10 seconds
-        }
-        
-        // Fast forward 1 second
-        function skipOneSec() {
-            let currentTime = player.getCurrentTime();
-            player.seekTo(currentTime + 1); // Go forward 1 second
-        }
-
-        // Fast forward 5 seconds
-        function skipFiveSec() {
-            let currentTime = player.getCurrentTime();
-            player.seekTo(currentTime + 5); // Go forward 5 seconds
-        }
-        
-        // Fast forward 10 seconds
-        function skipTenSec() {
-            let currentTime = player.getCurrentTime();
-            player.seekTo(currentTime + 10); // Go forward 10 seconds
-        }
-
-        // Slow down the video speed (e.g., -0.25x speed)
-        function slowDown() {
-            if (playbackRate <= 0.25) return;
-            playbackRate -= 0.25;
-            player.setPlaybackRate(playbackRate); 
-            document.getElementById('playbackSpeed').textContent = playbackRate + 'x';
-        }
-
-        // Speed up the video (e.g., +0.25x speed)
-        function speedUp() {
-            if (playbackRate >= 2) return;
-            playbackRate += 0.25;
-            player.setPlaybackRate(playbackRate); 
-            document.getElementById('playbackSpeed').textContent = playbackRate + 'x';
-        }
     </script>
 
     <script>

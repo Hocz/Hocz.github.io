@@ -109,11 +109,11 @@ html {
 }
 
 .judo-tech-button {
-    @apply  p-1.5 m-0.5 text-left w-full shadow-sm shadow-white 
+    @apply  p-1.5 m-0.5 text-left w-full shadow-sm shadow-white bg-slate-900 bg-opacity-80
 }
 
 .judo-word-button {
-    @apply p-1.5 m-0.5 text-left w-full shadow-sm shadow-white
+    @apply p-1.5 m-0.5 text-left w-full shadow-sm shadow-white bg-slate-900 bg-opacity-80
 }
 
 .btn-container {
@@ -121,5 +121,9 @@ html {
 }
 
 .card-button {
-    @apply bg-slate-900 bg-opacity-50 text-white rounded-md shadow-md shadow-white px-4 py-2 font-semibold hover:scale-110 transition-transform duration-100 ease-in-out
+    @apply bg-slate-900 bg-opacity-80 text-white rounded-md shadow-md shadow-white px-4 py-2 font-semibold hover:scale-110 transition-transform duration-100 ease-in-out
+}
+
+.video-player {
+    @apply w-full md:w-1/2 rounded-md border-2 border-slate-900 place-self-center
 }
