@@ -98,6 +98,15 @@
 
             <h1 class="text-4xl font-bold text-center my-2 pb-2">Techniques</h1>
 
+            <div class="flex flex-col">
+                temp links:
+                <a href="https://kdkjd.org/%e6%8a%80/%e6%9f%94%e9%81%93-%e6%8a%80%e5%90%8d%e7%a7%b0%e4%b8%80%e8%a6%a7/" target="_blank">Kodokan Techniques</a>
+                <a href="https://judo.ijf.org/" target="_blank">IJF Techniques</a>
+                <a href="https://www.youtube.com/playlist?list=PLtz539PTepc16H2iu5F3Q3D7_He1EYlIQ" target="_blank">Kodokan YT 100 Techniques</a>
+            </div>
+            
+
+
             <section class="flex flex-col md:flex-row gap-4 relative justify-between">
 
                 <div class="w-full md:w-full p-4 space-y-8">
@@ -108,22 +117,8 @@
                             <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Te-waza</h2>
                             <div id="seoi-nage" class="bg-slate-900 bg-opacity-40 rounded-lg p-2 m-2 md:p-8 md:m-8">
                                 
-                                <div class="relative">
+                                <div id="player1" class="video-player aspect-w-16 aspect-h-9">
 
-                                    <div id="player1" class="video-player aspect-w-16 aspect-h-9">
-
-                                    </div>
-                                
-                                    <!-- Custom control bar overlay -->
-                                    <!-- <div class="absolute bottom-0 left-0 right-0 bg-slate-900 bg-opacity-80 text-white flex justify-evenly p-2 z-10 w-full md:w-1/2 place-self-center">
-                                        <button onclick="togglePlay('1')">
-                                            Play
-                                        </button>
-                                        <button onclick="setFullscreen('1')">
-                                            ⛶
-                                        </button>
-                                    </div> -->
-                                    
                                 </div>
 
                                 <div class="w-full md:w-1/2 place-self-center">
@@ -412,37 +407,15 @@
         // When the player is ready
         function onPlayerReady(event) {
             console.log('Player is ready', event.target.getIframe().id);
-
-            document.getElementById('playbackSpeed').textContent = playbackRate + 'x';
         }
 
         // When the player state changes
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 isPlaying = true;
-                document.getElementById('playPauseButton').textContent = '||';
             } else if (event.data === YT.PlayerState.PAUSED) {
                 isPlaying = false;
-                document.getElementById('playPauseButton').textContent = '➤';
             }
-        }
-
-        function togglePlay(id) {
-            const player = players[id - 1]; // Adjust index as needed
-            const state = player.getPlayerState();
-            if (state === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
-            } else {
-                player.playVideo();
-            }
-        }
-
-        function setFullscreen(id) {
-            const iframe = players[id].getIframe();
-            if (iframe.requestFullscreen) iframe.requestFullscreen();
-            else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
-            else if (iframe.mozRequestFullScreen) iframe.mozRequestFullScreen();
-            else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
         }
 
     </script>
