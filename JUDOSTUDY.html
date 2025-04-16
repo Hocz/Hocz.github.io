@@ -115,14 +115,14 @@
                                     </div>
                                 
                                     <!-- Custom control bar overlay -->
-                                    <div id="videoOverlay" class="absolute bottom-0 left-0 right-0 bg-slate-900 bg-opacity-80 text-white flex justify-evenly p-2 z-10 w-full md:w-1/2 place-self-center">
+                                    <!-- <div class="absolute bottom-0 left-0 right-0 bg-slate-900 bg-opacity-80 text-white flex justify-evenly p-2 z-10 w-full md:w-1/2 place-self-center">
                                         <button onclick="togglePlay('1')">
                                             Play
                                         </button>
                                         <button onclick="setFullscreen('1')">
                                             ⛶
                                         </button>
-                                    </div>
+                                    </div> -->
                                     
                                 </div>
 
@@ -391,10 +391,11 @@
                             width: '480',
                             videoId: video.id,
                             playerVars: {
-                                controls: 0,
+                                controls: 1,
                                 modestbranding: 0,
                                 rel: 0,
                                 fs: 1,
+                                iv_load_policy: 3, 
                                 mute: 1,
                             },
                             events: {
@@ -427,7 +428,7 @@
         }
 
         function togglePlay(id) {
-            const player = players[id]; // Adjust index as needed
+            const player = players[id - 1]; // Adjust index as needed
             const state = player.getPlayerState();
             if (state === YT.PlayerState.PLAYING) {
                 player.pauseVideo();
