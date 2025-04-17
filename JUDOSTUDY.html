@@ -15,8 +15,8 @@
 
         /* width */
         ::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
+            width: 8px;
+            height: 8px;
         }
 
         /* Track */
@@ -24,9 +24,21 @@
             background: transparent;
         }
 
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #0f172a;
+            border-radius: 2px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f1f5f9;
+        }
+
         ::-webkit-scrollbar-corner {
             background: transparent;
         }
+
     </style>
 </head>
 
@@ -42,13 +54,24 @@
     <main class="container mx-auto px-4 py-8">
 
         <!-- Navigation Buttons -->
-        <div class="sticky top-0 z-10 p-4 my-4 flex justify-between">
+        <div class="sticky top-0 z-10 p-4 my-4 flex flex-wrap justify-evenly md:justify-between gap-4 text-sm md:text-base">
+
             <button class="judo-nav-button" onclick="scrollToElementTop('words')">
                 Words
             </button>
+
             <button class="judo-nav-button" onclick="scrollToElementTop('techniques')">
                 Techniques
             </button>
+
+            <button class="judo-nav-button" onclick="scrollToElementTop('vs')">
+                VS
+            </button>
+
+            <button class="judo-nav-button" onclick="scrollToElementTop('values')">
+                Values
+            </button>
+
             <button class="judo-nav-button" onclick="scrollToElementTop('kata')">
                 Kata
             </button>
@@ -111,21 +134,36 @@
 
                 <div class="w-full md:w-full p-4 space-y-8">
                     
-                    <div id="nage-waza" class="">
+                    <div id="nage-waza" class="space-y-20">
 
                         <div id="te-waza" class="space-y-4 mt-8">
-                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Te-waza</h2>
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Te-waza (16)</h2>
 
                         </div>
                         
                         <div id="koshi-waza" class="space-y-4 mt-8">
-                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Koshi-waza</h2>
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Koshi-waza (10)</h2>
+                            
+                        </div>
+
+                        <div id="ashi-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Ashi-waza (21)</h2>
+                            
+                        </div>
+
+                        <div id="ma-sutemi-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Ma-Sutemi-waza (5)</h2>
+                            
+                        </div>
+
+                        <div id="yoko-sutemi-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Yoko-Sutemi-waza (16)</h2>
                             
                         </div>
 
                     </div>
 
-                    <div id="katame-waza">
+                    <div id="katame-waza" class="">
     
                     </div>
                 </div>
@@ -251,6 +289,7 @@
 
         const videoList = [
 
+            // Te-waza
             { id: 'zIq0xI0ogxk', technique: 'seoi-nage' },
             { id: 'FQnOlCxo4oI', technique: 'ippon-seoi-nage' },
             { id: 'vu1TMVNnq34', technique: 'seoi-otoshi' },
@@ -268,31 +307,67 @@
             { id: 'V-RS3uhtVWM', technique: 'uchi-mata-sukashi' },
             { id: '_MWAdYi_LC4', technique: 'ko-uchi-gaeshi' },
 
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
-            { id: '', technique: '' },
+            // Koshi-waza
+            { id: 'bPKwtB4lyOQ', technique: 'uki-goshi' },
+            { id: 'yhu1mfy2vJ4', technique: 'o-goshi' },
+            { id: 'SU7Id6uVJ44', technique: 'koshi-guruma' },
+            { id: 'McfzA0yRVt4', technique: 'tsurikomi-goshi' },
+            { id: 'QsmAxpmYLOI', technique: 'sode-tsurikomi-goshi' },
+            { id: 'qTo8HlAAkOo', technique: 'harai-goshi' },
+            { id: '51Htlp7xEvE', technique: 'tsuri-goshi' },
+            { id: 'M9_7De6A1kk', technique: 'hane-goshi' },
+            { id: '4pQd_bEnlf0', technique: 'utsuri-goshi' },
+            { id: 'ORIYstuxYT8', technique: 'ushiro-goshi' },
+
+            // Ashi-waza
+            { id: '4BUUvqxi_Kk', technique: 'de-ashi-harai' },
+            { id: 'JPJx9-oAVns', technique: 'hiza-guruma' },
+            { id: '699i--pvYmE', technique: 'sasae-tsurikomi-ashi' },
+            { id: 'c-A_nP7mKAc', technique: 'o-soto-gari' },
+            { id: '0itJFhV9pDQ', technique: 'o-uchi-gari' },
+            { id: 'jeQ541ScLB4', technique: 'ko-soto-gari' },
+            { id: '3Jb3tZvr9Ng', technique: 'ko-uchi-gari' },
+            { id: 'nw1ZdRjrdRI', technique: 'okuri-ashi-harai' },
+            { id: 'iUpSu5J-bgw', technique: 'uchi-mata' },
+            { id: '8b6kY4s4zH4', technique: 'ko-soto-gake' },
+            { id: 'ROeayhvom9U', technique: 'ashi-guruma' },
+            { id: 'gGPXvWL8VbE', technique: 'harai-tsurikomi-ashi' },
+            { id: 'SnZciTAY9vc', technique: 'o-guruma' },
+            { id: '92KbCm6pQeI', technique: 'o-soto-guruma' },
+            { id: '2DsVvDw7b8g', technique: 'o-soto-otoshi' },
+            { id: 'GwweWqqFB5g', technique: 'tsubame-gaeshi' },
+            { id: '8ZjM3X_EANo', technique: 'o-soto-gaeshi' },
+            { id: 'dCyZTXyjIXE', technique: 'o-uchi-gaeshi' },
+            { id: '9bZAZSBtnGs', technique: 'hane-goshi-gaeshi' },
+            { id: '4U3It-7PPsc', technique: 'harai-goshi-gaeshi' },
+            { id: 'Sy6sLWxkWYw', technique: 'uchi-mata-gaeshi' },
+
+            // Ma-Sutemi-waza
+            { id: '880WbHvHv6A', technique: 'tomoe nage' },
+            { id: '5VhduA5xkbA', technique: 'sumi-gaeshi' },
+            { id: '92zUYWBp5N8', technique: 'hikikomi-gaeshi' },
+            { id: 'TmTWgrmViZc', technique: 'tawara-gaeshi' },
+            { id: 'Fgi9b8DJ5sQ', technique: 'ura-nage' },
+
+            //Yoko-Sutemi-waza
+            { id: 'MnNG67pF_a0', technique: 'yoko-otoshi' },
+            { id: '3b9Me3Fohpk', technique: 'tani-otoshi' },
+            { id: '6CRBGLGz9j8', technique: 'hane-makikomi' },
+            { id: 'bWG9O1BVKtQ', technique: 'soto-makikomi' },
+            { id: '5BowcjduxVc', technique: 'uchi-makikomi' },
+            { id: 'weVOpJ63gII', technique: 'uki-waza' },
+            { id: 'bp1tscHlePI', technique: 'yoko-wakare' },
+            { id: 'MehP6I5cY2c', technique: 'yoko-guruma' },
+            { id: 'tP1Sj1uDfSo', technique: 'yoko-gake' },
+            { id: 'Hr0cOMGBDYo', technique: 'daki-wakare' },
+            { id: 'DGDv2oMwmas', technique: 'o-soto-makikomi' },
+            { id: 'jZXENTLpJCI', technique: 'uchi-mata-makikomi' },
+            { id: 'VBaHzKaCXss', technique: 'harai-makikomi' },
+            { id: '_1eygIXLD_w', technique: 'ko-uchi-makikomi' },
+            { id: 'OR-HGHnarYc', technique: 'kani-basami' },
+            { id: 'w6G57bWACi0', technique: 'kawazu-gake' },
+
+
         ];
 
         // Create YouTube Player when API is ready
@@ -867,53 +942,577 @@
 
             // Koshi-waza
             {
-                id: '',              
+                id: 'uki-goshi',              
                 category: 'koshi-waza',        
                 playerId: 'player17',
-                name: '',        
-                title: '',           
-                description: ``
+                name: 'Uki-goshi',        
+                title: '浮腰 Uki-goshi (floating hip throw) UGO',           
+                description: `A hip technique throw. 
+                Break your opponent’s balance to his front or right front corner, 
+                then enter shallowly with your right hip while wrapping your right arm around his waist, 
+                and twist to the left to throw him over and around your hips without raising them of bending forward.`
             },
             {
-                id: '',              
+                id: 'o-goshi',              
                 category: 'koshi-waza',        
                 playerId: 'player18',
-                name: '',        
-                title: '',           
-                description: ``
+                name: 'O-goshi',        
+                title: '大腰 O-goshi (large hip throw) OGO',           
+                description: `A hip technique throw. 
+                Break your opponent’s balance to his front or right front corner, 
+                enter deeply with your right hip to float him up, 
+                and twist to throw him over it.`
             },
             {
-                id: '',              
+                id: 'koshi-guruma',              
                 category: 'koshi-waza',        
                 playerId: 'player19',
-                name: '',        
-                title: '',           
-                description: ``
+                name: 'Koshi-guruma',        
+                title: '腰車 Koshi-guruma (hip wheel) KOG',           
+                description: `A hip technique throw. 
+                Break your opponent’s balance to his front or right front corner, 
+                then place your right hip solidly against his body and, 
+                continuing to grip his collar, 
+                draw him up and throw him over your hips with a large motion`
             },
             {
-                id: '',              
+                id: 'tsurikomi-goshi',              
                 category: 'koshi-waza',        
                 playerId: 'player20',
-                name: '',        
-                title: '',           
-                description: ``
+                name: 'Tsurikomi-goshi',        
+                title: '釣込腰 Tsurikomi-goshi (lift-pull hip throw) TKG',           
+                description: `A hip technique throw. 
+                Use your grips on your opponent’s collar and sleeve to break his balance to his front or right front corner, 
+                than drop your hips to the level of his thighs, 
+                then raise them again while pilling with both hands to throw him over your hips.`
             },
             {
-                id: '',              
+                id: 'sode-tsurikomi-goshi',              
                 category: 'koshi-waza',        
                 playerId: 'player21',
-                name: '',        
-                title: '',           
-                description: ``
+                name: 'Sode-tsurikomi-goshi',        
+                title: '袖釣込腰 Sode-tsurikomi-goshi (sleeve lift-pull hip throw) STG',           
+                description: `A hip technique throw. 
+                A variant of tsurikomi-goshi (lift-pull hip throw), 
+                in which you use your right hand to hold your opponent’s left outer sleeve or cuff instead of his lapel.`
             },
             {
-                id: '',              
+                id: 'harai-goshi',              
                 category: 'koshi-waza',        
                 playerId: 'player22',
-                name: '',        
-                title: '',           
-                description: ``
+                name: 'Harai-goshi',        
+                title: '払腰 Harai-goshi (hip sweep) HRG',           
+                description: `A hip technique throw. 
+                Break your opponent’s balance to his front or right front corner, 
+                then pivot and pull him to your hips and sweep his right thigh with the back of your right thigh.`
             },
+            {
+                id: 'tsuri-goshi',              
+                category: 'koshi-waza',        
+                playerId: 'player23',
+                name: 'Tsuri-goshi',        
+                title: '釣腰 Tsuri-goshi (lifting hip throw) TGO',           
+                description: `A hip technique throw. 
+                Reach over your opponent’s right shoulder or under his arm with your right hand to grip the side or rear of his belt and pull him forward to break his balance to his front or his right front corner, 
+                then lift him onto your hips and throw him over them.`
+            },
+            {
+                id: 'hane-goshi',              
+                category: 'koshi-waza',        
+                playerId: 'player24',
+                name: 'Hane-goshi',        
+                title: '跳腰 Hane-goshi (hip spring) HNG',           
+                description: `A hip technique throw. 
+                Break your opponent’s balance to his front or right front corner, 
+                then pull him close to your right side and throw him with the combined upward-springing action of your right hip and right leg.`
+            },
+            {
+                id: 'utsuri-goshi',              
+                category: 'koshi-waza',        
+                playerId: 'player25',
+                name: 'Utsuri-goshi',        
+                title: '移腰 Utsuri-goshi (hip transfer) UTS',           
+                description: `A hip technique throw. 
+                A counter throw used against an attempted harai-goshi (hip sweep) or other hip throw. 
+                Bend your knees to block your opponent’s attack, 
+                shifting your hips and wrapping his waist with your arm, 
+                thereby lifting him onto your hips and throw him by twisting your body.`
+            },
+            {
+                id: 'ushiro-goshi',              
+                category: 'koshi-waza',        
+                playerId: 'player26',
+                name: 'Ushiro-goshi',        
+                title: '後腰 Ushiro-goshi (back hip throw) USH',           
+                description: `A hip technique throw. 
+                A counter throw used against an attempted harai-goshi (hip sweep) or other hip throw. 
+                Shift out of the way and position yourself to wrap your arms around your opponent’s waist from behind, 
+                then from that position swing him up into the air to throw him onto his back.`
+            },
+
+            // Ashi-waza
+            {
+                id: 'de-ashi-harai',              
+                category: 'ashi-waza',        
+                playerId: 'player27',
+                name: 'De-ashi-harai',        
+                title: '出足払 De-ashi-harai (forward foot sweep) DAB',           
+                description: `A foot technique throw. 
+                At the instant your opponent has taken a step forward or backward and is on the verge of placing his weight on the stepping foot, 
+                use your own foot to sweep that foot from the rear, side, or front. `
+            },
+            {
+                id: 'hiza-guruma',              
+                category: 'ashi-waza',        
+                playerId: 'player28',
+                name: 'Hiza-guruma',        
+                title: '膝車 Hiza-guruma (knee wheel) HIZ',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his right front corner, 
+                then place the sole of your left foot on his right kneecap and use his this as a fulcrum around which to throw him by pulling his upper body.`
+            },
+            {
+                id: 'sasae-tsurikomi-ashi',              
+                category: 'ashi-waza',        
+                playerId: 'player29',
+                name: 'Sasae-tsurikomi-ashi',        
+                title: '支釣込足 Sasae-tsurikomi-ashi (supporting-foot lift-pull throw) STA',           
+                description: `A foot technique throw. 
+                As you break your opponent’s balance to his right front corner, 
+                block his supporting right leg by placing the sole of your foot just above his ankle, 
+                creating a pivot point, 
+                then lean back and twist to the left throw him over it.`
+            },
+            {
+                id: 'o-soto-gari',              
+                category: 'ashi-waza',        
+                playerId: 'player30',
+                name: 'O-soto-gari',        
+                title: '大外刈 O-soto-gari (large outer reap) OSG',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his rear or right rear corner to shift most of his weight onto his right heel, 
+                then reap his leg with your right leg.`
+            },
+            {
+                id: 'o-uchi-gari',              
+                category: 'ashi-waza',        
+                playerId: 'player31',
+                name: 'O-uchi-gari',        
+                title: '大内刈 O-uchi-gari (large inner reap) OUG',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his left back corner, 
+                causing his stance to open wide and his weight to shift mostly onto his left heel, 
+                then step in deeply with your right leg and use it to reap his left leg from the inside with a large motion to your right to throw him backwards.`
+            },
+            {
+                id: 'ko-soto-gari',              
+                category: 'ashi-waza',        
+                playerId: 'player32',
+                name: 'Ko-soto-gari',        
+                title: '小外刈 Ko-soto-gari (small outer reap) KSG',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his rear or right rear corner, 
+                then sweep his right ankle from the rear with the sole of your left foot to throw him backward.`
+            },
+            {
+                id: 'ko-uchi-gari',              
+                category: 'ashi-waza',        
+                playerId: 'player33',
+                name: 'Ko-uchi-gari',        
+                title: '小内刈 Ko-uchi-gari (small inner reap) KUG',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his rear or right rear corner, 
+                then sweep his right ankle from the inside with the sole of your right foot to throw him backward.`
+            },
+            {
+                id: 'okuri-ashi-harai',              
+                category: 'ashi-waza',        
+                playerId: 'player34',
+                name: 'Okuri-ashi-harai',        
+                title: '送足払 Okuri-ashi-harai (foot sweep) OAB',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his right side, 
+                and as he moves his right foot to the left to shift to the left, 
+                follow it in the direction it is moving with your left foot and sweep both of his legs with your whole leg and throw him on his back.`
+            },
+            {
+                id: 'uchi-mata',              
+                category: 'ashi-waza',        
+                playerId: 'player35',
+                name: 'Uchi-mata',        
+                title: '内股 Uchi-mata (inner thigh reaping throw) UMA',           
+                description: `A foot technique throw. 
+                After opening the opponent’s feet a little and breaking his balance to his front or right front corner and causing him to bend forward, 
+                sweep his left inner thigh deeply from the inside using the back of your right thigh while twisting to the left.`
+            },
+            {
+                id: 'ko-soto-gake',              
+                category: 'ashi-waza',        
+                playerId: 'player36',
+                name: 'Ko-soto-gake',        
+                title: '小外掛 Ko-soto-gake (small outer hook) KSK',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his rear or right rear corner, 
+                then hook his right ankle from the rear with your left foot and throw him backward.`
+            },
+            {
+                id: 'ashi-guruma',              
+                category: 'ashi-waza',        
+                playerId: 'player37',
+                name: 'Ashi-guruma',        
+                title: '足車 Ashi-guruma (leg wheel) AGU',           
+                description: `A foot technique throw. 
+                Float your opponent’s balance to his front or right front corner, 
+                then pivot left and extend the back lower portion of your right leg across his right knee to throw him over your leg in a large circle.`
+            },
+            {
+                id: 'harai-tsurikomi-ashi',              
+                category: 'ashi-waza',        
+                playerId: 'player38',
+                name: 'Harai-tsurikomi-ashi',        
+                title: '払釣込足 Harai-tsurikomi-ashi (lift-pull foot sweep) HTA',           
+                description: `A foot technique throw. 
+                After pulling and lifting your opponent forward to break his balance to his left front corner, 
+                sweep his left ankle with your right foot from the front to throw.`
+            },
+            {
+                id: 'o-guruma',              
+                category: 'ashi-waza',        
+                playerId: 'player39',
+                name: 'O-guruma',        
+                title: '大車 O-guruma (large wheel) OGU',           
+                description: `A foot technique throw. 
+                Just as your opponent begins to step forward with his right foot, 
+                lead his movement to break his balance to his front right corner, 
+                at the same time turning your left and stretching your right leg straight across his lower abdomen or upper thighs, 
+                then lift him by swinging your right leg up and back while twisting and pulling down with both hands to turn him over your leg.`
+            },
+            {
+                id: 'o-soto-guruma',              
+                category: 'ashi-waza',        
+                playerId: 'player40',
+                name: 'O-soto-guruma',        
+                title: '大外車 O-soto-guruma (large outer wheel) OGR',           
+                description: `A foot technique throw. 
+                Break your opponent’s balance to his rear or his rear corner, 
+                then pivot left to extend your right leg diagonally across the back of his knee and use your right thigh as a fulcrum over which to throw him.`
+            },
+            {
+                id: 'o-soto-otoshi',              
+                category: 'ashi-waza',        
+                playerId: 'player41',
+                name: 'O-soto-otoshi',        
+                title: '大外落 O-soto-otoshi (large outer drop) OSO',           
+                description: `A foot technique throw. 
+                Nearly identical to o-soto-gari (large outer reap) and difficult to distinguish from it. 
+                Instead of reaping your opponent’s leg, 
+                however, rise your right leg high then bring it down from outside, 
+                behind, and above your opponent’s right leg, 
+                so that it descends against his tight as a brace that break his balance and causes him to fall.`
+            },
+            {
+                id: 'tsubame-gaeshi',              
+                category: 'ashi-waza',        
+                playerId: 'player42',
+                name: 'Tsubame-gaeshi',        
+                title: '燕返 Tsubame-gaeshi (“swallow counter”) TSU',           
+                description: `A foot technique throw. 
+                When your opponent attempts a right de-ashi-harai (forward foot sweep), 
+                shift your weight to your left leg and withdraw your right foot by bending the knee, 
+                then throw him with a left de-ashi-harai.`
+            },
+            {
+                id: 'o-soto-gaeshi',              
+                category: 'ashi-waza',        
+                playerId: 'player43',
+                name: 'O-soto-gaeshi',        
+                title: '大外返 O-soto-gaeshi (large outer reaping throw counter) OGA',           
+                description: `A foot technique throw. 
+                When your opponent moves in for a right o-soto-gari (large outer reap) or similar technique, 
+                before he can take your balance, 
+                reverse the situation to throw him with your own right o-soto-gari.`
+            },
+            {
+                id: 'o-uchi-gaeshi',              
+                category: 'ashi-waza',        
+                playerId: 'player44',
+                name: 'O-uchi-gaeshi',        
+                title: '大内返 O-uchi-gaeshi (large inner reap counter) OUG',           
+                description: `A foot technique throw. 
+                When your opponent attempts a right o-uchi-gari (large inner reap) before he has a chance to apply the technique fully, 
+                use your left leg to sweep his hooking right leg out from under him instead and throw him onto his back.`
+            },
+            {
+                id: 'hane-goshi-gaeshi',              
+                category: 'ashi-waza',        
+                playerId: 'player45',
+                name: 'Hane-goshi-gaeshi',        
+                title: '跳腰返 Hane-goshi-gaeshi (hip spring counter) HGG',           
+                description: `A foot technique throw. 
+                When your opponent attempts a right hane-goshi (hip spring), 
+                before he has a chance to apply the technique fully, 
+                either lift him up and reap his leg to your left with your right leg or hook your left leg around his lower left leg an reap it to your right and throw him onto his back.`
+            },
+            {
+                id: 'harai-goshi-gaeshi',              
+                category: 'ashi-waza',        
+                playerId: 'player46',
+                name: 'Harai-goshi-gaeshi',        
+                title: '払腰返 Harai-goshi-gaeshi (hip sweep counter) HGE',           
+                description: `A foot technique throw. 
+                When your opponent attacks with a right harai-goshi (hip sweep), 
+                hook your left leg around his lower left leg from behind and reap it to throw him.`
+            },
+            {
+                id: 'uchi-mata-gaeshi',              
+                category: 'ashi-waza',        
+                playerId: 'player47',
+                name: 'Uchi-mata-gaeshi',        
+                title: '内股返 Uchi-mata-gaeshi (inner thigh reaping throw counter) UMG',           
+                description: `A foot technique throw. 
+                When your opponent moves in for an uchi-mata (inner thigh reaping throw), 
+                pull close to him using both hands, 
+                hook your left leg around his left leg, 
+                and reap it to your right.`
+            },
+
+            // Ma-Sutemi-waza
+            {
+                id: 'tomoe nage',              
+                category: 'ma-sutemi-waza',        
+                playerId: 'player48',
+                name: 'Tomoe nage',        
+                title: '巴投 Tomoe nage (circular throw) TNG',           
+                description: `A sacrifice. 
+                Float your opponent’s balance forward or toward his front corner, 
+                then drop backward while placing your right foot on his lower abdomen, 
+                pushing him up and throwing him forward over your head.`
+            },
+            {
+                id: 'sumi-gaeshi',              
+                category: 'ma-sutemi-waza',        
+                playerId: 'player49',
+                name: 'Sumi-gaeshi',        
+                title: '隅返 Sumi-gaeshi (corner throw) SUG',           
+                description: `A sacrifice. 
+                Break your opponent’s balance to his front or right front corner, 
+                then fall backwards, 
+                as you do catching the instep of your right foot under and behind his left knee or thigh to lift him up and throw him over your head.`
+            },
+            {
+                id: 'hikikomi-gaeshi',              
+                category: 'ma-sutemi-waza',        
+                playerId: 'player50',
+                name: 'Hikikomi-gaeshi',        
+                title: '引込返 Hikikomi-gaeshi (pulling-down sacrifice throw) HKG',           
+                description: `A sacrifice. 
+                When your opponent bends his body forward, 
+                reach over his shoulder to grip the back of his belt with one hand, 
+                then fall onto your back and pull him over you while flipping one of your legs up into the area between his legs to throw him first to his front, 
+                or with a twist of your body to throw him to either side.`
+            },
+            {
+                id: 'tawara-gaeshi',              
+                category: 'ma-sutemi-waza',        
+                playerId: 'player51',
+                name: 'Tawara-gaeshi',        
+                title: '俵返 Tawara-gaeshi (“bag of rice throw”) TWG',           
+                description: `A sacrifice. 
+                Cause your opponent’s upper body to lean deeply forward, 
+                then lean over him to cover his head and back with the front of your body and wrap both arms around his trunk, 
+                then seep his body up as you fall backwards, 
+                thereby throwing him over your head to your rear.`
+            },
+            {
+                id: 'ura-nage',              
+                category: 'ma-sutemi-waza',        
+                playerId: 'player52',
+                name: 'Ura-nage',        
+                title: '裏投 Ura-nage (back throw) UNA',           
+                description: `A sacrifice. 
+                Wrap both arms around your opponent’s waist from his right side, 
+                pulling in close to him, then lift up and fall backward to throw him over your left shoulder.`
+            },
+            
+            // Yoko-Sutemi-waza
+            {
+                id: 'yoko-otoshi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player53',
+                name: 'Yoko-otoshi',        
+                title: '横落 Yoko-otoshi (side drop) YOT',           
+                description: `A sacrifice. 
+                Float your opponent’s balance to his right side, 
+                then slide your left leg to the outside of his right foot and drop onto your left side to throw him to your left.`
+            },
+            {
+                id: 'tani-otoshi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player54',
+                name: 'Tani-otoshi',        
+                title: '谷落 Tani-otoshi (valley drop) TNO',           
+                description: `A sacrifice. 
+                Break your opponent’s balance to his rear or right rear corner, 
+                then slide your left foot past the outside of his right foot, 
+                or behind both of his feet, 
+                and fall back on your left side to throw him to his right back corner.`
+            },
+            {
+                id: 'hane-makikomi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player55',
+                name: 'Hane-makikomi',        
+                title: '跳巻込 Hane-makikomi (springing wrap-around throw) HNM',           
+                description: `A sacrifice. 
+                After attempting a hane-goshi (hip spring), 
+                release your right hand and place it on the outside as you twist to the left, 
+                thereby wrapping your opponent’s body around you, 
+                then throw by taking him with as you fall forward onto the mat.`
+            },
+            {
+                id: 'soto-makikomi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player56',
+                name: 'Soto-makikomi',        
+                title: '外巻込 Soto-makikomi (outer wrap-around throw) SMK',           
+                description: `A sacrifice. 
+                Float your opponent’s balance to his right front corner, 
+                then release your right grip and turn to the left to wrap your right arm around his right arm, 
+                sandwiching it in your armpit, 
+                causing his body to wrap around yours, 
+                and from that position continue the movement to throw him forward.`
+            },
+            {
+                id: 'uchi-makikomi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player57',
+                name: 'Uchi-makikomi',        
+                title: '内巻込 Uchi-makikomi (inner wrap-around) UMK',           
+                description: `A sacrifice. 
+                From an ippon-seoi-nage (one-armed shoulder throw) position, 
+                instead of throwing your opponent over your shoulder, 
+                thrust your hips in a large motion outside the direction of the throw and wrap your opponent’s right arm in the crook of your elbow and throw him by sacrificing yourself.`
+            },
+            {
+                id: 'uki-waza',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player58',
+                name: 'Uki-waza',        
+                title: '浮技 Uki-waza (floating throw) UWA',           
+                description: `A sacrifice. 
+                Float your opponent’s balance to his right front corner, 
+                than open your body wide and extend your left foot to block the outside of his right foot, 
+                then immediately fall onto your left side to throw him over you.`
+            },
+            {
+                id: 'yoko-wakare',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player59',
+                name: 'Yoko-wakare',        
+                title: '横分 Yoko-wakare (side separation) YWA',           
+                description: `A sacrifice. 
+                Break your opponent’s balance to his front or right front corner, 
+                then drop onto your back or left side while extending both legs out in front of him to throw him across your outstretched body.`
+            },
+            {
+                id: 'yoko-guruma',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player60',
+                name: 'Yoko-guruma',        
+                title: '横車 Yoko-guruma (side wheel) YGU',           
+                description: `A sacrifice.
+                Description missing :(`
+            },
+            {
+                id: 'yoko-gake',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player61',
+                name: 'Yoko-gake',        
+                title: '横掛 Yoko-gake (side body drop) YGA',           
+                description: `A sacrifice. 
+                Float your opponent’s balance to his right front corner, 
+                in the direction of his little finger, 
+                then break it to his right side while sweeping his right foot out from under him from the front using the sole of your left foot, 
+                falling with him onto your left side as you do.`
+            },
+            {
+                id: 'daki-wakare',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player62',
+                name: 'Daki-wakare',        
+                title: '抱分 Daki-wakare (rear trunk turnover) DWK',           
+                description: `A sacrifice. 
+                When your opponent attempts to assume a face-down kneeling position, 
+                slip both arms around his trunk from behind to float him up and fall to the side to throw him over you.`
+            },
+            {
+                id: 'o-soto-makikomi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player63',
+                name: 'O-soto-makikomi',        
+                title: '大外巻込 O-soto-makikomi (large outside wrap-around throw) OSM',           
+                description: `A sacrifice. 
+                After attempting an o-soto-gari (large outer reap), 
+                release your right hand from the opponent’s lapel and pivot to the left to bring your arm across your opponent’s right arm to wrap his body around yours, 
+                then throw by continuing the movement.`
+            },
+            {
+                id: 'uchi-mata-makikomi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player64',
+                name: 'Uchi-mata-makikomi',        
+                title: '内股巻込 Uchi-mata-makikomi (inner thigh wrap-around throw) UMM',           
+                description: `A sacrifice. 
+                From uchi-mata (inner thigh reap), 
+                release your right grip and twist to your left, 
+                bringing your right arm to the outside so that your opponent’s body wraps around you, 
+                then continue turning and fall together to throw him.`
+            },
+            {
+                id: 'harai-makikomi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player65',
+                name: 'Harai-makikomi',        
+                title: '払巻込 Harai-makikomi (hip sweep wrap-around throw) HRM',           
+                description: `A sacrifice. Break your opponent’s balance to his front or right front corner, 
+                then from harai-goshi (hip sweep) release your right grip and twist to the left, 
+                wrapping his right arm in your armpit so that his body wraps around yours, 
+                then fall forward and take him with you to throw.`
+            },
+            {
+                id: 'ko-uchi-makikomi',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player66',
+                name: 'Ko-uchi-makikomi',        
+                title: '小内巻込 Ko-uchi-makikomi (small inner wrap-around throw) KUM',           
+                description: `A sacrifice. 
+                Step in deeply between your opponent’s legs with your right leg and use it to catch his right leg, 
+                at the same time wrapping his leg with your right arm from the outside, 
+                then fall forward with a twist to throw him backwards. 
+                Like ko-uchi-gari (small inner reap), but the opponent’s diagonal leg is hooked and wrapped instead of reaped, 
+                resulting in a sacrifice throw.`
+            },
+            {
+                id: 'kani-basami',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player67',
+                name: 'Kani-basami',        
+                title: '蟹挟 Kani-basami',           
+                description: `A sacrifice.
+                Description missing :(`
+            },
+            {
+                id: 'kawazu-gake',              
+                category: 'yoko-sutemi-waza',        
+                playerId: 'player68',
+                name: 'Kawazu-gake',        
+                title: '河津掛 Kawazu-gake (“Kawazu” drop; single-leg entanglement) KWA/P26',           
+                description: `A sacrifice (prohibited). 
+                Wrap your right arm tightly around your opponent’s neck, 
+                then use your right leg entangle the lower part of his left leg by wrapping it from the inside and pressing your instep against the back of his ankle, 
+                then hook the leg up and throw yourself backwards.`
+            },
+
         ];
 
         
@@ -931,7 +1530,10 @@
                 openSub: null,
                 subCategories: [
                     { name: 'te-waza', label: 'Te-waza' },
-                    { name: 'koshi-waza', label: 'Koshi-waza' }
+                    { name: 'koshi-waza', label: 'Koshi-waza' },
+                    { name: 'ashi-waza', label: 'Ashi-waza' },
+                    { name: 'ma-sutemi-waza', label: 'Ma-Sutemi-waza' },
+                    { name: 'yoko-sutemi-waza', label: 'Yoko-Sutemi-waza' },
                 ],
                 techniquesByCategory: categorized,
                 scrollToElement(id) {
