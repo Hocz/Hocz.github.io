@@ -881,14 +881,6 @@ video {
   scroll-behavior: smooth;
 }
 
-.text-clip {
-  text-overflow: clip;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
-
 .rounded-2xl {
   border-radius: 1rem;
 }
@@ -1058,10 +1050,6 @@ video {
 
 .text-justify {
   text-align: justify;
-}
-
-.align-super {
-  vertical-align: super;
 }
 
 .font-exo2 {
