@@ -120,24 +120,7 @@
                         
                         <div id="koshi-waza" class="space-y-4 mt-8">
                             <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Koshi-waza</h2>
-                            <div id="uki-goshi" class="bg-slate-900 bg-opacity-40 rounded-2xl p-8 m-8">
-                                <h2 class="text-xl font-semibold mb-4">浮腰 Uki-goshi (floating hip throw) UGO</h2>
-                                <p class="text-lg">
-                                    A hip technique throw. 
-                                    Break your opponent’s balance to his front or right front corner, 
-                                    then enter shallowly with your right hip while wrapping your right arm around his waist, 
-                                    and twist to the left to throw him over and around your hips without raising them of bending forward.
-                                </p>
-                            </div>
-                            <div id="o-goshi" class="bg-slate-900 bg-opacity-40 rounded-2xl p-8 m-8">
-                                <h2 class="text-xl font-semibold mb-4">大腰 O-goshi (large hip throw) OGO</h2>
-                                <p class="text-lg">
-                                    A hip technique throw. 
-                                    Break your opponent’s balance to his front or right front corner, 
-                                    enter deeply with your right hip to float him up, 
-                                    and twist to throw him over it.
-                                </p>
-                            </div>
+                            
                         </div>
 
                     </div>
@@ -197,88 +180,55 @@
                     <div>
                         <h2 class="text-xl text-center font-bold my-2 border-b-4 border-red-500">Techniques</h2>
 
-                        <div id="techniqueSidebar" class="flex flex-col"></div>
-
-
-                        <!-- <div class="flex flex-col" x-data="{ openNage: false, openTe: false, openKoshi: false }">
-                            
+                        <div class="flex flex-col" x-data="techniqueSidebarComponent()">
+        
+                            <!-- Toggle top category: Nage-waza -->
                             <div class="btn-container">
-                                <button @click="openNage = !openNage" class="judo-tech-button font-semibold">
+                                <button @click="openMain = !openMain" class="judo-tech-button font-semibold">
                                     Nage-waza
                                 </button>
                             </div>
-                            
-                            
-                            <div x-show="openNage" class="flex flex-col">
-                                
-                                <div class="btn-container">
-                                    <div class="pl-8">
-
-                                        <button @click="openTe = !openTe" class="judo-tech-button font-semibold">
-                                            Te-waza
-                                        </button>
-                                    </div>
-                                    
-                                </div>
-
-
-                                <div x-show="openTe" class="flex flex-col">
-
-                                    <div class="btn-container">
-                                        <div class="pl-16">
-                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('seoi-nage')">
-                                                Seoi-nage
-                                            </button>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="btn-container">
-                                        <div class="pl-16">
-                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('ippon-seoi-nage')">
-                                                Ippon-seoi-nage
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="btn-container">
-                                    <div class="pl-8">
-
-                                        <button @click="openKoshi = !openKoshi" class="judo-tech-button font-semibold">
-                                            Koshi-waza
-                                        </button>
-                                    </div>
-                                </div>
-                                
-
-                                <div x-show="openKoshi" class="flex flex-col">
-
-                                    <div class="btn-container">
-                                        <div class="pl-16">
-                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('uki-goshi')">
-                                                Uki-goshi
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="btn-container">
-                                        <div class="pl-16">
-                                            <button class="judo-tech-button text-sm" onclick="scrollToElement('o-goshi')">
-                                                O-goshi
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                </div>  
-                            </div>
-
-                        </div> -->
-                    </div>
-
                     
+                            <!-- Inside Nage-waza -->
+                            <div x-show="openMain" class="flex flex-col">
+                                <template x-for="(sub, idx) in subCategories" :key="idx">
+                                    <div class="flex flex-col">
+                    
+                                        <!-- Subcategory toggle -->
+                                        <div class="btn-container">
+                                            <div class="pl-8">
+                                                <button 
+                                                    class="judo-tech-button font-semibold"
+                                                    @click="openSub = (openSub === sub.name ? null : sub.name)">
+                                                    <span x-text="sub.label"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                    
+                                        <!-- Techniques under subcategory -->
+                                        <div 
+                                            class="flex flex-col" 
+                                            x-show="openSub === sub.name">
+                                            <template x-for="tech in techniquesByCategory[sub.name]" :key="tech.id">
+                                                <div class="btn-container">
+                                                    <div class="pl-16">
+                                                        <button 
+                                                            class="judo-tech-button text-sm"
+                                                            @click="scrollToElement(tech.id)">
+                                                            <span x-text="tech.name"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </div>
+                    
+                                    </div>
+                                </template>
+                            </div>
+                    
+                        </div>
+
+                    </div>
                     
                 </div>
 
@@ -726,6 +676,7 @@
                 id: 'seoi-nage',
                 category: 'te-waza',
                 playerId: 'player1',
+                name: 'Seoi-nage',
                 title: '背負投 Seoi-nage (shoulder throw) SON',
                 description: `A hand technique throw. 
                 Break your opponent’s balance to his front or right front corner, 
@@ -736,6 +687,7 @@
                 id: 'ippon-seoi-nage',
                 category: 'te-waza',
                 playerId: 'player2',
+                name: 'Ippon-seoi-nage',
                 title: '本背負投 Ippon-seoi-nage (one-armed shoulder throw) ISN',
                 description: `A hand technique throw. 
                 Float your opponent’s balance to his front, 
@@ -747,7 +699,8 @@
             {
                 id: 'seoi-otoshi',              
                 category: 'te-waza',        
-                playerId: 'player3',        
+                playerId: 'player3',       
+                name: 'Seoi-otoshi', 
                 title: '背負落 Seoi-otoshi (dropping shoulder throw) SOO',           
                 description: `A hand technique throw. 
                 Break your opponent’s balance to his front or right front corner,
@@ -758,7 +711,8 @@
             {
                 id: 'tai-otoshi',              
                 category: 'te-waza',        
-                playerId: 'player4',        
+                playerId: 'player4',
+                name: 'Tai-otoshi',        
                 title: '体落 Tai-otoshi (body drop) TOS',           
                 description: `A hand technique throw. 
                 Break your opponent’s balance to his right front corner, 
@@ -768,7 +722,8 @@
             {
                 id: 'kata-guruma',              
                 category: 'te-waza',        
-                playerId: 'player5',        
+                playerId: 'player5',
+                name: 'Kata-guruma',        
                 title: '肩車 Kata-guruma (shoulder wheel) KGU',           
                 description: `A hand technique throw. 
                 Break your opponent’s balance to his front or right front corner, 
@@ -777,7 +732,8 @@
             {
                 id: 'sukui-nage',              
                 category: 'te-waza',        
-                playerId: 'player6',        
+                playerId: 'player6',
+                name: 'Sukui-nage',        
                 title: '掬投 Sukui-nage (scooping throw) SUK',           
                 description: `A hand technique throw. 
                 From your opponent’s side, 
@@ -787,7 +743,8 @@
             {
                 id: 'obi-otoshi',              
                 category: 'te-waza',        
-                playerId: 'player7',        
+                playerId: 'player7',
+                name: 'Obi-otoshi',        
                 title: '帯落 Obi-otoshi (belt drop) OOS',           
                 description: `A hand technique throw. 
                 Grip the front of your opponent’s belt with your right hand and pull him toward you, 
@@ -796,7 +753,8 @@
             {
                 id: 'uki-otoshi',              
                 category: 'te-waza',        
-                playerId: 'player8',        
+                playerId: 'player8',
+                name: 'Uki-otoshi',        
                 title: '浮落 Uki-otoshi (floating drop) UOT',           
                 description: `A hand technique throw. 
                 Float your opponent’s balance to his right front corner, 
@@ -805,7 +763,8 @@
             {
                 id: 'sumi-otoshi',              
                 category: 'te-waza',        
-                playerId: 'player9',        
+                playerId: 'player9',
+                name: 'Sumi-otoshi',        
                 title: '隅落 Sumi-otoshi (corner drop) SOT',           
                 description: `A hand technique throw. 
                 Step to the outside of your opponent’s right foot and use the shifting moment of your body and the action of both of yours hands to break his balance to his right rear corner and throw him in that direction.`
@@ -813,7 +772,8 @@
             {
                 id: 'yama-arashi',              
                 category: 'te-waza',        
-                playerId: 'player10',        
+                playerId: 'player10',
+                name: 'Yama-arashi',        
                 title: '山嵐 Yama-arashi (“mountain storm”) YAS',           
                 description: `A hand technique throw. 
                 Using both hands to grip your opponent’s right lapel and right sleeve, 
@@ -823,14 +783,16 @@
             {
                 id: 'obi-tori-gaeshi',              
                 category: 'te-waza',        
-                playerId: 'player11',        
+                playerId: 'player11',
+                name: 'Obi-tori-gaeshi',        
                 title: '帯取返 Obi-tori-gaeshi (belt-grab throw) OTG',           
                 description: `An informal variation of for the sacrifice known as hikikomi-gaeshi.`
             },
             {
                 id: 'morote-gari',              
                 category: 'te-waza',        
-                playerId: 'player12',        
+                playerId: 'player12',
+                name: 'Morote-gari',        
                 title: '双手刈 Morote-gari (two-handed reap) MGA',           
                 description: `A hand technique throw. 
                 Step in between your opponent’s legs and wrap your arms around his legs just above his knees, 
@@ -839,7 +801,8 @@
             {
                 id: 'kuchiki-taoshi',              
                 category: 'te-waza',        
-                playerId: 'player13',        
+                playerId: 'player13',
+                name: 'Kuchiki-taoshi',        
                 title: '朽木倒 Kuchiki-taoshi (one-handed throw-down) KTA',           
                 description: `A hand technique throw. 
                 Quickly grab the opponent’s right leg, 
@@ -849,7 +812,8 @@
             {
                 id: 'kibishu-gaeshi',              
                 category: 'te-waza',        
-                playerId: 'player14',        
+                playerId: 'player14',
+                name: 'Kibisu-gaeshi',        
                 title: '踵返 Kibisu-gaeshi (heel trip) KIG',           
                 description: `A hand technique throw. 
                 Step outside your opponent’s right foot with your left foot, 
@@ -858,7 +822,8 @@
             {
                 id: 'uchi-mata-sukashi',              
                 category: 'te-waza',        
-                playerId: 'player15',        
+                playerId: 'player15',
+                name: 'Uchi-mata-sukashi',        
                 title: '内股すかし Uchi-mata-sukashi (inner thigh reaping throw slip) UMS',           
                 description: `A hand technique throw. 
                 As your opponent attempts an uchi-mata (inner thigh reaping throw), 
@@ -867,7 +832,8 @@
             {
                 id: 'ko-uchi-gaeshi',              
                 category: 'te-waza',        
-                playerId: 'player16',        
+                playerId: 'player16',
+                name: 'Ko-uchi-gaeshi',        
                 title: '小内返 Ko-uchi-gaeshi (small inner reaping throw counter) KOU',           
                 description: `A hand technique throw. 
                 When your opponent attempts a ko-uchi-gari (small inner reap) to your right leg, 
@@ -876,82 +842,78 @@
             },
             {
                 id: '',              
-                category: '',        
-                playerId: 'player',        
+                category: 'koshi-waza',        
+                playerId: 'player17',
+                name: '',        
+                title: '',           
+                description: ``
+            },
+            {
+                id: '',              
+                category: 'koshi-waza',        
+                playerId: 'player18',
+                name: '',        
+                title: '',           
+                description: ``
+            },
+            {
+                id: '',              
+                category: 'koshi-waza',        
+                playerId: 'player19',
+                name: '',        
+                title: '',           
+                description: ``
+            },
+            {
+                id: '',              
+                category: 'koshi-waza',        
+                playerId: 'player20',
+                name: '',        
+                title: '',           
+                description: ``
+            },
+            {
+                id: '',              
+                category: 'koshi-waza',        
+                playerId: 'player21',
+                name: '',        
+                title: '',           
+                description: ``
+            },
+            {
+                id: '',              
+                category: 'koshi-waza',        
+                playerId: 'player22',
+                name: '',        
                 title: '',           
                 description: ``
             },
         ];
 
         
+        function techniqueSidebarComponent() {
+            const categorized = {};
 
-        function groupTechniquesByCategory(techniques) {
-            return techniques.reduce((acc, technique) => {
-                const category = technique.category;
-                if (!acc[category]) acc[category] = [];
-                acc[category].push(technique);
-                return acc;
-            }, {});
-        }
-
-
-        function populateTechniquesSidebar() {
-            const categories = {
-                'te-waza': 'Te-waza',
-                'koshi-waza': 'Koshi-waza',
-                // Add more if needed
-            };
-
-            const grouped = groupTechniquesByCategory(techniques);
-            const sidebarContainer = document.getElementById('techniqueSidebar');
-
-            Object.keys(categories).forEach(catKey => {
-                const catName = categories[catKey];
-                const techniquesInCategory = grouped[catKey] || [];
-
-                if (techniquesInCategory.length === 0) return;
-
-                // Toggle category button
-                const categoryToggle = document.createElement('div');
-                categoryToggle.classList.add('btn-container');
-
-                const categoryBtn = document.createElement('button');
-                categoryBtn.textContent = catName;
-                categoryBtn.classList.add('judo-tech-button', 'font-semibold');
-
-                // Toggle state
-                const catSection = document.createElement('div');
-                catSection.classList.add('flex', 'flex-col');
-                catSection.style.display = 'none';
-
-                categoryBtn.addEventListener('click', () => {
-                    catSection.style.display = catSection.style.display === 'none' ? 'flex' : 'none';
-                });
-
-                categoryToggle.appendChild(categoryBtn);
-                sidebarContainer.appendChild(categoryToggle);
-                sidebarContainer.appendChild(catSection);
-
-                // Add techniques under category
-                techniquesInCategory.forEach(t => {
-                    const techniqueBtnWrapper = document.createElement('div');
-                    techniqueBtnWrapper.classList.add('btn-container');
-
-                    const innerDiv = document.createElement('div');
-                    innerDiv.classList.add('pl-16');
-
-                    const btn = document.createElement('button');
-                    btn.textContent = t.title.split('(')[0]; // or just `t.title`
-                    btn.classList.add('judo-tech-button', 'text-sm');
-                    btn.addEventListener('click', () => scrollToElement(t.id));
-
-                    innerDiv.appendChild(btn);
-                    techniqueBtnWrapper.appendChild(innerDiv);
-                    catSection.appendChild(techniqueBtnWrapper);
-                });
+            // Group techniques by category (e.g., te-waza, koshi-waza)
+            techniques.forEach(tech => {
+                if (!categorized[tech.category]) categorized[tech.category] = [];
+                categorized[tech.category].push(tech);
             });
-        }
 
+            return {
+                openMain: false,
+                openSub: null,
+                subCategories: [
+                    { name: 'te-waza', label: 'Te-waza' },
+                    { name: 'koshi-waza', label: 'Koshi-waza' }
+                ],
+                techniquesByCategory: categorized,
+                scrollToElement(id) {
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: "center" });
+                }
+            };
+        }
 
         function renderTechniques() {
             const categories = {};
@@ -987,9 +949,6 @@
 
         document.addEventListener('DOMContentLoaded', renderTechniques);
         
-        document.addEventListener('DOMContentLoaded', () => {
-            populateTechniquesSidebar();
-        });
     </script>
 
 
