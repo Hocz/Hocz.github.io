@@ -163,8 +163,28 @@
 
                     </div>
 
-                    <div id="katame-waza" class="">
-    
+                    <div id="katame-waza" class="space-y-20">
+                        
+                        <div id="osaekomi-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Osaekomi-waza (10)</h2>
+                            
+                        </div>
+
+                        <div id="shime-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Shime-waza (12)</h2>
+                            
+                        </div>
+
+                        <div id="kansetsu-waza" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Kansetsu-waza (10)</h2>
+                            
+                        </div>
+
+                        <div id="osaekomi-waza-escapes" class="space-y-4 mt-8">
+                            <h2 class="text-center text-3xl font-bold pb-2 border-b-4 border-red-500">Osaekomi-waza ESCAPES (10)</h2>
+                            
+                        </div>
+
                     </div>
                 </div>
 
@@ -220,49 +240,51 @@
 
                         <div class="flex flex-col" x-data="techniqueSidebarComponent()">
         
-                            <!-- Toggle top category: Nage-waza -->
-                            <div class="btn-container">
-                                <button @click="openMain = !openMain" class="judo-tech-button font-semibold">
-                                    Nage-waza
-                                </button>
-                            </div>
-                    
-                            <!-- Inside Nage-waza -->
-                            <div x-show="openMain" class="flex flex-col">
-                                <template x-for="(sub, idx) in subCategories" :key="idx">
-                                    <div class="flex flex-col">
-                    
-                                        <!-- Subcategory toggle -->
-                                        <div class="btn-container">
-                                            <div class="pl-8">
-                                                <button 
-                                                    class="judo-tech-button font-semibold"
-                                                    @click="openSub = (openSub === sub.name ? null : sub.name)">
-                                                    <span x-text="sub.label"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                    
-                                        <!-- Techniques under subcategory -->
-                                        <div 
-                                            class="flex flex-col" 
-                                            x-show="openSub === sub.name">
-                                            <template x-for="tech in techniquesByCategory[sub.name]" :key="tech.id">
+                            <template x-for="(main, mainIdx) in mainCategories" :key="mainIdx">
+                                <div class="flex flex-col">
+                                    
+                                    <!-- Top-level category -->
+                                    <div class="btn-container">
+                                        <button @click="openMain = (openMain === main.name ? null : main.name)" 
+                                                class="judo-tech-button font-semibold">
+                                            <span x-text="main.label"></span>
+                                        </button>
+                                    </div>
+                        
+                                    <!-- Subcategories -->
+                                    <div x-show="openMain === main.name" class="flex flex-col">
+                                        <template x-for="(sub, subIdx) in main.subCategories" :key="subIdx">
+                                            <div class="flex flex-col">
+                                                
+                                                <!-- Subcategory toggle -->
                                                 <div class="btn-container">
-                                                    <div class="pl-16">
-                                                        <button 
-                                                            class="judo-tech-button text-sm"
-                                                            @click="scrollToElement(tech.id)">
-                                                            <span x-text="tech.name"></span>
+                                                    <div class="pl-8">
+                                                        <button @click="openSub = (openSub === sub.name ? null : sub.name)" 
+                                                                class="judo-tech-button font-semibold">
+                                                            <span x-text="sub.label"></span>
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </template>
-                                        </div>
-                    
+                        
+                                                <!-- Techniques -->
+                                                <div x-show="openSub === sub.name" class="flex flex-col">
+                                                    <template x-for="tech in techniquesByCategory[sub.name] || []" :key="tech.id">
+                                                        <div class="btn-container">
+                                                            <div class="pl-16">
+                                                                <button @click="scrollToElement(tech.id)" class="judo-tech-button text-sm">
+                                                                    <span x-text="tech.name"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                        
+                                            </div>
+                                        </template>
                                     </div>
-                                </template>
-                            </div>
+                        
+                                </div>
+                            </template>
                     
                         </div>
 
@@ -349,7 +371,7 @@
             { id: 'TmTWgrmViZc', technique: 'tawara-gaeshi' },
             { id: 'Fgi9b8DJ5sQ', technique: 'ura-nage' },
 
-            //Yoko-Sutemi-waza
+            // Yoko-Sutemi-waza
             { id: 'MnNG67pF_a0', technique: 'yoko-otoshi' },
             { id: '3b9Me3Fohpk', technique: 'tani-otoshi' },
             { id: '6CRBGLGz9j8', technique: 'hane-makikomi' },
@@ -367,6 +389,55 @@
             { id: 'OR-HGHnarYc', technique: 'kani-basami' },
             { id: 'w6G57bWACi0', technique: 'kawazu-gake' },
 
+            // Osaekomi-waza
+            { id: 'NDaQuJOFBYk', technique: 'kesa-gatame' },
+            { id: 'Q2fb9jaoUFQ', technique: 'kuzure-kesa-gatame' },
+            { id: 'SBapox2M2dE', technique: 'ushiro-kesa-gatame' },
+            { id: 'zQR3IOXxO_Q', technique: 'kata-gatame' },
+            { id: 'HFuMjOv0WN8', technique: 'kami-shiho-gatame' },
+            { id: 'YUrogQWdwiY', technique: 'kuzure-kami-shiho-gatame' },
+            { id: 'TT7XJVSEQxA', technique: 'yoko-shiho-gatame' },
+            { id: '55-rFmBx53g', technique: 'tate-shiho-gatame' },
+            { id: 'e_lAjik1SUM', technique: 'uki-gatame' },
+            { id: 'eeAHZB0v3XY', technique: 'ura-gatame' },
+
+            // Shime-waza
+            { id: 'k2cHry9HByQ', technique: 'nami-juji-jime' },
+            { id: 't3tQriIPdlI', technique: 'gyaku-juji-jime' },
+            { id: '3VZVUAmiMD8', technique: 'kata-juji-jime' },
+            { id: '9f0n8jez7iA', technique: 'hadaka-jime' },
+            { id: 'EiqyoVcIAi8', technique: 'okuri-eri-jime' },
+            { id: 'yaTGgRjnwB8', technique: 'kataha-jime' },
+            { id: 'cHeIs-fSqwE', technique: 'katate-jime' },
+            { id: '-RHC4V7TQiY', technique: 'ryote-jime' },
+            { id: 'E3nvQzClcAU', technique: 'sode-guruma-jime' },
+            { id: 'dKKpnD3eLcY', technique: 'tsukkomi-jime' },
+            { id: 'lq1CUBRAm7s', technique: 'sankaku-jime' },
+            { id: 'D_0fFcoIbvY', technique: 'do-jime' },
+
+            // Kansetsu-waza
+            { id: 'AIlTvZb4RlE', technique: 'ude-garami' },
+            { id: 'OWgSOlCuMXw', technique: 'ude-hishigi-juji-gatame' },
+            { id: 'SBf0aTma1VI', technique: 'ude-hishigi-ude-gatame' },
+            { id: 'H2HtAJdiJcE', technique: 'ude-hishigi-hiza-gatame' },
+            { id: '8F5p1zuJRG0', technique: 'ude-hishigi-waki-gatame' },
+            { id: 'ZzEycg8R_9M', technique: 'ude-hishigi-hara-gatame' },
+            { id: 'ClY7g_pX-4s', technique: 'ude-hishigi-ashi-gatame' },
+            { id: '6DnvhY0tQVM', technique: 'ude-hishigi-te-gatame' },
+            { id: 'WefAmW4azhk', technique: 'ude-hishigi-sankaku-gatame' },
+            { id: 'BWWb0GoAtZw', technique: 'ashi-garami' },
+
+            // Osaekomi-waza ESCAPES
+            { id: '5_TS0YHdxcQ', technique: 'kesa-gatame-escapes' },
+            { id: '-zFQ6h4yKT4', technique: 'kuzure-kesa-gatame-escapes' },
+            { id: '4QuzAAucQsA', technique: 'ushiro-kesa-gatame-escapes' },
+            { id: '7hP1-W2yovk', technique: 'kata-gatame-escapes' },
+            { id: 'seGsXy9I4G8', technique: 'kami-shiho-gatame-escapes' },
+            { id: 'PPe7E_7d7UI', technique: 'kuzure-kami-shiho-gatame-escapes' },
+            { id: 'yK_GSamSPko', technique: 'yoko-shiho-gatame-escapes' },
+            { id: 'JMJBjnst_DA', technique: 'tate-shiho-gatame-escapes' },
+            { id: 'AMHWDFR4ryo', technique: 'uki-gatame-escapes' },
+            { id: '0aY2Tmchzs8', technique: 'ura-gatame-escapes' },
 
         ];
 
@@ -1513,13 +1584,456 @@
                 then hook the leg up and throw yourself backwards.`
             },
 
+            // Osae-komi-waza
+            {
+                id: 'kesa-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player69',
+                name: 'Kesa-gatame',        
+                title: '袈裟固 Kesa-gatame (scarf hold) KEG',           
+                description: `A hold-down. 
+                From your opponent’s right side and facing his head, 
+                grip his judogi under his right armpit with your left hand and put your right arm around behind his neck to grip his judogi behind the shoulder.`
+            },
+            {
+                id: 'kuzure-kesa-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player70',
+                name: 'Kuzure-kesa-gatame',        
+                title: '崩袈裟固 Kuzure-kesa-gatame (modified scarf hold) KKE',           
+                description: `A hold-down. 
+                Any of several variations of kesa-gatame (scarf hold) performed from the side, 
+                facing toward your opponent’s head, 
+                in particular involving inserting your knee under his armpit.`
+            },
+            {
+                id: 'ushiro-kesa-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player71',
+                name: 'Ushiro-kesa-gatame',        
+                title: '後袈裟固 Ushiro-kesa-gatame (reverse scarf hold) UKG',           
+                description: `A hold-down. 
+                A hold similarly to kesa-gatame (scarf hold), 
+                but performed facing towards your opponent’s legs instead of towards his head.`
+            },
+            {
+                id: 'kata-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player72',
+                name: 'Kata-gatame',        
+                title: '肩固 Kata-gatame (shoulder hold) KAG',           
+                description: `A hold-down. 
+                From your opponent’s right side, 
+                put your right arm around both his neck and right arm and claps your hands together.`
+            },
+            {
+                id: 'kami-shiho-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player73',
+                name: 'Kami-shiho-gatame',        
+                title: '上四方固 Kami-shiho-gatame (upper four-corner hold) KSG',           
+                description: `A hold-down. 
+                Knee above the opponent’s head, 
+                reach under his shoulders to take the sides of his belt with both hands, 
+                and press your body down onto his.`
+            },
+            {
+                id: 'kuzure-kami-shiho-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player74',
+                name: 'Kuzure-kami-shiho-gatame',        
+                title: '崩上四方固 Kuzure-kami-shiho-gatame (modified upper four-corned hold) KKS',           
+                description: `A hold-down. 
+                A variation of kami-shiho-gatame (upper four-corner hold) in which you position one of our hands over your opponent’s arm (instead of beneath it) and grip the back of his collar, 
+                while also wrapping your left arm around the back of his neck and shoulder and neck to grasp his belt.`
+            },
+            {
+                id: 'yoko-shiho-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player75',
+                name: 'Yoko-shiho-gatame',        
+                title: '横四方固 Yoko-shiho-gatame (side-locking four corner hold) YSG',           
+                description: `A hold-down. 
+                From your opponent’s right side, 
+                lean over him at a right angle and hold him down on his back with your body. 
+                Grip the belt with your left arm, 
+                under his left shoulder and pass your right arm between his legs to grip his trousers, 
+                then use your chest to pin him with weight of your body, 
+                anchored at his four  corners.`
+            },
+            {
+                id: 'tate-shiho-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player76',
+                name: 'Tate-shiho-gatame',        
+                title: '縦四方固 Tate-shiho-gatame (straight four-corner hold) TSG',           
+                description: `A hold-down. 
+                Sitting astride your opponent’s chest, 
+                lean forward to press his upper body down with your chest.`
+            },
+            {
+                id: 'uki-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player77',
+                name: 'Uki-gatame',        
+                title: '浮固 Uki-gatame (floating hold) UGT',           
+                description: `A hold-down. 
+                When your supine opponent attempts to prevent your juji-gatame (cross lock) by locking his arms together, 
+                remove your leg nearest his head and bend it behind you, 
+                then use both legs as if applying kesa-gatame (scarf-hold) and raise your upper body to face the opponent. 
+                Or, place your left leg across your opponent’s neck and under his arm while you hold his right arm.`
+            },
+            {
+                id: 'ura-gatame',              
+                category: 'osaekomi-waza',        
+                playerId: 'player78',
+                name: 'Ura-gatame',        
+                title: '裏固 Ura-gatame (back pin) URG',           
+                description: `A hold-down. 
+                Placing your back toward your prone opponent so that you are facing up towards the ceiling, 
+                wrap your right arm around his neck and your left arm around one or both his legs and press him down with your back.`
+            },
+
+            // Shime-waza
+            {
+                id: 'nami-juji-jime',              
+                category: 'shime-waza',        
+                playerId: 'player79',
+                name: 'Nami-juji-jime',        
+                title: '並十字絞 Nami-juji-jime (normal cross-handed strangle) NJJ',           
+                description: `A strangle. 
+                Facing your opponent, 
+                grip his collar with your crossed hands, 
+                thumbs inside the collar so that your palms are down, 
+                and strangle him by applying pressure to both sides of his neck with the outer edges of both hands.`
+            },
+            {
+                id: 'gyaku-juji-jime',              
+                category: 'shime-waza',        
+                playerId: 'player80',
+                name: 'Gyaku-juji-jime',        
+                title: '逆十字絞 Gyaku-juji-jime (reverse cross strangle) GJJ',           
+                description: `A strangle. 
+                Facing your opponent, 
+                slip the fingers of your crossed hands inside the lapels of his judogi on both sides, 
+                palms up, and strangle him by applying pressure to both sides of his neck.`
+            },
+            {
+                id: 'kata-juji-jime',              
+                category: 'shime-waza',        
+                playerId: 'player81',
+                name: 'Kata-juji-jime',        
+                title: '片十字絞 Kata-juji-jime (half cross-handed strangle) KJJ',           
+                description: `A strangle. 
+                Facing your opponent, 
+                cross your arms to grip his left lapel with your left hand, 
+                fingers inside, 
+                and his right lapel with your right hand, 
+                thumb inside, 
+                then strangle him using the actions`
+            },
+            {
+                id: 'hadaka-jime',              
+                category: 'shime-waza',        
+                playerId: 'player82',
+                name: 'Hadaka-jime',        
+                title: '裸絞 Hadaka-jime (naked or bare strangle) HAD',           
+                description: `A strangle. 
+                From behind your opponent, 
+                put your right inner forearm across the front of your opponent’s neck, 
+                palm down, and clasp your hands above his left shoulder, 
+                then strangle him by applying pressure across the front of his throat using the combined action of both arms without gripping his judogi in any way.`
+            },
+            {
+                id: 'okuri-eri-jime',              
+                category: 'shime-waza',        
+                playerId: 'player83',
+                name: 'Okuri-eri-jime',        
+                title: '送襟絞 Okuri-eri-jime (sliding collar strangle) OEJ',           
+                description: `A strangle. 
+                From behind your opponent, 
+                reach under his left armpit to grip his left lapel with your left hand and around his neck to grip his upper left lapel with your right hand, 
+                then change your left hand to grip his right lapel and use both hands to apply pressure to his neck to strangle him.`
+            },
+            {
+                id: 'kataha-jime',              
+                category: 'shime-waza',        
+                playerId: 'player84',
+                name: 'Kataha-jime',        
+                title: '片羽絞 Kataha-jime (single-wing strangle) KHJ',           
+                description: `A strangle. 
+                From behind your opponent, 
+                reach your right arm around his neck to grip his left lapel, 
+                and slip your left hand under his left armpit and around the back of his neck, 
+                so that the back of your left hand is against the back of his neck, 
+                then strangle him by pulling with your right hand and pushing with your left hand.`
+            },
+            {
+                id: 'katate-jime',              
+                category: 'shime-waza',        
+                playerId: 'player85',
+                name: 'Katate-jime',        
+                title: '片手絞 Katate-jime (one-hand strangle) KTJ',           
+                description: `A strangle. 
+                From your opponent’s right side, 
+                hold him down on his back and grasp his left collar with your left hand, 
+                thumb inside, and use the edge of your arm to strangle him by applying pressure to his throat.`
+            },
+            {
+                id: 'ryote-jime',              
+                category: 'shime-waza',        
+                playerId: 'player86',
+                name: 'Ryote-jime',        
+                title: '両手絞 Ryote-jime (two-handed choke) RYJ',           
+                description: `A strangle. 
+                Facing your opponent, 
+                grip his right collar with your left hand and his left collar with your right hand, 
+                both thumbs inside, and strangle him by applying pressure to both sides of his neck with the blade sides of your both fists.`
+            },
+            {
+                id: 'sode-guruma-jime',              
+                category: 'shime-waza',        
+                playerId: 'player87',
+                name: 'Sode-guruma-jime',        
+                title: '袖車絞 Sode-guruma-jime (sleeve-wheel strangle) SGJ',           
+                description: `A strangle. 
+                Facing your opponent, 
+                place your right forearm against his throat and your left forearm against the back of his neck, 
+                grasp your own right sleeve with your left hand and thrust the edge of your right hand into the right side of his neck, 
+                and from this position strangle him by rotating both arms to apply pressure to his neck.`
+            },
+            {
+                id: 'tsukkomi-jime',              
+                category: 'shime-waza',        
+                playerId: 'player88',
+                name: 'Tsukkomi-jime',        
+                title: '突込絞 Tsukkomi-jime (thrusting strangle) TKJ',           
+                description: `A strangle. 
+                Facing your opponent, 
+                grip his left collar with your right hand and thrust the edge of your right hand against the right side of his neck to strangle him.`
+            },
+            {
+                id: 'sankaku-jime',              
+                category: 'shime-waza',        
+                playerId: 'player89',
+                name: 'Sankaku-jime',        
+                title: '三角絞 Sankaku-jime (triangular strangle) SAJ',           
+                description: `A strangle. 
+                Facing your opponent, 
+                wrap your right leg over his left shoulder and your left leg under his right armpit, 
+                catching your right foot under the back of your own left knee in a triangular leg formation, 
+                and from this position squeeze his neck to strangle him.`
+            },
+            {
+                id: 'do-jime',              
+                category: 'shime-waza',        
+                playerId: 'player90',
+                name: 'Do-jime',        
+                title: '胴絞 Do-jime (body scissors; trunk strangle) DOJ/P08',           
+                description: `Technique in which your scissors the trunk of your opponent’s body between your legs. 
+                Prohibited in both shiai and randori.`
+            },
+
+            // Kansetsu-waza
+            {
+                id: 'ude-garami',              
+                category: 'kansetsu-waza',        
+                playerId: 'player91',
+                name: 'Ude-garami',        
+                title: '腕緘 Ude-garami (entangled arm lock) UGR',           
+                description: `A lock. 
+                From any one of several positions, 
+                use both arms to entangle one of your opponent’s arms while twisting it to the outside or inside to control his elbow.`
+            },
+            {
+                id: 'ude-hishigi-juji-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player92',
+                name: 'Ude-hishigi-juji-gatame',        
+                title: '腕挫十字固 Ude-hishigi-juji-gatame (cross lock) JGT',           
+                description: `A lock. 
+                From your opponent’s right side, 
+                hold his right wrist with both hands and trap his right upper arm between your thighs, 
+                then extend his elbow against the joint, 
+                in the direction of his little finger, to control it.`
+            },
+            {
+                id: 'ude-hishigi-ude-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player93',
+                name: 'Ude-hishigi-ude-gatame',        
+                title: '腕挫腕固 Ude-hishigi-ude-gatame (arm lock) UGA',           
+                description: `A lock. 
+                Place your opponent’s left wrist between your shoulder and neck, 
+                thumb-side down, and use both hands to apply pressure from above to control his elbow against the joint.`
+            },
+            {
+                id: 'ude-hishigi-hiza-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player94',
+                name: 'Ude-hishigi-hiza-gatame',        
+                title: '腕挫膝固 Ude-hishigi-hiza-gatame (knee lock) HIG',           
+                description: `A lock. 
+                Pin your opponent’s left armpit or using your left hand, 
+                at the same time press your knee against his elbow joint to control it.`
+            },
+            {
+                id: 'ude-hishigi-waki-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player95',
+                name: 'Ude-hishigi-waki-gatame',        
+                title: '腕挫腋固 Ude-hishigi-waki-gatame (armpit lock) WAK/P35',           
+                description: `A lock. 
+                From your opponent’s right side, 
+                use both hands to grip his right wrist and pin his arm under your armpit, 
+                then control it by applying pressure against his elbow joint.`
+            },
+            {
+                id: 'ude-hishigi-hara-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player96',
+                name: 'Ude-hishigi-hara-gatame',        
+                title: '腕挫腹固 Ude-hishigi-hara-gatame (stomach lock) HGA',           
+                description: `A lock. 
+                From your opponent’s right side, 
+                grip his right wrist with your right hand and press your abdomen against his elbow to extend it against the joint to control it.`
+            },
+            {
+                id: 'ude-hishigi-ashi-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player97',
+                name: 'Ude-hishigi-ashi-gatame',        
+                title: '腕挫脚固 Ude-hishigi-ashi-gatame (leg lock) AGA',           
+                description: `From the left side of your face-down opponent, 
+                position your body over his and hook your left leg around his left forearm to extend and control his elbow joint.`
+            },
+            {
+                id: 'ude-hishigi-te-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player98',
+                name: 'Ude-hishigi-te-gatame',        
+                title: '腕挫手固 Ude-hishigi-te-gatame (hand armlock) TGT',           
+                description: `A lock. 
+                From your opponent’s right side, 
+                use your left hand to reach under his right armpit to grip his left front collar, 
+                at the same time gripping his right wrist with your right hand so as to extend his elbow against the joint. 
+                Alternatively, 
+                use one or both hands to grip your opponent’s wrist and twist it around behind him to control his elbow joint.`
+            },
+            {
+                id: 'ude-hishigi-sankaku-gatame',              
+                category: 'kansetsu-waza',        
+                playerId: 'player99',
+                name: 'Ude-hishigi-sankaku-gatame',        
+                title: '腕挫三角固 Ude-hishigi-sankaku-gatame (triangular armlock) SGT',           
+                description: `A lock. 
+                From your opponent’s front, rear, or side, 
+                wrap your right leg over his shoulder and across his neck, 
+                and your left leg under his right armpit, 
+                hooking one of your feet under the other leg in a triangular formation. 
+                At the same time, 
+                use one or both hands to extend and control his elbow joint.`
+            },
+            {
+                id: 'ashi-garami',              
+                category: 'kansetsu-waza',        
+                playerId: 'player100',
+                name: 'Ashi-garami',        
+                title: '足緘 Ashi-garami (leg entanglement) AGR/P04',           
+                description: `A lock. 
+                Following a failed right tomoe-nage (circular throw) or similar throw, 
+                wrap your left leg around your opponent’s right leg from the outside and below to apply pressure to his knee joint. 
+                Prohibited in shiai.`
+            },
+
+            // Osaekomi-waza ESCAPES
+            {
+                id: 'kesa-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player101',
+                name: 'Kesa-gatame Escapes',        
+                title: '袈裟固 Kesa-gatame Escapes (scarf hold) KEG',           
+                description: ``
+            },
+            {
+                id: 'kuzure-kesa-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player102',
+                name: 'Kuzure-kesa-gatame Escapes',        
+                title: '崩袈裟固 Kuzure-kesa-gatame Escapes (modified scarf hold) KKE',           
+                description: ``
+            },
+            {
+                id: 'ushiro-kesa-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player103',
+                name: 'Ushiro-kesa-gatame Escapes',        
+                title: '後袈裟固 Ushiro-kesa-gatame Escapes (reverse scarf hold) UKG',           
+                description: ``
+            },
+            {
+                id: 'kata-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player104',
+                name: 'Kata-gatame Escapes',        
+                title: '肩固 Kata-gatame Escapes (shoulder hold) KAG',           
+                description: ``
+            },
+            {
+                id: 'kami-shiho-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player105',
+                name: 'Kami-shiho-gatame Escapes',        
+                title: '上四方固 Kami-shiho-gatame Escapes (upper four-corner hold) KSG',           
+                description: ``
+            },
+            {
+                id: 'kuzure-kami-shiho-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player106',
+                name: 'Kuzure-kami-shiho-gatame Escapes',        
+                title: '崩上四方固 Kuzure-kami-shiho-gatame Escapes (modified upper four-corned hold) KKS',           
+                description: ``
+            },
+            {
+                id: 'yoko-shiho-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player107',
+                name: 'Yoko-shiho-gatame Escapes',        
+                title: '横四方固 Yoko-shiho-gatame Escapes (side-locking four corner hold) YSG',           
+                description: ``
+            },
+            {
+                id: 'tate-shiho-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player108',
+                name: 'Tate-shiho-gatame Escapes',        
+                title: '縦四方固 Tate-shiho-gatame Escapes (straight four-corner hold) TSG',           
+                description: ``
+            },
+            {
+                id: 'uki-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player109',
+                name: 'Uki-gatame Escapes',        
+                title: '浮固 Uki-gatame Escapes (floating hold) UGT',           
+                description: ``
+            },
+            {
+                id: 'ura-gatame-escapes',              
+                category: 'osaekomi-waza-escapes',        
+                playerId: 'player110',
+                name: 'Ura-gatame Escapes',        
+                title: '裏固 Ura-gatame Escapes (back pin) URG',           
+                description: ``
+            },
+
         ];
 
         
         function techniqueSidebarComponent() {
             const categorized = {};
 
-            // Group techniques by category (e.g., te-waza, koshi-waza)
             techniques.forEach(tech => {
                 if (!categorized[tech.category]) categorized[tech.category] = [];
                 categorized[tech.category].push(tech);
@@ -1528,12 +2042,28 @@
             return {
                 openMain: false,
                 openSub: null,
-                subCategories: [
-                    { name: 'te-waza', label: 'Te-waza' },
-                    { name: 'koshi-waza', label: 'Koshi-waza' },
-                    { name: 'ashi-waza', label: 'Ashi-waza' },
-                    { name: 'ma-sutemi-waza', label: 'Ma-Sutemi-waza' },
-                    { name: 'yoko-sutemi-waza', label: 'Yoko-Sutemi-waza' },
+                mainCategories: [
+                    {
+                        name: 'nage-waza',
+                        label: 'Nage-waza',
+                        subCategories: [
+                            { name: 'te-waza', label: 'Te-waza' },
+                            { name: 'koshi-waza', label: 'Koshi-waza' },
+                            { name: 'ashi-waza', label: 'Ashi-waza' },
+                            { name: 'ma-sutemi-waza', label: 'Ma-sutemi-waza' },
+                            { name: 'yoko-sutemi-waza', label: 'Yoko-sutemi-waza' },
+                        ]
+                    },
+                    {
+                        name: 'katame-waza',
+                        label: 'Katame-waza',
+                        subCategories: [
+                            { name: 'osaekomi-waza', label: 'Osaekomi-waza' },
+                            { name: 'shime-waza', label: 'Shime-waza' },
+                            { name: 'kansetsu-waza', label: 'Kansetsu-waza' },
+                            { name: 'osaekomi-waza-escapes', label: 'Osaekomi-waza-escapes' },
+                        ]
+                    }
                 ],
                 techniquesByCategory: categorized,
                 scrollToElement(id) {
