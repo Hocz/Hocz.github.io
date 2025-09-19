@@ -43,7 +43,7 @@
     }
 
     .tile.free {
-      background-color: #ddd;
+      background-color: #817e7e;
       cursor: default;
     }
 
@@ -68,59 +68,43 @@
 
   <script>
     const words = [
-  "break stuff",
-  "yogurt effect",
-  "grog ad",
-  "Mr beast", 
-  "throws up",
-  "harrass Darcy", 
-  "Lil fella", 
-  "burger", 
-  "our drink",
-  "cheating", 
-  "Scott appears", 
-  "fat joke chad", 
-  "new merch", 
-  "recent meme",
-  "max eats strange thing", 
-  "Darcy drinks", 
-  "challenge", 
-  "fortnite/battle pass",
-  "spill drink", 
-  "bathroom break", 
-  "change outfit", 
-  "Beans",
-  "cum",
-  "Chinese stuff",
-  "Ai",
-  "Patreon",
-  "Take damage",
-  "Max / Chad sus",
-  "Botton text",
-];
+      "break stuff", "yogurt effect", "grog ad", "Mr beast", "throws up",
+      "harrass Darcy", "Lil fella", "burger", "our drink", "cheating",
+      "Scott appears", "fat joke chad", "new merch", "recent meme",
+      "max eats strange thing", "Darcy drinks", "challenge", "fortnite/battle pass",
+      "spill drink", "bathroom break", "change outfit", "Beans", "cum", "Chinese stuff",
+      "Ai", "Patreon", "Take damage", "Max / Chad sus", "Botton text"
+    ];
 
     const board = document.getElementById('board');
 
     function shuffleBoard() {
       board.innerHTML = '';
+
+      // Shuffle the words array
       const shuffled = [...words];
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
 
-      shuffled.forEach((word, i) => {
-        // insert free space in the middle
-        if (i === 12) {
-          const div = document.createElement('div');
-          div.className = 'tile free';
-          div.innerText = 'FREE';
-          board.appendChild(div);
-        }
+      // Pick only 24 words for the board (leave space for "FREE")
+      const selectedWords = shuffled.slice(0, 24);
+
+      // Insert the "FREE" tile in the middle (index 12)
+      selectedWords.splice(12, 0, 'FREE');
+
+      selectedWords.forEach((word, i) => {
         const tile = document.createElement('div');
         tile.className = 'tile';
         tile.innerText = word;
-        tile.onclick = () => tile.classList.toggle('clicked');
+
+        if (word === 'FREE') {
+          tile.classList.add('free');
+        } else {
+          tile.onclick = () => tile.classList.toggle('clicked');
+        }
+
         board.appendChild(tile);
       });
     }
