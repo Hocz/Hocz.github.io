@@ -9,54 +9,41 @@
 
 </head>
 
-<body class="bg-neutral-800 text-white font-exo2">
+<body class="bg-zinc-800 text-white font-exo2">
+    <main class="container mx-auto px-4 py-8">
 
-    <!-- Header -->
-    <header class="header-section">
-        <!-- Left Section -->
-        <div class="header-left">
-            <h1 class="header-title">RASMUS GÖRANSSON</h1>
-            <div class="header-info mt-4 md:mt-2 flex justify-between items-start">
-                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
-                <div class="social-links flex space-x-4">
+        <!-- TITLE -->
+        <div class="bg-zinc-900 opacity-90 text-white mt-8 px-4 md:px-16 py-4 rounded-md">
+            <div>
+                <h1 class="text-4xl md:text-8xl font-bold text-center py-4">RASMUS GÖRANSSON</h1>
+                <h2 class="text-2xl md:text-4xl font-semibold text-center text-green-500">GAME PROGRAMMER</h2>
+            </div>
+        
+            <!-- SOCIALS -->
+            <div class="flex justify-center py-8">
+                <div class="flex space-x-8">
                     <a href="https://www.linkedin.com/in/rasmus-g/" target="_blank">
                         <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
                     </a>
                     <a href="https://github.com/Hocz" target="_blank">
                         <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
                     </a>
-                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
-                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
-                    </a>
+                    <div class="flex flex-col items-center space-y-2">
+                        <a id="cvLink" href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
+                            <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
+                        </a>
+                        <button id="cvToggle" class="w-8 md:w-10 text-xs text-center py-0.5 text-white font-semibold hover:text-green-500 transition">
+                            ENG
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div>   
 
-        <!-- Right Section -->
-        <div class="header-right mt-4 md:mt-0 flex flex-col items-center">
-            <nav>
-                <ul class="flex space-x-4 text-center pr-8">
-                    <li><a href="index.html" class="nav-link">HOME</a></li>
-                    <li><a href="about.html" class="nav-link">ABOUT ME</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- <section class="p-4">
-        <div class="bg-neutral-900 flex flex-col md:flex-row md:space-x-8">
-                <h1 class="text-8xl font-bold text-center">RASMUS GÖRANSSON</h1>
-
-        </div>
-
-    </section> -->
-
-
-    <main class="container mx-auto px-4 py-8">
-
-        <section id="projects" class="project-container">
+        <!-- PROJECTS -->
+        <section class="projects-section">
             <!-- Project 1 -->
-            <a href="MSExtended.html" class="project-link">
+            <a href="MSExtended.html">
                 <div class="project-card">
                     <div class="project-content" style="background-image: url('../Images/Projects/MSExtended.png');">
                         <div class="project-title">
@@ -115,6 +102,79 @@
                 </div>
             </a>  -->
         </section>
+
+        <!-- ABOUT -->
+        <div class="flex flex-col md:justify-between md:flex-row mt-8">
+            <!-- TEXT -->
+            <div class="bg-zinc-900 opacity-90 text-white mt-16 px-4 md:px-16 py-4 rounded-md mr-4 md:w-3/5 w-full">
+                <h1 class="text-2xl md:text-4xl font-semibold py-4 text-green-500">RASMUS GÖRANSSON</h1>
+                <div class="p-2 rounded-md mb-8 text-lg leading-8">
+                    <p class="mb-2">Hello! I love playing and making games.</p>
+                    <p>I have a degree from Futuregames Stockholm, Sweden as a Gameplay Programmer. I did an internship at the game studio Friendly Foe, where I got to work on their most recent game, Pit Of Goblin.</p>
+                </div>
+            </div>
+
+            <!-- IMAGE -->
+            <div class="md:w-1/4 ml-4 mt-8 md:mt-16 px-4 flex flex-col justify-center items-center">
+                <img src="Images/profile_pic.jpg" alt="profile" class="rounded-md border-4 border-zinc-900 md:w-full w-1/2">
+                <h1 class="bg-zinc-900 rounded-md mt-4 p-4 text-center text-sm w-fit font-semibold flex items-center justify-center">Rasmus.g02@outlook.com</h1>
+            </div>
+        </div>
+
+
+        <!-- SKILLS -->
+        <div class="bg-zinc-900 opacity-90 text-white mt-8 px-2 md:px-16 py-4 md:py-16 rounded-md">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-box">
+                    <h1 class="skill-heading">Languages</h1>
+                    <p>C#</p>
+                    <p>C++</p>
+                    <p>HMTL / CSS</p>
+                    <p>Python</p>
+                    <p>Java</p>
+                </div>
+
+                <div class="text-box">
+                    <h1 class="skill-heading">Engines</h1>
+                    <p>Unity</p>
+                    <p>Unreal Engine</p>
+                </div>
+
+                <div class="text-box">
+                    <h1 class="skill-heading">Version Control</h1>
+                    <p>Github</p>
+                    <p>Perforce</p>
+                    <p>Fork</p>
+                </div>
+
+                <div class="text-box">
+                    <h1 class="skill-heading">Softwares</h1>
+                    <p>Aseprite</p>
+                    <p>Blender</p>
+                </div>
+            </div>
+        </div>
+
     </main>
 </body>
+
+<script>
+    const cvLink = document.getElementById("cvLink");
+    const cvToggle = document.getElementById("cvToggle");
+
+    let isEnglish = true;
+
+    cvToggle.addEventListener("click", () => {
+        isEnglish = !isEnglish;
+
+        if (isEnglish) {
+            cvLink.href = "../Documents/Rasmus_Göransson_CV(ENG).pdf";
+            cvToggle.textContent = "ENG";
+        } else {
+            cvLink.href = "../Documents/Rasmus_Göransson_CV(SWE).pdf";
+            cvToggle.textContent = "SWE";
+        }
+    });
+</script>
+
 </html>

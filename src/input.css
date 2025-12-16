@@ -44,35 +44,24 @@ html {
 
 .social-link-icon 
 {
-    @apply w-8 h-8 hover:scale-125 transition-transform duration-200 ease-in-out;
-}
-
-.header-title {
-    @apply text-4xl md:text-5xl font-bold;
-}
-
-.header-subtitle {
-    @apply text-xl md:text-2xl font-semibold text-green-500;
-}
-
-.header-section {
-    @apply flex flex-col md:flex-row justify-between items-start bg-neutral-900 opacity-90 text-white p-4;
+    @apply w-8 md:w-10 hover:scale-125 transition-transform duration-200 ease-in-out;
 }
 
 .nav-link {
     @apply text-lg font-semibold p-2 inline-block hover:scale-110 transition-transform duration-200 ease-in-out;
 }
 
-.project-container {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+
+.projects-section {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8 pt-20;
 }
 
 .project-card {
-    @apply shadow-md overflow-hidden hover:scale-105 transition-transform duration-200 ease-in-out rounded-3xl;
+    @apply overflow-hidden hover:scale-105 transition-transform duration-200 ease-in-out rounded-md;
 }
 
 .project-title {
-    @apply p-4 bg-neutral-900 opacity-95 flex justify-between text-white;
+    @apply p-4 bg-zinc-900 opacity-95 text-center text-white;
 }
 
 .project-heading {
@@ -87,40 +76,45 @@ html {
     @apply h-80 bg-cover bg-top;
 }
 
-.code-snippet-button{
-    @apply px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500
+.skill-heading {
+    @apply text-2xl text-green-500 text-center mb-4 px-4 flex flex-col items-center justify-center;
 }
 
-.skill {
-    @apply bg-neutral-900 opacity-80 p-6 shadow-md rounded-3xl my-2
+.text-box {
+    @apply border-2 border-zinc-50 p-4 rounded-md text-2xl text-center;
 }
+
+.code-snippet-button{
+    @apply px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500;
+}
+
 
 .toggleButton {
-    @apply bg-transparent border-green-500 border-2 text-white px-2 py-1 text-lg rounded-2xl hover:text-green-500 transition
+    @apply bg-transparent border-green-500 border-2 text-white px-2 py-1 text-lg rounded-2xl hover:text-green-500 transition;
 }
 
 
 /* Judo stuff */
 .judo-nav-button {
-    @apply bg-slate-900 opacity-80 text-white rounded-md shadow-sm shadow-white px-4 py-2 font-semibold hover:scale-110 transition-transform duration-100 ease-in-out
+    @apply bg-slate-900 opacity-80 text-white rounded-md shadow-sm shadow-white px-4 py-2 font-semibold hover:scale-110 transition-transform duration-100 ease-in-out;
 }
 
 .judo-tech-button {
-    @apply  p-1.5 m-0.5 text-left w-full shadow-sm shadow-white bg-slate-900 opacity-80
+    @apply  p-1.5 m-0.5 text-left w-full shadow-sm shadow-white bg-slate-900 opacity-80;
 }
 
 .judo-word-button {
-    @apply p-1.5 m-0.5 text-left w-full shadow-sm shadow-white bg-slate-900 opacity-80
+    @apply p-1.5 m-0.5 text-left w-full shadow-sm shadow-white bg-slate-900 opacity-80;
 }
 
 .btn-container {
-    @apply border-red-500 hover:border-l-8 hover:scale-105 ml-1 my-1
+    @apply border-red-500 hover:border-l-8 hover:scale-105 ml-1 my-1;
 }
 
 .card-button {
-    @apply bg-slate-900 opacity-80 text-white rounded-md shadow-sm shadow-white px-4 py-2 font-semibold hover:scale-110 transition-transform duration-100 ease-in-out
+    @apply bg-slate-900 opacity-80 text-white rounded-md shadow-sm shadow-white px-4 py-2 font-semibold hover:scale-110 transition-transform duration-100 ease-in-out;
 }
 
 .video-player {
-    @apply w-full md:w-1/2 rounded-md border-2 border-slate-900 place-self-center
+    @apply w-full md:w-1/2 rounded-md border-2 border-slate-900 place-self-center;
 }
