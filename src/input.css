@@ -81,7 +81,7 @@ html {
 }
 
 .text-box {
-    @apply border-2 border-zinc-50 p-4 rounded-md text-2xl text-center;
+    @apply drop-shadow-xs drop-shadow-green-500 p-4 rounded-md text-2xl text-center;
 }
 
 .code-snippet-button{
