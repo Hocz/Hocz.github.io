@@ -89,7 +89,7 @@ html {
 }
 
 .divider {
-    @apply w-full border-2 border-green-500 my-4;
+    @apply w-full border-2 border-green-500 my-8;
 }
 
 .code-container {
