@@ -48,7 +48,7 @@ html {
 }
 
 .nav-link {
-    @apply text-lg font-semibold p-2 inline-block hover:scale-110 transition-transform duration-200 ease-in-out;
+    @apply px-4 py-1 border-2 border-zinc-700 rounded-md text-white font-semibold hover:text-green-500 text-center items-center;
 }
 
 
