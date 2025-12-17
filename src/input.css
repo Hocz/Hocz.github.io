@@ -84,13 +84,36 @@ html {
     @apply drop-shadow-xs drop-shadow-green-500 p-4 rounded-md text-2xl text-center;
 }
 
-.code-snippet-button{
-    @apply px-4 py-2 bg-transparent border-2 border-green-500 rounded-md text-white hover:text-green-500;
+.code-navigation-button {
+    @apply px-4 py-2 border-2 border-zinc-700 rounded-md text-white font-semibold hover:text-green-500 text-center items-center;
 }
 
+.divider {
+    @apply w-full border-2 border-green-500 my-4;
+}
+
+.code-container {
+    @apply flex flex-col md:flex-row md:space-x-8 relative;
+}
+
+.code-example-section {
+    @apply md:w-2/3 bg-transparent p-4 relative;
+}
+
+.code-text-section {
+    @apply md:w-1/3 bg-transparent p-4 h-fit;
+}
+
+.code-text-heading {
+    @apply text-3xl font-semibold mb-1 text-green-500 p-2 text-center bg-transparent;
+}
+
+.code-example-preview {
+    @apply p-4 rounded-md overflow-y-auto;
+}
 
 .toggleButton {
-    @apply bg-transparent border-green-500 border-2 text-white px-2 py-1 text-lg rounded-2xl hover:text-green-500 transition;
+    @apply bg-transparent text-white px-2 py-1 text-4xl font-semibold rounded-md hover:text-green-500 transition;
 }
 
 

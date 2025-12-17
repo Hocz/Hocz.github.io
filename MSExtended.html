@@ -12,125 +12,97 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
 </head>
 
-<body class="bg-teal-900 text-white font-exo2">
-    
-    <!-- Header -->
-    <header class="header-section">
-        <!-- Left Section -->
-        <div class="header-left">
-            <h1 class="header-title">RASMUS GÖRANSSON</h1>
-            <div class="personal-info mt-4 md:mt-2 flex justify-between items-start">
-                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
-                <div class="social-links flex space-x-4">
-                    <a href="https://www.linkedin.com/in/rasmus-g/" target="_blank">
-                        <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
-                    </a>
-                    <a href="https://github.com/Hocz" target="_blank">
-                        <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
-                    </a>
-                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
-                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="header-right mt-4 md:mt-0 flex flex-col items-center">
-            <nav>
-                <ul class="flex space-x-4 text-center py-0 pr-8">
-                    <li><a href="index.html" class="nav-link rounded-xl border-2 border-green-500">HOME</a></li>
-                    <li><a href="about.html" class="nav-link rounded-xl border-2 border-green-500">ABOUT ME</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="bg-zinc-800 text-white font-exo2">
 
     <main class="container mx-auto px-4 py-8 text-white">
-        <!-- Content Area -->
+        
         <div id="top" class="flex flex-col md:flex-row md:space-x-8">
-            <!-- Main Content -->
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500">Minesweeper Extended</h2>
-                <p class="leading-8 text-xl py-4">
+            <!-- MINESWEEPER -->
+            <section class="md:w-1/2 bg-zinc-900 bg-opacity-90 p-4 rounded-md text-lg leading-8">
+                <h2 class="text-4xl font-semibold mb-4 text-green-500">Minesweeper Extended</h2>
+                <p class="py-4">
                     Minesweeper Extended offers a gathered place to play the original classic take on Minesweeper, same rules, same style. 
                     Or, you could try some completely different styles of the original! 
-                </p>
-                <p class="leading-8 text-xl py-2">
-                    Play Hex mode, an entirely different grid style. 
-                </p>
-                <p class="leading-8 text-xl py-2">
+                    <br>
+                    Play Hex mode, an entirely different grid style.
+                    <br>
                     Experience the game in a new perspective and play it in 3D mode.
-                </p>
-                <p class="leading-8 text-xl py-2">
+                    <br>
                     You can also challenge yourself in the Endless Mode where you play until you lose or reach the end with each game getting more diffucult than the previous!
                 </p>
-                <p class="leading-8 text-xl py-4 text-green-500">
-                    Key Features:
-                    <p class="text-xl py-1">
-                    Classic
-                    </p>
-                    <p class="text-xl py-1">
-                    Hexagonal
-                    </p>
-                    <p class="text-xl py-1">
-                    3D  
-                    </p>
-                    <p class="text-xl py-1">
-                    Endless
-                    </p>
-                </p>
-                <div class="flex justify-end">
-                    <a href="https://store.steampowered.com/app/2889270/Minesweeper_Extended/" target="_blank">
-                        <img src="../Images/steam_logo.png" alt="SteamPage" class="w-20 h-20 border-2 border-green-500 rounded-full hover:scale-125 transition-transform duration-200 ease-in-out">
-                    </a>
+                <div class="flex justify-between">
+                    <div class="">
+                        <p class="text-green-500 text-2xl">
+                            Key Features:
+                            <br>
+                            <p class="text-white text-lg">
+                                - Classic
+                                <br>
+                                - Hexagonal
+                                <br>
+                                - 3D
+                                <br>
+                                - Endless
+                            </p>
+                        </p>
+                    </div>
+                    <!-- STEAM LINK -->
+                    <div class="flex items-center">
+                        <a href="https://store.steampowered.com/app/2889270/Minesweeper_Extended/" target="_blank">
+                            <img src="../Images/steam_logo.png" alt="SteamPage" class="w-20 border-2 border-zinc-800 rounded-full hover:scale-125 transition-transform duration-200 ease-in-out">
+                        </a>
+                    </div>
                 </div>
+                
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
+            <!-- WHY -->
+            <aside class="md:w-1/2 bg-zinc-900 bg-opacity-90 p-4 my-8 md:my-0 rounded-md">
                 <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Why?</h2>
-                <div>
-                    <p class="leading-8 text-xl py-4">
-                        I used to play Minesweeper whenever I wanted to pass time, always using the same online site to play. 
+                <div class="text-lg leading-8 py-2">
+                    <p>
+                        Minesweeper Extended is the first game I've published to Steam. It is a game I've occasionally played to pass time.
+                        <br>
+                        <br>
+                        After getting into game development I thought it would be fun to learn how it was made and re-create it myself.
+                        <br>
+                        I decided to publish it to Steam to create a dedicated place you could play it from. 
+                        <br>
+                        <br>
+                        As there are quite a lot of Minesweeper copies, both on steam and online, I decided to add some unique features I had not seen before.
                     </p>
-                    <p class="leading-8 text-xl py-4">
-                        After getting into game development I thought it would be fun to revisit the game and learn how it was made and make the it myself. 
-                        I also decided to publish it to Steam to create a dedicated place to play it from.
-                    </p>
-                    <p class="leading-8 text-xl py-4">
-                        As there are quite a few existing Minesweeper games already on Steam and on online sites, 
-                        I decided to add some unique game modes I had not previously seen before: Classic, Hexagonal, 3D and Endless Mode.
-                    </p>
-
+                </div>
             </aside>
         </div>
         
-        <div>
-            <iframe class="my-8 border-4 border-teal-950 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/l0NXezpqKWc?si=DcXP09gjPbB0ADv0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- TRAILER LINK -->
+        <div class="flex justify-center">
+            <iframe class="my-8 border-2 border-zinc-900 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/l0NXezpqKWc?si=DcXP09gjPbB0ADv0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
-        <!-- Code Snippets Buttons-->
-        <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
-            <button class="code-snippet-button" onclick="scrollToElement('top')">↑</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Grid</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Mines</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Numbers</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Reveal</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Chord</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Steam Achievements</button>
+        <!-- NAVIGATION BUTTONS-->
+        <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 gap-2 md:justify-evenly justify-center bg-zinc-900 bg-opacity-90 rounded-md p-4 my-8">
+            <button class="code-navigation-button" onclick="scrollToElement('top')">↑</button>
+            <button class="code-navigation-button" onclick="scrollToElement('grid-code-text')">GRID</button>
+            <button class="code-navigation-button" onclick="scrollToElement('mines-code-text')">MINES</button>
+            <button class="code-navigation-button" onclick="scrollToElement('numbers-code-text')">NUMBERS</button>
+            <button class="code-navigation-button" onclick="scrollToElement('reveal-code-text')">REVEAL</button>
+            <button class="code-navigation-button" onclick="scrollToElement('chord-code-text')">CHORD</button>
+            <button class="code-navigation-button" onclick="scrollToElement('steamach-code-text')">STEAM ACHIEVEMENTS</button>
         </div>
 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 1 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <div class="code-container">
+            <!-- GRID CODE -->
+            <section class="code-example-section">
                 <button 
                 class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code1pre')">
+                onclick="toggleOverflow('grid-code-example')">
                 ⇅
                 </button>
-                <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="grid-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public class Grid
 {
@@ -160,47 +132,44 @@ public class Grid
                 </pre>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Grid Class</h2>
-                <p class="leading-8 py-1">
-                    The Grid class initializes a 2D array of Celldata objects, each representing an individual cell. 
-                </p>
-                <p class="leading-8 py-1">
-                    Every cell is assigned a position within the grid and a default type of Empty.
-                </p>
-                <p class="leading-8 py-1">
-                    By using Celldata as a Scriptable Object makes it easier to manage each cell's properties and state changes. 
-                    This allows cells to be modified and tracked simply by accessing their celldata.
+            <!-- GRID CODE TEXT -->
+            <aside id="grid-code-text" class="code-text-section">
+                <h2 class="code-text-heading">GRID</h2>
+                <p class="leading-8">
+                    The Grid class initializes a 2D array of Celldata objects.
+                    <br>
+                    Each object represents a cell, it is assigned a position within the grid and set to an empty cell as the default value.
+                    <br>
+                    Celldata is a Scriptable Object, which makes managing the values and properties of each cell a lot easier.
                 </p>
             </aside>    
         </div>
         
-        <!-- Code Example 2 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Mine Placement</h2>
-                <p class="leading-8 py-1">
-                    Mines are generated when the player first clicks on a cell. 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- MINES CODE TEXT -->
+            <section id="mines-code-text" class="code-text-section">
+                <h2 class="code-text-heading">MINES</h2>
+                <p class="leading-8">
+                    Mines are generated on the first click of a cell.
+                    <br>
+                    A list of all valid cells is created, this does not include the first clicked cell and it's adjacent neighbors. 
+                    The list is then shuffled.
+                    <br>
+                    Mines are placed by looping through the list until a set number has been placed.
                 </p>
-                <p class="leading-8 py-1">
-                    A list of valid cells is created, which includes every cell in the grid, excluding the initial clicked cell and it's adjacent neighbors. 
-                    The list is then shuffled into a random order.
-                </p>
-                <p class="leading-8 py-1">
-                    Mines are placed by looping through the list until the set number of mines have been placed.
-                </p>
-                
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- MINES CODE -->
+            <aside class="code-example-section">
                 <button 
                 class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code2pre')">
+                onclick="toggleOverflow('mines-code-example')">
                 ⇅
                 </button>
-                <pre id="code2pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="mines-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public void CreateCellMines(CellData clickedCell, int amount)
 {
@@ -242,15 +211,18 @@ public void CreateCellMines(CellData clickedCell, int amount)
             </aside>
         </div>
 
-        <!-- Code Example 3 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+        
+        <div class="code-container">
+            <!-- NUMBERS CODE -->
+            <section class="code-example-section">
                 <button 
                 class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code3pre')">
+                onclick="toggleOverflow('numbers-code-example')">
                 ⇅
                 </button>
-                <pre id="code3pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="numbers-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public void CreateCellNumbers()
 {
@@ -274,45 +246,48 @@ public void CreateCellNumbers()
                 </pre>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Number Placement</h2>
-                    <p class="leading-8 py-1">
-                        Numbers are generated based on the number of adjacent mines there are to each individual cell.
-                    </p>
-                    <p class="leading-8 py-1">
-                        For each cell in the grid, the number of adjacent mines is calculated and stored in it's celldata.
-                    </p>
-                    <p class="leading-8 py-1">
-                        Mine cells are skipped, and cell with no adjacent mines are set to empty.
+            <!-- NUMBERS CODE TEXT -->
+            <aside id="numbers-code-text" class="code-text-section">
+                <h2 class="code-text-heading">NUMBERS</h2>
+                    <p class="leading-8">
+                        Numbers are generated based on the amount of adjacent mines to each cell.
+                        <br>
+                        The amount of adjacent mines is calculated and then stored in the celldata of the cell.
+                        <br>
+                        Mines are skipped, and cells with no adjacent mines are set as empty.
                     </p>
             </aside>
         </div>
 
-        <!-- Code Example 4 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Reveal Cells</h2>
-                <p class="leading-8 py-1">
-                    When a hidden cell is clicked there are three outcomes: 
-                    <br>- If the cell is a mine, the game ends.
-                    <br>- If the cell is empty, an area of cells are revealed.
-                    <br>- If the cell is a number, the number is revealed.
-                </p>
-                <p class="leading-8 py-1">
-                    An area of cells is revealed by recursively checking the adjacent neighbors of empty cells. 
-                    If a neighbor is either empty or a number, it is revealed. 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- REVEAL CODE TEXT -->
+            <section id="reveal-code-text" class="code-text-section">
+                <h2 class="code-text-heading">REVEAL</h2>
+                <p class="leading-8">
+                    There are three outcomes when revealing a cell.
+                    <p>
+                        1. Mine -> Game over.
+                        <br>
+                        2. Number -> The cell is revealed.
+                        <br>
+                        3. Empty -> The cell and adjacent cells are revealed.
+                    </p>
+                    <br>
+                    Revealing an area of cells is done by recursively checking if adjacent cells are either empty or a number.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- REVEAL CODE -->
+            <aside class="code-example-section">
                 <button 
                 class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code4pre')">
+                onclick="toggleOverflow('reveal-code-example')">
                 ⇅
                 </button>
-                <pre id="code4pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="reveal-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 private void RevealCellData(CellData cellData)
 {
@@ -382,16 +357,18 @@ private void RevealArea(CellData cellData)
             </aside>
         </div>
 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 5 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <div class="code-container">
+            <!-- CHORD CODE -->
+            <section class="code-example-section">
                 <button 
                 class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code5pre')">
+                onclick="toggleOverflow('chord-code-example')">
                 ⇅
                 </button>
-                <pre id="code5pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="chord-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 private void Unchord(CellData chord)
 {
@@ -424,47 +401,49 @@ private void Unchord(CellData chord)
                 </pre>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Chord Cells</h2>
-                    <p class="leading-8 py-1">
-                        Chording is a method used to automatically reveal nearby cells when certain conditions are met.
-                    </p>
-                    <p class="leading-8 py-1">
-                        If a revealed number cell has the same number of adjacent flags as it's number, it can be chorded.
-                        This reveals all the cell's adjacent neghbors, except for it's flagged neighbors.
-                    </p>
-                    <p class="leading-8 py-1">
-                        If any revealed neighbor is a mine, the game ends.
+            <!-- CHORD CODE TEXT -->
+            <aside id="chord-code-text" class="code-text-section">
+                <h2 class="code-text-heading">CHORD</h2>
+                    <p class="leading-8">
+                        Chording is used to reveal nearby cells.
+                        <br>
+                        If a revealed number cell has the same amount of adjacent flags as it's number, it can be chorded.
+                        This will reveal all adjacent cells, excluding adjacent cells that are flagged.
+                        <br>
+                        If an adjacent cell turns out to be a mine, the game ends.
                     </p>
             </aside>
         </div>
 
-       <!-- Code Example 6 -->
-       <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-        <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-            <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Steam Achievements Manager</h2>
-            <p class="leading-8 py-1">
-                The Achievements Manager uses Steam's Steamworks API to set and update achievements.
-            </p>
-            <p class="leading-8 py-1">
-                It follows the singleton pattern to ensure only one instance exists.
-            </p>
-            <p class="leading-8 py-1">
-                - SetAchievement sets a specific achievement and saves it.
-                <br>- SetStats updates a stat and saves it. 
-                For example, an achievement requiring 10 wins would update after each win.
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+       <div class="code-container">
+        <!-- STEAM ACHIEVEMENTS CODE TEXT -->
+        <section id="steamach-code-text" class="code-text-section">
+            <h2 class="code-text-heading">STEAM ACHIEVEMENTS</h2>
+            <p class="leading-8">
+                The managaer is a singleton to ensure only one instance exists.
+                <br>
+                I use Steam's Steamworks API.
+                <p>
+                    - SetAchievement() method sets and saves an achievement.
+                    <br>
+                    - SetStats() method sets data for a stat and saves it. 
+                    <br>
+                    For example, if an achievement for 10 wins, would update the amount after each win, using SetStats().
+                </p>
             </p>
         </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- STEAM ACHIEVEMENTS CODE -->
+            <aside class="code-example-section">
                 <button 
                 class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code6pre')">
+                onclick="toggleOverflow('steamach-code-example')">
                 ⇅
                 </button>
-                <pre id="code6pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="steamach-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public class AchievementsManager : MonoBehaviour
 {
@@ -537,12 +516,15 @@ public class AchievementsManager : MonoBehaviour
     <script>
         function toggleOverflow(id) {
             const preElement = document.getElementById(id);
-            if (preElement.classList.contains("h-96")) {
-                preElement.classList.remove("h-96");
-                preElement.classList.add("h-fit");
+            let height = "h-80";
+            let fullHeight = "h-fit";
+
+            if (preElement.classList.contains(height)) {
+                preElement.classList.remove(height);
+                preElement.classList.add(fullHeight);
             } else {
-                preElement.classList.remove("h-fit");
-                preElement.classList.add("h-96");
+                preElement.classList.remove(fullHeight);
+                preElement.classList.add(height);
             }
         }
     </script>
