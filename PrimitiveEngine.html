@@ -12,103 +12,92 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
 </head>
 
-<body class="bg-teal-900 text-white font-exo2">
+<body class="bg-zinc-800 text-white font-exo2">
     
-    <!-- Header -->
-    <header class="header-section">
-        <!-- Left Section -->
-        <div class="header-left">
-            <h1 class="header-title">RASMUS GÖRANSSON</h1>
-            <div class="personal-info mt-4 md:mt-2 flex justify-between items-start">
-                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
-                <div class="social-links flex space-x-4">
-                    <a href="https://www.linkedin.com/in/rasmus-g/" target="_blank">
-                        <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
-                    </a>
-                    <a href="https://github.com/Hocz" target="_blank">
-                        <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
-                    </a>
-                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
-                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="header-right mt-4 md:mt-0 flex flex-col items-center">
+   <header>
+        <div>
             <nav>
-                <ul class="flex space-x-4 text-center py-0 pr-8">
-                    <li><a href="index.html" class="nav-link rounded-xl border-2 border-green-500">HOME</a></li>
-                    <li><a href="about.html" class="nav-link rounded-xl border-2 border-green-500">ABOUT ME</a></li>
+                <ul class="flex text-center justify-center pt-4">
+                    <li><a href="index.html" class="nav-link text-xl">HOME</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8 text-white">
-        <!-- Content Area -->
+
         <div id="top" class="flex flex-col md:flex-row md:space-x-8">
-            <!-- Main Content -->
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500">Primitive Engine</h2>
-                <p class="leading-8 text-xl py-4">
-                    Primitive Engine is a project I started to improve my C++ skills. 
-                    Aside from C++ I am also using SDL2 for window management and rendering as well as GLM for math, that way I can focus more on gameplay features and less on the underlaying math.
-                </p>
-                <p class="leading-8 text-xl py-4">
-                    This project is still a work in progress, and I have many more features planned. 
-                    I'm focusing on implementing a solid foundation without making it too generalized, while also refining important aspects like collision resolution and player movement to create a more enjoyable experience. 
-                </p>
-                <p class="leading-8 text-xl py-4">
-                    My goal is to continually evolve the game and add new features as I progress.
+            <!-- PRIMITIVE ENGINE -->
+            <section class="md:w-2/3 bg-zinc-900 bg-opacity-90 p-4 rounded-md text-lg leading-8">
+                <h2 class="text-4xl font-semibold mb-4 text-green-500">Primitive Engine</h2>
+                <p class="py-4">
+                    Primitive Engine is a project I started to improve my C++ skills.
+                    <br>
+                    <br>
+                    I decided to use SDL2 instead of a normal game engine. My main focus with this project is C++, but, I also thought it would be fun to try working with something I hadn't before.
+                    SDL2 is used for window management and rendering. For math I use GLM.
+                    <br>
+                    <br>
+                    This project is a work in progress, and I have more features planned. 
+                    So far, I've mainly focused on creating a foundation for the project, adding features like collision and player movement.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Ideas</h2>
-                <div>
-                    <p class="leading-8 text-xl py-4">
-                        My plan for this project is to create a game similar to Terraria, a 2D block-based game focused on building, mining and combat.
-                    </p>
-                    <p class="leading-8 text-xl py-4">
-                        Additionally, I aim to explore procedural world generation, creating random terrain along with biomes, caves and other natural features like trees and ore veins.
+            <!-- Game Plan -->
+            <aside class="md:w-1/3 bg-zinc-900 bg-opacity-90 p-4 my-8 md:my-0 rounded-md">
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Game Plan</h2>
+                <div class="text-lg leading-8 py-2">
+                    <p>
+                        My plan for this project is to create a game similar to Terraria, a 2D block game. The main features would be:
+                        <p>
+                            - Building
+                            <br>
+                            - Mining
+                            <br>
+                            - Combat
+                        </p>
+                        A final feature I aim to explore is procedural world generation.
                     </p>
             </aside>
         </div>
 
-        <!-- Code Snippets Buttons-->
-        <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
-            <button class="code-snippet-button" onclick="scrollToElement('top')">↑</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Game Class</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Input Manager</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Texture Manager</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Collision</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Camera</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Player Class</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Block Class</button>
+        <!-- Code Navigation Buttons-->
+        <div class="navigation-bar">
+            <button class="code-navigation-button" onclick="scrollToElement('top')">↑</button>
+            <button class="code-navigation-button" onclick="scrollToElement('game-code-text')">Game Class</button>
+            <button class="code-navigation-button" onclick="scrollToElement('input-code-text')">Input Manager</button>
+            <button class="code-navigation-button" onclick="scrollToElement('texture-code-text')">Texture Manager</button>
+            <button class="code-navigation-button" onclick="scrollToElement('collision-code-text')">Collision</button>
+            <button class="code-navigation-button" onclick="scrollToElement('camera-code-text')">Camera</button>
+            <button class="code-navigation-button" onclick="scrollToElement('player-code-text')">Player Class</button>
+            <button class="code-navigation-button" onclick="scrollToElement('block-code-text')">Block Class</button>
 
         </div>
 
-        <!-- Code Example 1 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">    
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- GAME CLASS CODE -->
+            <section class="code-example-section">
                 
+                <div class="flex justify-center">
+                    <button
+                    id="toggle-game-code"
+                    class="toggleButton text-xl"
+                    onclick="toggleSections('game-code-header', 'game-code-cpp', 'toggle-game-code')">
+                    HEADER
+                    </button>
+                </div>
+
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code1pre-h', 'code1pre-cpp')">
+                class="toggleButton absolute top-20 right-10"
+                onclick="toggleOverflow('game-code-example-header'); toggleOverflow('game-code-example-cpp');">
                 ⇅
                 </button>
-                <button
-                id="toggle-button1"
-                class="toggleButton absolute top-10 right-20"
-                onclick="toggleSections('code1-header', 'code1-cpp', 'toggle-button1')">
-                header
-                </button>
 
-                <div id="code1-header" class="">
-                    <pre id="code1pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="game-code-header" class="">
+                    <pre id="game-code-example-header" class="code-example-preview h-80">
                         <code class="language-csharp">
 #pragma once
 
@@ -208,8 +197,8 @@ int GetFrameCount();
                     </pre>
                 </div>
 
-                <div id="code1-cpp" class="hidden">
-                    <pre id="code1pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="game-code-cpp" class="hidden">
+                    <pre id="game-code-example-cpp" class="code-example-preview h-80">
                         <code class="language-csharp">
 #include "Game.h"
 #include "Player.h"
@@ -525,63 +514,76 @@ int GetFrameCount()
 
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-96 overflow-y-auto">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Game Class</h2>
-                <p class="leading-8 py-1">
-                    The Game class is the core of the engine, managing initialization, the game loop, event handling, time management and cleanup.
-                </p>
-                <p class="leading-8 py-1">
-                    Initialization sets up the game window, renderer and loads textures.
-                </p>
-                <p class="leading-8 py-1">
-                    Event handling processes player input events and quit requests.
-                </p>
-                <p class="leading-8 py-1">
-                    The game loop continuously updates the game state and renders visuals.
-                </p>
-                <p class="leading-8 py-1">
-                    Time management tracks time, framecount and calculates delta time.
-                </p>
-                <p class="leading-8 py-1">
-                    Cleanup properly shuts down the game and prevents memory leaks.
+            <!-- GAME CLASS CODE TEXT -->
+            <aside id="game-code-text" class="code-text-section">
+                <h2 class="code-text-heading mt-0 md:mt-8">GAME CLASS</h2>
+                <p class="leading-8">
+                    The Game class is the core of the engine, it handles:
+                    <p>
+                        <span class="font-bold">Initialization -</span>
+                        <span class="italic">Sets up the game window, renderer and loads textures.</span>
+                        <br>
+                        <span class="font-bold">Event handling -</span>
+                        <span class="italic">Processes player input events and quit requests.</span>
+                        <br>
+                        <span class="font-bold">Game loop -</span>
+                        <span class="italic">Updates the game state and renders visuals.</span>
+                        <br>
+                        <span class="font-bold">Time management -</span>
+                        <span class="italic">Tracks time, framecount and calculates delta time.</span>
+                        <br>
+                        <span class="font-bold">Cleanup</span>
+                        <span class="italic">Properly shuts down the game and prevents memory leaks.</span>
+                    </p>
                 </p>
             </aside>    
         </div>
 
-        <!-- Code Example 2 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Input Manager</h2>
-                <p class="leading-8 py-1">
-                    The InputManager class handles keyboard and mouse input using SDL events. 
-                </p>
-                <p class="leading-8 py-1">
-                    It tracks key and mouse button states, detecting if its pressed, held or released.
-                    It also keeps track of the mouse position.
-                </p>
-                <p class="leading-8 py-1">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- INPUT MANAGER CODE TEXT -->
+            <section id="input-code-text" class="code-text-section">
+                <h2 class="code-text-heading mt-0 md:mt-8">INPUT MANAGER</h2>
+                <p class="leading-8">
+                    The InputManager handles keyboard and mouse input using SDL events.
+                    <br>
+                    Tracks the different key and mouse button states:
+                    <p>
+                        <span class="italic">- Pressed</span>
+                        <br>
+                        <span class="italic">- Held</span>
+                        <br>
+                        <span class="italic">- Released</span>
+                    </p>
+                    It also tracks the mouse position.
+                    <br>
                     All inputs are frame-accurate, ensuring accurate and responsive input handling.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- INPUT MANAGER CODE -->
+            <aside class="code-example-section">
                 
+                <div class="flex justify-center">
+                    <button 
+                    id="toggle-input-code"
+                    class="toggleButton text-xl"
+                    onclick="toggleSections('input-code-header', 'input-code-cpp', 'toggle-input-code')">
+                    HEADER
+                    </button>
+                </div>
+
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code2pre-h', 'code2pre-cpp')">
+                class="toggleButton absolute top-20 right-10"
+                onclick="toggleOverflow('input-code-example-header'); toggleOverflow('input-code-example-cpp');">
                 ⇅
                 </button>
-                <button 
-                id="toggle-button2"
-                class="toggleButton absolute top-10 right-20"
-                onclick="toggleSections('code2-header', 'code2-cpp', 'toggle-button2')">
-                header
-                </button>
+                
 
-                <div id="code2-header" class="">
-                    <pre id="code2pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="input-code-header" class="">
+                    <pre id="input-code-example-header" class="code-example-preview h-80">
                         <code class="language-csharp">
 #pragma once
 
@@ -639,8 +641,8 @@ private:
                     </pre>
                 </div>
 
-                <div id="code2-cpp" class="hidden">
-                    <pre id="code2pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="input-code-cpp" class="hidden">
+                    <pre id="input-code-example-cpp" class="code-example-preview h-80">
                         <code class="language-csharp">
 #include "InputManager.h"
 #include "SDL.h"
@@ -751,24 +753,31 @@ int InputManager::MouseY() const
             </aside>
         </div>
 
-        <!-- Code Example 3 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- TEXTURE MANAGER CODE -->
+            <section class="code-example-section">
                 
+                <div class="flex justify-center">
+                    <button 
+                    id="toggle-texture-code"
+                    class="toggleButton text-xl"
+                    onclick="toggleSections('texture-code-header', 'texture-code-cpp', 'toggle-texture-code')">
+                    HEADER
+                    </button>
+                </div>
+
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code3pre-h', 'code3pre-cpp')">
+                class="toggleButton absolute top-20 right-10"
+                onclick="toggleOverflow('texture-code-example-header'); toggleOverflow('texture-code-example-cpp');">
                 ⇅
                 </button>
-                <button 
-                id="toggle-button3"
-                class="toggleButton absolute top-10 right-20"
-                onclick="toggleSections('code3-header', 'code3-cpp', 'toggle-button3')">
-                header
-                </button>
+                
 
-                <div id="code3-header" class="">
-                    <pre id="code3pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="texture-code-header" class="">
+                    <pre id="texture-code-example-header" class="code-example-preview h-80">
                         <code class="language-csharp">
 #pragma once
 
@@ -807,8 +816,8 @@ private:
                     </pre>
                 </div>
 
-                <div id="code3-cpp" class="hidden">
-                    <pre id="code3pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="texture-code-cpp" class="hidden">
+                    <pre id="game-code-example-cpp" class="code-example-preview h-80">
                         <code class="language-csharp">
 #include "TextureManager.h"
 #include "iostream"
@@ -858,57 +867,68 @@ void TextureManager::Clean()
 
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Texture Manager</h2>
-                <p class="leading-8 py-1">
-                    The Texture Manager class handles loading, rendering and cleanup of textures.
-                </p>
-                <p class="leading-8 py-1">
-                    Textures are loaded from files and stored in a map.
-                </p>
-                <p class="leading-8 py-1">
-                    Rendering draws textures at specified positions and sizes.
-                </p>
-                <p class="leading-8 py-1">
-                    Cleaning up frees allocated memory to prevent memory leaks when game quits.
+            <!-- TEXTURE MANAGER CODE TEXT -->
+            <aside id="texture-code-text" class="code-text-section">
+                <h2 class="code-text-heading mt-0 md:mt-8">TEXTURE MANAGER</h2>
+                <p class="leading-8">
+                    The Texture Manager handles:
+                    <p>
+                        <span class="font-bold">Loading -</span>
+                        <span class="italic">Textures are loaded from files and stored in a map.</span>
+                        <br>
+                        <span class="font-bold">Rendering -</span>
+                        <span class="italic">Draws textures at specified positions and sizes.</span>
+                        <br>
+                        <span class="font-bold">Cleanup -</span>
+                        <span class="italic">Free allocated memory to prevent leaks when quitting game.</span>
+                    </p>
                 </p>
             </aside>    
         </div>
         
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 4 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Collision</h2>
-                <p class="leading-8 py-1">
-                    The AABB (Axis-Aligned Bounding Box) struct represent a 2D rectangle used for collision detection.
-                </p>
-                <p class="leading-8 py-1">
-                    FromPositionSize takes a position and a size and converts it into an AABB by calculating the min and max corners.
-                </p>
-                <p class="leading-8 py-1">
-                    aabbOverlap is an overlap check that compare two AABB and return if they are overlapping or not.
+        <div class="code-container">
+            <!-- COLLISION CODE TEXT -->
+            <section id="collision-code-text" class="code-text-section">
+                <h2 class="code-text-heading mt-0 md:mt-8">COLLISION</h2>
+                <p class="leading-8">
+                    The AABB <span class="italic">(Axis-Aligned Bounding Box)</span> struct represent a 2D rectangle used for collision detection.
+                    <br>
+                    <span class="font-bold">FromPositionSize()</span> 
+                    converts a given position and size into an AABB by calculating the
+                    <span class="italic">min</span>
+                    and
+                    <span class="italic">max</span>
+                    corners.
+                    <br>
+                    <span class="font-bold">aabbOverlap()</span>
+                    compare two AABB and return whether they are overlapping or not.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- COLLISION CODE -->
+            <aside class="code-example-section">
                 
+                <div class="flex justify-center">
+                    <button 
+                    id="toggle-collision-code"
+                    class="toggleButton text-xl"
+                    onclick="toggleSections('collision-code-header', 'collision-code-cpp', 'toggle-collision-code')">
+                    HEADER
+                    </button>
+                </div>
+
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code4pre-h', 'code4pre-cpp')">
+                class="toggleButton absolute top-20 right-10"
+                onclick="toggleOverflow('collision-code-example-header'); toggleOverflow('collision-code-example-cpp');">
                 ⇅
                 </button>
-                <button 
-                id="toggle-button4"
-                class="toggleButton absolute top-10 right-20"
-                onclick="toggleSections('code4-header', 'code4-cpp', 'toggle-button4')">
-                header
-                </button>
+                
 
-                <div id="code4-header" class="">
-                    <pre id="code4pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="collision-code-header" class="">
+                    <pre id="collision-code-example-header" class="code-example-preview h-80">
                         <code class="language-csharp">
 #pragma once
 
@@ -931,8 +951,8 @@ bool aabbOverlap(AABB a, AABB b);
                     </pre>
                 </div>
 
-                <div id="code4-cpp" class="hidden">
-                    <pre id="code4pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="collision-code-cpp" class="hidden">
+                    <pre id="collision-code-example-cpp" class="code-example-preview h-80">
                         <code class="language-csharp">
 #include "AABB.h"
 
@@ -960,24 +980,31 @@ bool aabbOverlap(AABB a, AABB b)
             </aside>
         </div>
 
-        <!-- Code Example 5 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- CAMERA CODE -->
+            <section class="code-example-section">
                 
+                <div class="flex justify-center">
+                    <button 
+                    id="toggle-camera-code"
+                    class="toggleButton text-xl"
+                    onclick="toggleSections('camera-code-header', 'camera-code-cpp', 'toggle-camera-code')">
+                    HEADER
+                    </button>
+                </div>
+
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code5pre-h', 'code5pre-cpp')">
+                class="toggleButton absolute top-20 right-10"
+                onclick="toggleOverflow('camera-code-example-header'); toggleOverflow('camera-code-example-cpp');">
                 ⇅
                 </button>
-                <button 
-                id="toggle-button5"
-                class="toggleButton absolute top-10 right-20"
-                onclick="toggleSections('code5-header', 'code5-cpp', 'toggle-button5')">
-                header
-                </button>
+                
 
-                <div id="code5-header" class="">
-                    <pre id="code5pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="camera-code-header" class="">
+                    <pre id="camera-code-example-header" class="code-example-preview h-80">
                         <code class="language-csharp">
 #pragma once
 
@@ -999,8 +1026,8 @@ public:
                     </pre>
                 </div>
 
-                <div id="code5-cpp" class="hidden">
-                    <pre id="code5pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="camera-code-cpp" class="hidden">
+                    <pre id="camera-code-example-cpp" class="code-example-preview h-80">
                         <code class="language-csharp">
 #include "Camera.h"
 #include "Config.h"
@@ -1036,59 +1063,73 @@ glm::vec2 Camera::ScreenToWorld(glm::vec2 vector)
 
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Camera</h2>
-                <p class="leading-8 py-1">
-                    The Camera class managees it's position and converts coordinates between world space and screen space, which is essential for interacting with objetcs on screen.
-                </p>
-                <p class="leading-8 py-1">
-                    The camera position is currently set to follow the player's position.
-                </p>
-                <p class="leading-8 py-1">
-                    The WorldToScreen converts world coordinates to screen coordinates based on the camera's position.
-                </p>
-                <p class="leading-8 py-1">
-                    The ScreenToWorld converts screen coordinates to world coordinates.
+            <!-- CAMERA CODE TEXT -->
+            <aside id="camera-code-text" class="code-text-section">
+                <h2 class="code-text-heading mt-0 md:mt-8">CAMERA</h2>
+                <p class="leading-8">
+                    The Camera class handles:
+                    <p>
+                        <span class="font-bold">Camera position -</span>
+                        <span class="italic">Set to follow the player's position.</span>
+                        <br>
+                        <span class="font-bold">WorldToScreen -</span>
+                        <span class="italic">Converts world coordinates to screen coordinates.</span>
+                        <br>
+                        <span class="font-bold">ScreenToWorld -</span>
+                        <span class="italic">Converts screen coordinates to world coordinates.</span>
+                    </p>
+                    <br>
+                    Converting between world and screen is required to display and interact with objects properly.
                 </p>
             </aside>    
         </div>
 
-        <!-- Code Example 6 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Player Class</h2>
-                <p class="leading-8 py-1">
-                    The Player class represents the player character and inherits from the Actor class.
-                </p>
-                <p class="leading-8 py-1">
-                    Player movement includes horizontal movement, jumping and gravity. 
-                </p>
-                <p class="leading-8 py-1">
-                    To resolve collisions, the player's position is adjusted based on the smallest overlap with other objects.
-                </p>
-                <p class="leading-8 py-1">
-                    The player can interact with the world using mouse inputs to either place or break blocks. 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- PLAYER CODE TEXT -->
+            <section id="player-code-text" class="code-text-section">
+                <h2 class="code-text-heading mt-0 md:mt-8">PLAYER CLASS</h2>
+                <p class="leading-8">
+                    The Player class inherits from the
+                    <span class="font-bold">Actor class.</span>
+                    It handles:
+                    <p>
+                        <span class="font-bold">Player Movement -</span>
+                        <span class="italic">Horizontal movement, jumping, and gravity.</span>
+                        <br>
+                        <span class="font-bold">Resolving Collision -</span>
+                        <span class="italic">Player position is adjusted based on the smallest overlap.</span>
+                        <br>
+                        <span class="font-bold">Interact -</span>
+                        <span class="italic">Use mouse inputs to place or break blocks.</span>
+                        <br>
+                    </p>
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- PLAYER CODE -->
+            <aside class="code-example-section">
                 
+                <div class="flex justify-center">
+                    <button 
+                    id="toggle-player-code"
+                    class="toggleButton text-xl"
+                    onclick="toggleSections('player-code-header', 'player-code-cpp', 'toggle-player-code')">
+                    HEADER
+                    </button>
+                </div>
+
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code6pre-h', 'code6pre-cpp')">
+                class="toggleButton absolute top-20 right-10"
+                onclick="toggleOverflow('player-code-example-header'); toggleOverflow('player-code-example-cpp');">
                 ⇅
                 </button>
-                <button 
-                id="toggle-button6"
-                class="toggleButton absolute top-10 right-20"
-                onclick="toggleSections('code6-header', 'code6-cpp', 'toggle-button6')">
-                header
-                </button>
+                
 
-                <div id="code6-header" class="">
-                    <pre id="code6pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="player-code-header" class="">
+                    <pre id="player-code-example-header" class="code-example-preview h-80">
                         <code class="language-csharp">
 #pragma once
 
@@ -1140,8 +1181,8 @@ private:
                     </pre>
                 </div>
 
-                <div id="code6-cpp" class="hidden">
-                    <pre id="code6pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="player-code-cpp" class="hidden">
+                    <pre id="player-code-example-cpp" class="code-example-preview h-80">
                         <code class="language-csharp">
 #include "Player.h"
 #include "Game.h"
@@ -1398,24 +1439,31 @@ void Player::Use(int i)
             </aside>
         </div>
 
-        <!-- Code Example 7 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- BLOCK CODE -->
+            <section class="code-example-section">
                 
+                <div class="flex justify-center">
+                    <button 
+                    id="toggle-block-code"
+                    class="toggleButton text-xl"
+                    onclick="toggleSections('block-code-header', 'block-code-cpp', 'toggle-block-code')">
+                    HEADER
+                    </button>
+                </div>
+
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code7pre-h', 'code7pre-cpp')">
+                class="toggleButton absolute top-20 right-10"
+                onclick="toggleOverflow('block-code-example-header'); toggleOverflow('block-code-example-cpp');">
                 ⇅
                 </button>
-                <button 
-                id="toggle-button7"
-                class="toggleButton absolute top-10 right-20"
-                onclick="toggleSections('code7-header', 'code7-cpp', 'toggle-button7')">
-                header
-                </button>
+                
 
-                <div id="code7-header" class="">
-                    <pre id="code7pre-h" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="block-code-header" class="">
+                    <pre id="block-code-example-header" class="code-example-preview h-80">
                         <code class="language-csharp">
 #pragma once
 
@@ -1437,8 +1485,8 @@ public:
                     </pre>
                 </div>
 
-                <div id="code7-cpp" class="hidden">
-                    <pre id="code7pre-cpp" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <div id="block-code-cpp" class="hidden">
+                    <pre id="block-code-example-cpp" class="code-example-preview h-80">
                         <code class="language-csharp">
 #include "Block.h"
 #include "Game.h"
@@ -1476,17 +1524,24 @@ void Block::Hit(int damage)
 
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Block Class</h2>
-                <p class="leading-8 py-1">
-                    The Block class represent an in-game block and inherits from the Actor class.
-                </p>
-                <p class="leading-8 py-1">
-                    Currently, it doesn't have any complex logic but is designed to be expanded upon later.
-                </p>
-                <p class="leading-8 py-1">
-                    The Hit method will handle block damage, allowing blocks to have durability instead of being instantly destroyed.
+            <!-- BLOCK CODE TEXT -->
+            <aside id="block-code-text" class="code-text-section">
+                <h2 class="code-text-heading mt-0 md:mt-8">BLOCK CLASS</h2>
+                <p class="leading-8">
+                    The Block class inherits from the
+                    <span class="font-bold">Actor class.</span>
+                    <br>
+                    The class currently has no any unique logic to it
+                    <br>
+                    The plan is to add:
+                    <p>
+                        <span class="font-bold">Behavior -</span>
+                        <span class="italic">How the block should interact with the world and other actors.</span>
+                        <br>
+                        <span class="font-bold">Durability -</span>
+                        <span class="italic">Duration it takes to break the block, based on the tool and block behavior.</span>
+                        <br>
+                    </p>
                 </p>
             </aside>    
         </div>
@@ -1503,25 +1558,17 @@ void Block::Hit(int damage)
     </script>
 
     <script>
-        function toggleOverflow(id1, id2) {
-            const preElement1 = document.getElementById(id1);
-            const preElement2 = document.getElementById(id2);
+        function toggleOverflow(id) {
+            const preElement = document.getElementById(id);
+            let height = "h-80";
+            let fullHeight = "h-fit";
 
-            if (preElement1.classList.contains("h-96") && preElement2.classList.contains("h-96")) 
-            {
-                preElement1.classList.remove("h-96");
-                preElement2.classList.remove("h-96");
-
-                preElement1.classList.add("h-fit");
-                preElement2.classList.add("h-fit");
-            } 
-            else 
-            {
-                preElement1.classList.remove("h-fit");
-                preElement2.classList.remove("h-fit");
-
-                preElement1.classList.add("h-96");
-                preElement2.classList.add("h-96");
+            if (preElement.classList.contains(height)) {
+                preElement.classList.remove(height);
+                preElement.classList.add(fullHeight);
+            } else {
+                preElement.classList.remove(fullHeight);
+                preElement.classList.add(height);
             }
         }
     </script>
@@ -1537,14 +1584,14 @@ void Block::Hit(int damage)
                 preElement1.classList.remove("hidden");
                 preElement2.classList.add("hidden");
                 
-                button.textContent = "header"
+                button.textContent = "HEADER"
             } 
             else if (!preElement1.classList.contains("hidden") && preElement2.classList.contains("hidden"))
             {
                 preElement2.classList.remove("hidden");
                 preElement1.classList.add("hidden");
                 
-                button.textContent = "cpp"
+                button.textContent = "C++"
             }
         }
     </script>
