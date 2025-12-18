@@ -63,14 +63,14 @@
 
         <!-- Code Navigation Buttons-->
         <div class="navigation-bar">
-            <button class="code-navigation-button" onclick="scrollToElement('top')">↑</button>
-            <button class="code-navigation-button" onclick="scrollToElement('game-code-text')">Game Class</button>
-            <button class="code-navigation-button" onclick="scrollToElement('input-code-text')">Input Manager</button>
-            <button class="code-navigation-button" onclick="scrollToElement('texture-code-text')">Texture Manager</button>
-            <button class="code-navigation-button" onclick="scrollToElement('collision-code-text')">Collision</button>
-            <button class="code-navigation-button" onclick="scrollToElement('camera-code-text')">Camera</button>
-            <button class="code-navigation-button" onclick="scrollToElement('player-code-text')">Player Class</button>
-            <button class="code-navigation-button" onclick="scrollToElement('block-code-text')">Block Class</button>
+            <button class="code-navigation-button text-2xl" onclick="scrollToElement('top')">↑</button>
+            <button class="code-navigation-button" onclick="scrollToElement('game-code-text')">GAME</button>
+            <button class="code-navigation-button" onclick="scrollToElement('input-code-text')">INPUT MANAGER</button>
+            <button class="code-navigation-button" onclick="scrollToElement('texture-code-text')">TEXTURE MANAGER</button>
+            <button class="code-navigation-button" onclick="scrollToElement('collision-code-text')">COLLISION</button>
+            <button class="code-navigation-button" onclick="scrollToElement('camera-code-text')">CAMERA</button>
+            <button class="code-navigation-button" onclick="scrollToElement('player-code-text')">PLAYER</button>
+            <button class="code-navigation-button" onclick="scrollToElement('block-code-text')">BLOCK</button>
 
         </div>
 
@@ -81,12 +81,18 @@
             <!-- GAME CLASS CODE -->
             <section class="code-example-section">
                 
-                <div class="flex justify-center">
+                <div class="flex justify-evenly">
                     <button
-                    id="toggle-game-code"
-                    class="toggleButton text-xl"
-                    onclick="toggleSections('game-code-header', 'game-code-cpp', 'toggle-game-code')">
+                    id="toggle-game-code-header"
+                    class="toggleButton text-xl text-green-500"
+                    onclick="enableElement('game-code-header', 'toggle-game-code-header'); disableElement('game-code-cpp', 'toggle-game-code-cpp');">
                     HEADER
+                    </button>
+                    <button
+                    id="toggle-game-code-cpp"
+                    class="toggleButton text-xl"
+                    onclick="enableElement('game-code-cpp', 'toggle-game-code-cpp'); disableElement('game-code-header', 'toggle-game-code-header');">
+                    C++
                     </button>
                 </div>
 
@@ -566,12 +572,18 @@ int GetFrameCount()
             <!-- INPUT MANAGER CODE -->
             <aside class="code-example-section">
                 
-                <div class="flex justify-center">
-                    <button 
-                    id="toggle-input-code"
-                    class="toggleButton text-xl"
-                    onclick="toggleSections('input-code-header', 'input-code-cpp', 'toggle-input-code')">
+                <div class="flex justify-evenly">
+                    <button
+                    id="toggle-input-code-header"
+                    class="toggleButton text-xl text-green-500"
+                    onclick="enableElement('input-code-header', 'toggle-input-code-header'); disableElement('input-code-cpp', 'toggle-input-code-cpp');">
                     HEADER
+                    </button>
+                    <button
+                    id="toggle-input-code-cpp"
+                    class="toggleButton text-xl"
+                    onclick="enableElement('input-code-cpp', 'toggle-input-code-cpp'); disableElement('input-code-header', 'toggle-input-code-header');">
+                    C++
                     </button>
                 </div>
 
@@ -760,12 +772,18 @@ int InputManager::MouseY() const
             <!-- TEXTURE MANAGER CODE -->
             <section class="code-example-section">
                 
-                <div class="flex justify-center">
-                    <button 
-                    id="toggle-texture-code"
-                    class="toggleButton text-xl"
-                    onclick="toggleSections('texture-code-header', 'texture-code-cpp', 'toggle-texture-code')">
+                <div class="flex justify-evenly">
+                    <button
+                    id="toggle-texture-code-header"
+                    class="toggleButton text-xl text-green-500"
+                    onclick="enableElement('texture-code-header', 'toggle-texture-code-header'); disableElement('texture-code-cpp', 'toggle-texture-code-cpp');">
                     HEADER
+                    </button>
+                    <button
+                    id="toggle-texture-code-cpp"
+                    class="toggleButton text-xl"
+                    onclick="enableElement('texture-code-cpp', 'toggle-texture-code-cpp'); disableElement('texture-code-header', 'toggle-texture-code-header');">
+                    C++
                     </button>
                 </div>
 
@@ -911,12 +929,18 @@ void TextureManager::Clean()
             <!-- COLLISION CODE -->
             <aside class="code-example-section">
                 
-                <div class="flex justify-center">
-                    <button 
-                    id="toggle-collision-code"
-                    class="toggleButton text-xl"
-                    onclick="toggleSections('collision-code-header', 'collision-code-cpp', 'toggle-collision-code')">
+                <div class="flex justify-evenly">
+                    <button
+                    id="toggle-collision-code-header"
+                    class="toggleButton text-xl text-green-500"
+                    onclick="enableElement('collision-code-header', 'toggle-collision-code-header'); disableElement('collision-code-cpp', 'toggle-collision-code-cpp');">
                     HEADER
+                    </button>
+                    <button
+                    id="toggle-collision-code-cpp"
+                    class="toggleButton text-xl"
+                    onclick="enableElement('collision-code-cpp', 'toggle-collision-code-cpp'); disableElement('collision-code-header', 'toggle-collision-code-header');">
+                    C++
                     </button>
                 </div>
 
@@ -987,12 +1011,18 @@ bool aabbOverlap(AABB a, AABB b)
             <!-- CAMERA CODE -->
             <section class="code-example-section">
                 
-                <div class="flex justify-center">
-                    <button 
-                    id="toggle-camera-code"
-                    class="toggleButton text-xl"
-                    onclick="toggleSections('camera-code-header', 'camera-code-cpp', 'toggle-camera-code')">
+                <div class="flex justify-evenly">
+                    <button
+                    id="toggle-camera-code-header"
+                    class="toggleButton text-xl text-green-500"
+                    onclick="enableElement('camera-code-header', 'toggle-camera-code-header'); disableElement('camera-code-cpp', 'toggle-camera-code-cpp');">
                     HEADER
+                    </button>
+                    <button
+                    id="toggle-camera-code-cpp"
+                    class="toggleButton text-xl"
+                    onclick="enableElement('camera-code-cpp', 'toggle-camera-code-cpp'); disableElement('camera-code-header', 'toggle-camera-code-header');">
+                    C++
                     </button>
                 </div>
 
@@ -1112,12 +1142,18 @@ glm::vec2 Camera::ScreenToWorld(glm::vec2 vector)
             <!-- PLAYER CODE -->
             <aside class="code-example-section">
                 
-                <div class="flex justify-center">
-                    <button 
-                    id="toggle-player-code"
-                    class="toggleButton text-xl"
-                    onclick="toggleSections('player-code-header', 'player-code-cpp', 'toggle-player-code')">
+                <div class="flex justify-evenly">
+                    <button
+                    id="toggle-player-code-header"
+                    class="toggleButton text-xl text-green-500"
+                    onclick="enableElement('player-code-header', 'toggle-player-code-header'); disableElement('player-code-cpp', 'toggle-player-code-cpp');">
                     HEADER
+                    </button>
+                    <button
+                    id="toggle-player-code-cpp"
+                    class="toggleButton text-xl"
+                    onclick="enableElement('player-code-cpp', 'toggle-player-code-cpp'); disableElement('player-code-header', 'toggle-player-code-header');">
+                    C++
                     </button>
                 </div>
 
@@ -1446,12 +1482,18 @@ void Player::Use(int i)
             <!-- BLOCK CODE -->
             <section class="code-example-section">
                 
-                <div class="flex justify-center">
-                    <button 
-                    id="toggle-block-code"
-                    class="toggleButton text-xl"
-                    onclick="toggleSections('block-code-header', 'block-code-cpp', 'toggle-block-code')">
+                <div class="flex justify-evenly">
+                    <button
+                    id="toggle-block-code-header"
+                    class="toggleButton text-xl text-green-500"
+                    onclick="enableElement('block-code-header', 'toggle-block-code-header'); disableElement('block-code-cpp', 'toggle-block-code-cpp');">
                     HEADER
+                    </button>
+                    <button
+                    id="toggle-block-code-cpp"
+                    class="toggleButton text-xl"
+                    onclick="enableElement('block-code-cpp', 'toggle-block-code-cpp'); disableElement('block-code-header', 'toggle-block-code-header');">
+                    C++
                     </button>
                 </div>
 
@@ -1574,26 +1616,41 @@ void Block::Hit(int damage)
     </script>
 
     <script>
-        function toggleSections(id1, id2, id3) {
-            const preElement1 = document.getElementById(id1);
-            const preElement2 = document.getElementById(id2);
-            const button = document.getElementById(id3);
 
-            if (preElement1.classList.contains("hidden") && !preElement2.classList.contains("hidden")) 
-            {
-                preElement1.classList.remove("hidden");
-                preElement2.classList.add("hidden");
-                
-                button.textContent = "HEADER"
-            } 
-            else if (!preElement1.classList.contains("hidden") && preElement2.classList.contains("hidden"))
-            {
-                preElement2.classList.remove("hidden");
-                preElement1.classList.add("hidden");
-                
-                button.textContent = "C++"
+        function enableElement(codeID, buttonID) {
+            
+            const code = document.getElementById(codeID);
+            const button = document.getElementById(buttonID);
+
+            let greenText = "text-green-500";
+
+            if (code.classList.contains("hidden")) {
+                code.classList.remove("hidden");
             }
+
+            if (!button.classList.contains(greenText)) {
+                button.classList.add(greenText);
+            }
+
         }
+
+        function disableElement(codeID, buttonID) {
+            
+            const code = document.getElementById(codeID);
+            const button = document.getElementById(buttonID);
+
+            let greenText = "text-green-500";
+
+            if (!code.classList.contains("hidden")) {
+                code.classList.add("hidden");
+            }
+
+            if (button.classList.contains(greenText)) {
+                button.classList.remove(greenText);
+            }
+
+        }
+
     </script>
 
 </body>

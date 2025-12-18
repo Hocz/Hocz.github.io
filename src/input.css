@@ -1,44 +1,7 @@
 @import "tailwindcss";
 
 html {
-    @apply !scroll-smooth;
-}
-
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #166534;
-    border-radius: 2px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #22c55e;
-}
-
-::-webkit-scrollbar-corner {
-    background: transparent;
-}
-
-
-/* Style the main viewer container */
-.viewer-container {
-    @apply rounded-2xl border-2 border-teal-900 overflow-hidden bg-neutral-900;
-}
-
-/* Style the image inside the viewer */
-.viewer-canvas img {
-    @apply rounded-2xl;
+    @apply scroll-smooth!;
 }
 
 
@@ -48,9 +11,8 @@ html {
 }
 
 .nav-link {
-    @apply px-4 py-1 border-2 border-zinc-500 rounded-md text-white font-semibold hover:text-green-500 text-center items-center;
+    @apply px-4 py-1 border-b-4 border-green-500 text-white font-semibold hover:text-green-500 text-center items-center;
 }
-
 
 .projects-section {
     @apply grid grid-cols-1 md:grid-cols-2 gap-8 pt-20;
@@ -88,9 +50,12 @@ html {
     @apply sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 gap-2 md:justify-evenly justify-center bg-zinc-900 opacity-90 rounded-md p-4 my-8;
 }
 
-.code-navigation-button {
-    @apply px-4 py-2 border-2 border-zinc-700 rounded-md text-white font-semibold hover:text-green-500 text-center items-center cursor-pointer;
+@layer components {
+    .code-navigation-button {
+        @apply px-4 py-2 border-b-2 border-green-500 text-white text-xs md:text-sm font-semibold hover:text-green-500 text-center items-center cursor-pointer;
+    }
 }
+
 
 .divider {
     @apply w-full border-2 border-green-500 my-8;
@@ -118,7 +83,7 @@ html {
 
 @layer components {
     .toggleButton {
-        @apply bg-transparent text-white px-2 py-1 text-4xl font-semibold rounded-md hover:text-green-500 transition cursor-pointer;
+        @apply bg-transparent text-white px-2 py-1 text-4xl font-semibold border-b-2 border-green-500 hover:text-green-500 transition cursor-pointer;
     }
 
 }

@@ -10,312 +10,345 @@
     <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.1/viewer.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.1/viewer.min.js"></script>
 </head>
 
-<body class="bg-teal-900 text-white font-exo2">
+<body class="bg-zinc-800 text-white font-exo2">
     
-    <!-- Header -->
-    <header class="header-section">
-        <!-- Left Section -->
-        <div class="header-left">
-            <h1 class="header-title">RASMUS GÖRANSSON</h1>
-            <div class="personal-info mt-4 md:mt-2 flex justify-between items-start">
-                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
-                <div class="social-links flex space-x-4">
-                    <a href="https://www.linkedin.com/in/rasmus-g/" target="_blank">
-                        <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
-                    </a>
-                    <a href="https://github.com/Hocz" target="_blank">
-                        <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
-                    </a>
-                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
-                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="header-right mt-4 md:mt-0 flex flex-col items-center">
+    <header>
+        <div>
             <nav>
-                <ul class="flex space-x-4 text-center py-0 pr-8">
-                    <li><a href="index.html" class="nav-link rounded-xl border-2 border-green-500">HOME</a></li>
-                    <li><a href="about.html" class="nav-link rounded-xl border-2 border-green-500">ABOUT ME</a></li>
+                <ul class="flex text-center justify-center pt-4">
+                    <li><a href="index.html" class="nav-link text-xl">HOME</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8 text-white">
-        <!-- Content Area -->
+        
         <div id="top" class="flex flex-col md:flex-row md:space-x-8">
-            <!-- Main Content -->
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500">The Last Blue</h2>
-                <p class="leading-8 text-xl py-4">
-                    The Last Blue was our third Game project in Futuregames and it was made by a team of 16 people. 
-                </p>
-                <p class="leading-8 text-xl py-4">
-                     In the game, you play as a young girl who finds herself lost within an ancient shrine. 
-                     She realizes that to escape the shrine, she will have to learn the language that seems to be scribbled on the walls and start understanding what it means.
-                </p>
-                <p class="leading-8 text-xl py-4">
-                     She encounters a Shrine Spirit who guides her with her language learning and provides her with a magic tool with which she can modify the languages written on the walls.
-                </p>
-                <p class="leading-8 text-xl py-4">
-                     You traverse the three floors of the shrine, and as you explore, you will have to solve many puzzles that will make use of your knowledge of this language. 
-                     Subsequently, you will learn the story of the people and the civilization that existed here, as well as the mystery behind this Shrine Spirit.
+            <!-- THE LAST BLUE -->
+            <section class="md:w-2/3 bg-zinc-900 bg-opacity-90 p-4 rounded-md text-lg leading-8">
+                <h2 class="text-4xl font-semibold mb-4 text-green-500">The Last Blue</h2>
+                <p class="py-4">
+                    The Last Blue was our third Game project in Futuregames and it was made by a team of 16 people.
+                    <br>
+                    In the game, you play as a young girl who finds herself lost within an ancient shrine. 
+                    She realizes that to escape the shrine, she will have to learn the language that seems to be scribbled on the walls and start understanding what it means.
+                    <br>
+                    <br>
+                    She encounters a Shrine Spirit who guides her with learning the language. The spirit also provides her with a magic tool with which she can modify the languages written on the walls.
+                    <br>
+                    <br>
+                    You traverse the three floors of the shrine, and as you explore, you will have to solve many puzzles that will make use of your knowledge of this language. 
+                    Subsequently, you will learn the story of the people and the civilization that existed here, as well as the mystery behind this Shrine Spirit.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">My Contribution</h2>
-                <div>
-                    <p class="leading-8 text-xl py-4">
-                        For this project I mainly worked on AI using Unreal Engine's Behavior Tree. I also worked on the UI.
-                    </p>
-                    <p class="leading-8 text-xl py-4">
-                        The AI is a friendly character that is designed to help and guide the player throughout the game. 
-                        It needed to perform various tasks based on the player's distance and overall game progression.
-                    </p>
-                    <p class="leading-8 text-xl py-4">
-                        For the UI, I worked on the main menu and an options menu, which included general game settings and key binding functionality.
+            <!-- AI | UI -->
+            <aside class="md:w-1/3 bg-zinc-900 bg-opacity-90 p-4 my-8 md:my-0 rounded-md">
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">AI | UI</h2>
+                <div class="text-lg leading-8 py-2">
+                    <p>
+                        My main resposibility for 
+                        <span class="font-bold">The Last Blue</span>
+                        was implementing the AI. It uses Unreal Engine's Behavior Tree. 
+                        <br>
+                        The AI is friendly and is designed to guide the player throughout the game. 
+                        It performs a variety of actions, based on:
+                        <p class="italic">
+                            - The player's position
+                            <br>
+                            - The AI's distance from the player
+                            <br>
+                            - Game progression
+                        </p>
+                        <br> 
+                        I also did the menu UI and game settings.
+                        <br>                      
+                        The menu UI includes, an options menu to change game settings, as well as key-bindings.
                     </p>
             </aside>
         </div>
 
-        <div>
-            <iframe class="my-8 border-4 border-teal-950 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/VP8Lf0wo_jU?si=NGo-T_lzRchBsgAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- TRAILER LINK -->
+        <div class="flex justify-center">
+            <iframe class="my-8 border-4 border-zinc-900 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/VP8Lf0wo_jU?si=NGo-T_lzRchBsgAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
         
-        <!-- Code Snippets Buttons -->
-        <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
-            <button class="code-snippet-button" onclick="scrollToElement('top')">↑</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Explore</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Follow</button>      
-            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Waypoint</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Wait</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Out of Range</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Talk</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Show Glyph</button>    
+        <!-- NAVIGATION BUTTONS -->
+        <div class="navigation-bar">
+            <button class="code-navigation-button text-2xl" onclick="scrollToElement('top')">↑</button>
+            <button class="code-navigation-button" onclick="scrollToElement('explore-code-text')">EXPLORE</button>
+            <button class="code-navigation-button" onclick="scrollToElement('follow-code-text')">FOLLOW</button>      
+            <button class="code-navigation-button" onclick="scrollToElement('waypoint-code-text')">WAYPOINT</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('wait-code-text')">WAIT</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('outrange-code-text')">OUT OF RANGE</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('talk-code-text')">TALK</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('glyph-code-text')">SHOW GLYPH</button>    
         </div>
         
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 1 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
-                <button 
-                class="toggleButton absolute top-4 right-4"
-                onclick="toggleImage('bpimage1')">
-                ↺
-                </button>
-                <div class="p-6 h-fit flex justify-center items-center">
-                    <div id="image-container">
-                        <img id="bpimage1" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Explore.png" alt="">
-                    </div>
+        <div class="code-container">
+            <!-- EXPLORE CODE -->
+            <section class="code-example-section">
+                <div class="overflow-hidden border-2 border-zinc-700 rounded-md">
+                    <img class="md:scale-125 scale-150" src="Images/Projects/LB_Behavior_Explore.png" alt="">
                 </div>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Explore Task</h2>
-                <p class="leading-8 py-1">
-                    The Explore Behavior simulates the AI being curious and exploring it's environment.
-                </p>
-                <p class="leading-8 py-1">
-                    It is also functions as a Wait behavior, but instead of standing still, the AI is moves around while waiting for the player.
-                </p>
-                <p class="leading-8 py-1">
-                    This Task clears the AI's focus target, selects a random postion within a set radius around the player, and moves to that position.
-                    Before selecting a new position, the AI pauses briefly.
+            <!-- EXPLORE CODE TEXT -->
+            <aside id="explore-code-text" class="code-text-section">
+                <h2 class="code-text-heading">EXPLORE TASK</h2>
+                <p class="leading-8">
+                    The Explore Behavior is similar to an idle state. 
+                    The AI will randomly move around in the proximity of the player
+                    <br>
+                    The Task sequence is:
+                    <p>
+                        <span class="font-bold">Clear Focus -</span>
+                        <span class="italic">Removes the current target.</span>
+                        <br>
+                        <span class="font-bold">Find Location -</span>
+                        <span class="italic">Get a random position around the player.</span>
+                        <br>
+                        <span class="font-bold">Move -</span>
+                        <span class="italic">Takes the shortest path to the target.</span>
+                        <br>
+                        <span class="font-bold">Wait -</span>
+                        <span class="italic">Stands still for a random range of time before starting a new sequence.</span>
+                        <br>
+                    </p>
                 </p>
             </aside>    
         </div>
 
-        <!-- Code Example 2 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Follow Task</h2>
-                <p class="leading-8 py-1">
-                    The Follow Behavior is straightforward, it simply follows the player.
-                </p>
-                <p class="leading-8 py-1">
-                    First, it clears the AI's target, then moves to the player's position until it reaches a certain threshold. It then sets its focus on the player.
-                </p>
-                <p class="leading-8 py-1">
-                    Before looping back, the AI pauses for a second to prevent it from instantly resuming movement.
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- FOLLOW CODE TEXT -->
+            <section id="follow-code-text" class="code-text-section">
+                <h2 class="code-text-heading">FOLLOW TASK</h2>
+                <p class="leading-8">
+                    The Follow Behavior makes the AI follow the player.
+                    <br>
+                    The sequence of the task is:
+                    <p>
+                        <span class="font-bold">Clear Focus -</span>
+                        <span class="italic">Removes the current target.</span>
+                        <br>
+                        <span class="font-bold">Move -</span>
+                        <span class="italic">Takes the shortest path to the player.</span>
+                        <br>
+                        <span class="font-bold">Focus -</span>
+                        <span class="italic">Looks at the player.</span>
+                        <br>
+                        <span class="font-bold">Wait -</span>
+                        <span class="italic">Pause for a second to not instantly resume following.</span>
+                    </p>
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
-                <button 
-                class="toggleButton absolute top-4 right-4"
-                onclick="toggleImage('bpimage2')">
-                ↺
-                </button>
-                <div class="p-6 h-fit flex justify-center items-center">
-                    <div id="image-container">
-                        <img id="bpimage2" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Follow.png" alt="">
-                    </div>
+            <!-- FOLLOW CODE -->
+            <aside class="code-example-section">
+                <div class="overflow-hidden border-2 border-zinc-700 rounded-md">
+                    <img class="md:scale-125 scale-150" src="Images/Projects/LB_Behavior_Follow.png" alt="">
                 </div>
             </aside>
         </div>
 
-        <!-- Code Example 3 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
-                <button 
-                class="toggleButton absolute top-4 right-4"
-                onclick="toggleImage('bpimage3')">
-                ↺
-                </button>
-                <div class="p-6 h-fit flex justify-center items-center">
-                    <div id="image-container">
-                        <img id="bpimage3" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Waypoint.png" alt="">
-                    </div>
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- WAYPOINT CODE -->
+            <section class="code-example-section">
+                <div class="overflow-hidden border-2 border-zinc-700 rounded-md">
+                    <img class="md:scale-125 scale-150" src="Images/Projects/LB_Behavior_Waypoint.png" alt="">
                 </div>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Waypoint Task</h2>
-                <p class="leading-8 py-1">
-                    The Waypoint Behavior moves the AI to a specific position or along a predefined sequence.
-                </p>
-                <p class="leading-8 py-1">
-                    It begins by clearing the AI's target, then locates the correct waypoint and moves toward it.
-                </p>
-                <p class="leading-8 py-1">
-                    After reaching the waypoint, the AI's state is updated based on the next intended action.
+            <!-- WAYPOINT CODE TEXT -->
+            <aside id="waypoint-code-text" class="code-text-section">
+                <h2 class="code-text-heading">WAYPOINT TASK</h2>
+                <p class="leading-8">
+                    The Waypoint Behavior gets a set position for the AI to move to.
+                    <br>
+                    The sequence of the Task is:
+                    <p>
+                        <span class="font-bold">Clear Focus -</span>
+                        <span class="italic">Removes the current target.</span>
+                        <br>
+                        <span class="font-bold">Find Waypoint -</span>
+                        <span class="italic">Gets a specific postion from a predefined list of waypoints.</span>
+                        <br>
+                        <span class="font-bold">Move -</span>
+                        <span class="italic">Takes the shortest path to the waypoint.</span>
+                        <br>
+                        <span class="font-bold">Set State -</span>
+                        <span class="italic">Updates to a new AI state based on the next intended action.</span>
+                        <br>
+                    </p>
                 </p>
             </aside>    
         </div>
 
-        <!-- Code Example 4 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Wait Task</h2>
-                <p class="leading-8 py-1">
-                    The Wait Behavior is also straightforward, it keeps the AI in place until told otherwise.
-                </p>
-                <p class="leading-8 py-1">
-                    The AI performs two actions, it clears its target and then sets its target to the player.
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- WAIT CODE TEXT -->
+            <section id="wait-code-text" class="code-text-section">
+                <h2 class="code-text-heading">WAIT TASK</h2>
+                <p class="leading-8">
+                    The Wait Behavior is an idle state. I makes the AI stand still.
+                    <br>
+                    There are two actions in the sequence:
+                    <p>
+                        <span class="font-bold">Clear Focus -</span>
+                        <span class="italic">Removes the current target.</span>
+                        <br>
+                        <span class="font-bold">Focus -</span>
+                        <span class="italic">Sets player as the target.</span>
+                        <br>
+                    </p>
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
-                <button 
-                class="toggleButton absolute top-4 right-4"
-                onclick="toggleImage('bpimage4')">
-                ↺
-                </button>
-                <div class="p-6 h-fit flex justify-center items-center">
-                    <div id="image-container">
-                        <img id="bpimage4" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Wait.png" alt="">
-                    </div>
+            <!-- WAIT CODE -->
+            <aside class="code-example-section">
+                <div class="overflow-hidden border-2 border-zinc-700 rounded-md">
+                    <img class="md:scale-125 scale-150" src="Images/Projects/LB_Behavior_Wait.png" alt="">
                 </div>
             </aside>
         </div>
 
-        <!-- Code Example 5 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
-                <button 
-                class="toggleButton absolute top-4 right-4"
-                onclick="toggleImage('bpimage5')">
-                ↺
-                </button>
-                <div class="p-6 h-fit flex justify-center items-center">
-                    <div id="image-container">
-                        <img id="bpimage5" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_OutOfRange.png" alt="">
-                    </div>
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- OUT OF RANGE CODE -->
+            <section class="code-example-section">
+                <div class="overflow-hidden border-2 border-zinc-700 rounded-md">
+                    <img class="md:scale-125 scale-150" src="Images/Projects/LB_Behavior_OutOfRange.png" alt="">
                 </div>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Out of Range Task</h2>
-                <p class="leading-8 py-1">
-                    The Out of Range Behavior ensures the AI never strays too far away from the player. 
-                    It is primarily used when the AI is leading and guiding the player.
-                </p>
-                <p class="leading-8 py-1">
-                    If the player moves outside a predefined range, the AI clears its target and pauses briefly.
-                    It then begins moving towards the player until it reaches a set threshold.
-                </p>
-                <p class="leading-8 py-1">
-                    Once the threshold is reached, the AI stops, waits, and focuses on the player until they catch up again.
+            <!-- OUT OF RANGE CODE TEXT -->
+            <aside id="outrange-code-text" class="code-text-section">
+                <h2 class="code-text-heading">OUT OF RANGE TASK</h2>
+                <p class="leading-8">
+                    The Out of Range Behavior makes the AI stay within a certain distance to the player, and not run to far ahead.                  
+                    <br>
+                    The Task sequence is:
+                    <p>
+                        <span class="font-bold">Clear Focus -</span>
+                        <span class="italic">Removes the current target.</span>
+                        <br>
+                        <span class="font-bold">Wait -</span>
+                        <span class="italic">Pause for a short moment.</span>
+                        <br>
+                        <span class="font-bold">Move -</span>
+                        <span class="italic">Takes the shortest path to the player until a set threshold is reached.</span>
+                        <br>
+                        <span class="font-bold">Wait -</span>
+                        <span class="italic">Pause for a short moment.</span>
+                        <br>
+                        <span class="font-bold">Focus -</span>
+                        <span class="italic">Looks at the player until they reach a set threshold and catch up.</span>
+                        <br>
+                    </p>
                 </p>
             </aside>    
         </div>
 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 6 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Talk Task</h2>
-                <p class="leading-8 py-1">
-                    The Talk Behavior helps the player solve puzzles and decode game's language.
-                <p class="leading-8 py-1">
-                    It begins by clearing the AI's focus target, then moves in front of the player within a set range and focuses on them. 
-                </p>
-                <p class="leading-8 py-1">
-                    The AI then "speaks" with the player by displaying a glyph with a specific meaning.
-                    The glyph remains visible for a short time before the AI stops displaying it.
-                </p>
-                <p class="leading-8 py-1">
-                    Lastly the AI's state is updated based on the next intended action.
-                </p>
+        <div class="code-container">
+            <!-- TALK CODE TEXT -->
+            <section id="talk-code-text" class="code-text-section">
+                <h2 class="code-text-heading">TALK TASK</h2>
+                <p class="leading-8">
+                    The Talk Behavior is used to show the player glyphs to learn the language.
+                    <br>
+                    The talk sequence goes:
+                    <p>
+                        <span class="font-bold">Clear Focus -</span>
+                        <span class="italic">Removes the current target.</span>
+                        <br>
+                        <span class="font-bold">Face Player -</span>
+                        <span class="italic">Moves in front of player, keeping a set distance between them.</span>
+                        <br>
+                        <span class="font-bold">Focus -</span>
+                        <span class="italic">Sets player as the target.</span>
+                        <br>
+                        <span class="font-bold">Talk -</span>
+                        <span class="italic">Displays a glyph.</span>
+                        <br>
+                        <span class="font-bold">Wait -</span>
+                        <span class="italic">Waits for a short moment.</span>
+                        <br>
+                        <span class="font-bold">Stop </span>
+                        <span class="italic">Stops displaying glyph.</span>
+                        <br>
+                        <span class="font-bold">Set State</span>
+                        <span class="italic">Updates to a new AI state based on the next intended action.</span>
+                        <br>
+                    </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
-                <button 
-                class="toggleButton absolute top-4 right-4"
-                onclick="toggleImage('bpimage6')">
-                ↺
-                </button>
-                <div class="p-6 h-fit flex justify-center items-center">
-                    <div id="image-container">
-                        <img id="bpimage6" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_Talk.png" alt="">
-                    </div>
+            <!-- TALK CODE -->
+            <aside class="code-example-section">
+                <div class="overflow-hidden border-2 border-zinc-700 rounded-md">
+                    <img class="scale-110" src="Images/Projects/LB_Behavior_Talk.png" alt="">
                 </div>
             </aside>
         </div>
 
-        <!-- Code Example 7 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
-                <button 
-                class="toggleButton absolute top-4 right-4"
-                onclick="toggleImage('bpimage7')">
-                ↺
-                </button>
-                <div class="p-6 h-fit flex justify-center items-center">
-                    <div id="image-container">
-                        <img id="bpimage7" class="image-example rounded-3xl h-fit" src="Images/Projects/LB_Behavior_ShowGlyph.png" alt="">
-                    </div>
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- SHOW GLYPH CODE -->
+            <section class="code-example-section">
+                <div class="overflow-hidden border-2 border-zinc-700 rounded-md">
+                    <img class="scale-110" src="Images/Projects/LB_Behavior_ShowGlyph.png" alt="">
                 </div>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Show Glyph Task</h2>
-                <p class="leading-8 py-1">
-                    The Show Glyph Behavior is almost identical to the Talk Behavior. 
-                </p>
-                <p class="leading-8 py-1">
-                    The main difference is that the AI does not move to the player to display a glyph, it simply shows it from its current position.
-                </p>
-                <p class="leading-8 py-1">
-                    It begins be resetting its focus on the player, displays the glyph for a short time, and then updateds its state.
+            <!-- SHOW GLYPH CODE TEXT -->
+            <aside id="glyph-code-text" class="code-text-section">
+                <h2 class="code-text-heading">SHOW GLYPH TASK</h2>
+                <p class="leading-8">
+                    The Show Glyph Behavior is also used to show the player glyphs.
+                    The difference is, the AI displays the glyph from its current position, instead of in front of the player.
+                    <br>
+                    The sequence of the task is:
+                    <p>
+                        <span class="font-bold">Clear Focus -</span>
+                        <span class="italic">Removes the current target.</span>
+                        <br>
+                        <span class="font-bold">Focus -</span>
+                        <span class="italic">Sets player as the target.</span>
+                        <br>
+                        <span class="font-bold">Talk -</span>
+                        <span class="italic">Displays a glyph.</span>
+                        <br>
+                        <span class="font-bold">Wait -</span>
+                        <span class="italic">Waits for a short moment.</span>
+                        <br>
+                        <span class="font-bold">Stop </span>
+                        <span class="italic">Stops displaying glyph.</span>
+                        <br>
+                        <span class="font-bold">Set State</span>
+                        <span class="italic">Updates to a new AI state based on the next intended action.</span>
+                        <br>
+                    </p>
                 </p>
             </aside>    
         </div>
@@ -327,53 +360,6 @@
             const element = document.getElementById(id);
             if (element) {
                 element.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-        }
-    </script>
-
-    <script>
-        const viewers = {};
-
-        document.querySelectorAll('.image-example').forEach((image) => {
-            const viewerInstance = new Viewer(image, {
-                inline: true,
-                button: false,
-                zoomable: true,
-                scalable: false,
-                movable: true,
-                toolbar: false,
-                backdrop: false,
-                navbar: false,
-                title: false,
-                tooltip: false,
-                initialCoverage: 1,
-
-                viewed() {
-                    viewerInstance.zoomTo(.55);
-                }
-            });
-
-            viewers[image.id] = viewerInstance;
-        });
-
-        function toggleImage(id) {
-            if (viewers[id]) 
-            {
-                viewers[id].reset();
-                viewers[id].zoomTo(0.55);
-            }
-        }
-    </script>
-
-    <script>
-        function toggleOverflow(id) {
-            const preElement = document.getElementById(id);
-            if (preElement.classList.contains("h-96")) {
-                preElement.classList.remove("h-96");
-                preElement.classList.add("h-fit");
-            } else {
-                preElement.classList.remove("h-fit");
-                preElement.classList.add("h-96");
             }
         }
     </script>
