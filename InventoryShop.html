@@ -290,7 +290,7 @@ public class InventorySystem
             <aside id="inventorysystem-code-text" class="code-text-section">
                 <h2 class="code-text-heading">INVENTORY SYSTEM</h2>
                 <p class="leading-8">
-                    The Inventory System class handles a mulitude of things. 
+                    The InventorySystem class handles a mulitude of things. 
                     <p>
                         <span class="font-bold">Slots -</span>
                         <span class="italic">Maintains a list of slots, tracks available slots, and places new items in appropriate slots.</span>
@@ -300,13 +300,6 @@ public class InventorySystem
                         <br>
                         <span class="font-bold">Transactions - </span>
                         <span class="italic">Checks availability of slots before shop purchases. Tracks gold amount.</span>
-                        <br>
-                        <span class="font-bold"></span>
-                        <span class="italic"></span>
-                        <br>
-                        <span class="font-bold"></span>
-                        <span class="italic"></span>
-                        <br>
                     </p>
                 </p>
             </aside>    
@@ -316,20 +309,26 @@ public class InventorySystem
         <div class="divider"></div>
 
         <div class="code-container">
-            <!-- ITEM SLOT CODE TEXT -->
+            <!-- INVENTORY ITEM SLOT CODE TEXT -->
             <section id="itemslot-code-text" class="code-text-section">
                 <h2 class="code-text-heading">INVENTORY ITEM SLOT</h2>
                 <p class="leading-8">
-                    The InventoryItemSlot class is a base class for managing individual inventory slots. It handles items assignment and stacking.
-                    <br>
-                    Item management allows assigning items to a slot by either adding to an existing item stack or completely overwriting it with a new item.
+                    The InventoryItemSlot class is a base class.
+                    It is used for individual slots, and handles assigning and stacking items in a slot.
+                    <p>
+                        <span class="font-bold">Adding to slot:</span>
+                        <br>
+                        <span class="italic">
+                            - A slot containing the same item will add the new item to the stack.
+                            <br>
+                            - A slot with a different item will swap them, adding the new item to the slot.
+                        </span>
+                    </p>
                     It also tracks the item type, it's stack size and ID.
-                    <br>
-                    Stacking manages adding and removing items from an item stack, and clearing the slot when the stack size reach zero.
                 </p>
             </section>
 
-            <!-- ITEM SLOT CODE -->
+            <!-- INVENTORY ITEM SLOT CODE -->
             <aside class="code-example-section">
                 <button 
                 class="toggleButton border-0 absolute top-10 right-10"
@@ -508,15 +507,22 @@ public class InventorySlot : InventoryItemSlot
             <aside id="inventoryslot-code-text" class="code-text-section">
                 <h2 class="code-text-heading">INVENTORY SLOT</h2>
                 <p class="leading-8">
-                    The InventorySlot class inherits from InventoryItemSlot, adding more functionality for managing inventory slots.
-                    <br>
-                    The constructors let you create an empty slot or initialize a slot with an item and stack size. 
-                    <br>
-                    Updating a slot overwrites it with a new item and stacksize.
-                    <br>
-                    Stack management checks if items can be added to a stack and returns the available space left.
-                    <br>
-                    Splitting a stack takes half the items and returns a slot with the other half of the stack.
+                    The InventorySlot class inherits from InventoryItemSlot.
+                    It adds:
+                    <p>
+                        <span class="font-bold">Constructors -</span>
+                        <span class="italic">Create an empty slot, or initialize a slot with a set item and stack size.</span>
+                        <br>
+                        <span class="font-bold">Update -</span>
+                        <span class="italic">Overwrite a slot with a new item and stack size.</span>
+                        <br>
+                        <span class="font-bold">Stacks -</span>
+                        <span class="italic">Checks if an item can be added, and returns the available space. Split a stack in half if it contains more than one item.</span>
+                        <br>
+                        <span class="font-bold"></span>
+                        <span class="italic"></span>
+                        <br>
+                    </p>
                 </p>
             </aside>    
         </div>
@@ -529,14 +535,17 @@ public class InventorySlot : InventoryItemSlot
             <section id="inventoryslotUI-code-text" class="code-text-section">
                 <h2 class="code-text-heading">INVENTORY SLOT UI</h2>
                 <p class="leading-8">
-                    The InventorySlotUI class manages the visual representation of an inventory slot.
-                    <br>
-                    It displays an item's sprite and stack size in the UI and is linked to an InventorySlot, which holds the actual item data.
-                    <br>
-                    The UI slot is initialized and updated based on the values of the underlying InventorySlot. 
-                    It can also be refreshed without assigning new values, ensuring the UI is synced properly.
-                    <br>
-                    When a slot is clicked, the appropriate callback is triggered in the InventoryDisplay class.
+                    The InventorySlotUI class handles the visual side of an inventory slot.
+                    <p>
+                        <span class="font-bold">Display -</span>
+                        <span class="italic">Shows the item sprite and stack size in the UI.</span>
+                        <br>
+                        <span class="font-bold">Update -</span>
+                        <span class="italic">When the values of a slot changes the UI side is updated. It can also be refreshed without changing values, ensuring the UI is synchronized.</span>
+                        <br>
+                        <span class="font-bold">OnClick -</span>
+                        <span class="italic">Clicking a slot will trigger callbacks in the InventoryDisplay class.</span>
+                    </p>
                 </p>
             </section>
 
@@ -786,16 +795,15 @@ public abstract class InventoryDisplay : MonoBehaviour
             <aside id="inventorydisplay-code-text" class="code-text-section">
                 <h2 class="code-text-heading">INVENTORY DISPLAY</h2>
                 <p class="leading-8">
-                    The Inventory Display class manages the visual interaction and logic of an inventory system. 
-                    It references the inventory system and links the UI to the underlying data.
-                    <br>
-                    When an inventory slot changes, the UI is updated to reflect the new values.
-                    <br>
-                    It tracks the selected item, and when a slot is clicked, various actions are performed, such as selecting, swapping, stacking or splitting items.
-                    <br>
-                    The class also handles mvoing items between slots, merging them into stacks when possible and managing overflow or stack limits.
-                    <br>
-                    Overall, it ensures that the UI and underlying data remain in sync.
+                    The InventoryDisplay class handles the visual side of an inventory system. 
+                    It synchronizes the UI with the underlying data.
+                    <p>
+                        <span class="font-bold">Selected slot -</span>
+                        <span class="italic">Clicking a slot will execute an action. Selecting, swapping, stacking, or splitting items.</span>
+                        <br>
+                        <span class="font-bold">New values -</span>
+                        <span class="italic">When a slot changes, the UI is updated correctly to reflect the new value of the slot.</span>
+                    </p>
                 </p>
             </aside>    
         </div>
@@ -808,13 +816,17 @@ public abstract class InventoryDisplay : MonoBehaviour
             <section id="shopsystem-code-text" class="code-text-section">
                 <h2 class="code-text-heading">SHOP SYSTEM</h2>
                 <p class="leading-8">
-                    The ShopSystem class manages shop inventory slots, inherited from InventoryItemSlot, and handles item transactions.
-                    <br>
-                    It maintains a list of inventory slots containing specific items, tracks available gold, and supports buying and selling with adjustable price markups.
-                    <br>
-                    Gold and inventory are updated accordingly when transactions occur.
-                    <br>
-                    The system checks if an item already exists in stock, allowing it to add, merge or remove items based on the action taken.
+                    The ShopSystem class handles shop items and slots, as well as transactions.
+                    <p>
+                        <span class="font-bold">Slots -</span>
+                        <span class="italic">Maintains a list of shop slots, inherited from the InventoryItemSlot class. tracks available slots, and places new items in appropriate slots.</span>
+                        <br>
+                        <span class="font-bold">Items -</span>
+                        <span class="italic">Checks if an item exists in stock. Add, remove, or merge items based on the action.</span>
+                        <br>
+                        <span class="font-bold">Transactions -</span>
+                        <span class="italic">Updates gold and inventory accordingly. Supports buying and selling with price markups.</span>
+                    </p>
                 </p>
             </section>
 
@@ -1243,10 +1255,14 @@ public class ShopKeeperDisplay : MonoBehaviour
             <aside id="shopdisplay-code-text" class="code-text-section">
                 <h2 class="code-text-heading">SHOP DISPLAY</h2>
                 <p class="leading-8">
-                    The ShopKeeperDisplay class manages the visual representaion and functionality of a shop. 
-                    It displays both the shop's inventory, the player's iventory and the shopping cart.
-                    <br>
-                    It allows the player to toggle between buying and selling modes, tracks the total price of the items in the cart, and updates the gold amount for both the player and the shop accordingly.
+                    The ShopKeeperDisplay class handles the visual side of a shop system.
+                    <p>
+                        <span class="font-bold">Display -</span>
+                        <span class="italic">Shows the shop inventory, the player inventory and the shopping cart.</span>
+                        <br>
+                        <span class="font-bold">Shop mode -</span>
+                        <span class="italic">Toggle between buying and selling. Tracks the total price of the shopping cart, and updates the gold for the player and the shop accordingly.</span>
+                    </p> 
                 </p>
             </aside>    
         </div>
@@ -1259,10 +1275,11 @@ public class ShopKeeperDisplay : MonoBehaviour
             <section id="savesystem-code-text" class="code-text-section">
                 <h2 class="code-text-heading">SAVE SYSTEM</h2>
                 <p class="leading-8">
-                    The SaveLoad class manages saving, loading and deleting game data.
+                    The SaveLoad class handles saving, loading, and deleting game data.
                     <br>
-                    It saves the game data in JSON format to a specified file, loads the data from the file, and triggeres a callback when loading. 
-                    If a save file exists, it can also be deleted.
+                    The game data is saved in a JSON format.
+                    <br>
+                    Loading the data triggeres appropriate callbacks. 
                 </p>
             </section>
 
