@@ -46,9 +46,12 @@ html {
     @apply drop-shadow-xs drop-shadow-green-500 p-4 rounded-md text-2xl text-center;
 }
 
-.navigation-bar {
-    @apply sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 gap-2 md:justify-evenly justify-center bg-zinc-900 opacity-90 rounded-md p-4 my-8;
+@layer components {
+    .navigation-bar {
+        @apply sticky top-4 z-50 flex flex-wrap md:flex-row space-x-4 gap-2 md:justify-evenly justify-center bg-zinc-900 opacity-90 rounded-md p-4 my-8;
+    }
 }
+
 
 @layer components {
     .code-navigation-button {

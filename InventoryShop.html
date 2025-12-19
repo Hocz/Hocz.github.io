@@ -12,108 +12,99 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
 </head>
 
-<body class="bg-teal-900 text-white font-exo2">
+<body class="bg-zinc-800 text-white font-exo2">
     
-    <!-- Header -->
-    <header class="header-section">
-        <!-- Left Section -->
-        <div class="header-left">
-            <h1 class="header-title">RASMUS GÖRANSSON</h1>
-            <div class="personal-info mt-4 md:mt-2 flex justify-between items-start">
-                <h2 class="header-subtitle">GAME PROGRAMMER</h2>
-                <div class="social-links flex space-x-4">
-                    <a href="https://www.linkedin.com/in/rasmus-g/" target="_blank">
-                        <img src="../Images/linkedin_icon.png" alt="LinkedIn" class="social-link-icon">
-                    </a>
-                    <a href="https://github.com/Hocz" target="_blank">
-                        <img src="../Images/github_icon.png" alt="GitHub" class="social-link-icon">
-                    </a>
-                    <a href="../Documents/Rasmus_Göransson_CV(ENG).pdf" target="_blank">
-                        <img src="../Images/cv_icon.png" alt="CV" class="social-link-icon">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="header-right mt-4 md:mt-0 flex flex-col items-center">
+    <header>
+        <div>
             <nav>
-                <ul class="flex space-x-4 text-center py-0 pr-8">
-                    <li><a href="index.html" class="nav-link rounded-xl border-2 border-green-500">HOME</a></li>
-                    <li><a href="about.html" class="nav-link rounded-xl border-2 border-green-500">ABOUT ME</a></li>
+                <ul class="flex text-center justify-center pt-4">
+                    <li><a href="index.html" class="nav-link text-xl">HOME</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8 text-white">
-        <!-- Content Area -->
+
         <div id="top" class="flex flex-col md:flex-row md:space-x-8">
-            <!-- Main Content -->
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md rounded-3xl">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500">Inventory Shop System</h2>
-                <p class="leading-8 text-xl py-4">
-                    The Inventory Shop System is as it sounds, the project consist of an Inventory System and a Shop System.
-                    <br>There is also an added bonus of a Saving system that keeps track of all different inventories: Player, Chests and Shops.
-                </p>
-                <p class="leading-8 text-xl py-4">
-                    The Inventory System is inspired by Minecraft's inventory. 
-                    You can pick up, place and split an item slot.
-                </p>
-                <p class="leading-8 text-xl py-4">
-                    The Shop System is fully customizable and allows you to choose what items should be sold and how many are available. 
-                    Additionally you can set how much gold the shop keeper should have and if items should have a markup or not.
-                </p>
-                <p class="leading-8 text-xl py-4">
+            <!-- INVENTORY | SHOP -->
+            <section class="md:w-2/3 bg-zinc-900 bg-opacity-90 p-4 rounded-md text-lg leading-8">
+                <h2 class="text-4xl font-semibold mb-4 text-green-500">Inventory and Shop System</h2>
+                <p class="py-4">
+                    This project is a showcase of a dynamic and adaptable Inventory and Shop System.
+                    <p>
+                        As a side feature, I added a saving system, which saves the inventories of the:
+                        <br>
+                        - Player
+                        <br>
+                        - Chests
+                        <br>
+                        - Shops
+                    </p>
+                    <br>
+                    The Inventory system is inspired by Minecraft, it lets you, pick up, place, and split item slots.
+                    <br>
+                    <p>
+                        The shop system is similar to shops in Skyrim, but can be customized to fit any style.
+                        <br>
+                        - Choose what items to be sold and the quantity of availabe items. 
+                        <br>
+                        - Set how much gold shop keepers have.
+                        <br>
+                        - Set if items have a markup.
+                    </p>    
+                    <br>                
                     Both systems are made to be very flexible and easily adapted into a different style.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 shadow-md my-8 md:my-0 rounded-3xl">
+            <!-- WHY -->
+            <aside class="md:w-1/3 bg-zinc-900 bg-opacity-90 p-4 my-8 md:my-0 rounded-md">
                 <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">Why?</h2>
-                <div>
-                    <p class="leading-8 text-xl py-1">
-                        Some of my favorite genres in video games is survival craft and open world. 
-                    </p>
-                    <p class="leading-8 text-xl py-1">
-                        Games like Minecraft, Terraria and Skyrim all have inventories and all three have some sort of shop system.
-                    </p>
-                    <p class="leading-8 text-xl py-1">
+                <div class="text-lg leading-8 py-2">
+                    <p>
+                        Some of my favorite genres in video games is survival craft and open world.
+                        <br>
+                        Games like Minecraft, Terraria, and Skyrim all have inventories, and all have some sort of shop system.
+                        <br>
+                        <br>
                         I wanted to learn how these system could look and how they work. 
-                    </p>
-                    <p class="leading-8 text-xl py-1">
-                        It is also something that can be found in a majority of games so I thought it would be a fun project to make.
+                        <br>
+                        <br>
+                        It is also a feature that can be found in a majority of games so I thought it would be a fun project to make.
                     </p>
             </aside>
         </div>
 
-        <div>
-            <iframe class="my-8 border-4 border-teal-950 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/Rqy3DvBl2e4?si=usd_QHuEDL-iBgGl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="flex justify-center">
+            <iframe class="my-8 border-2 border-zinc-900 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/Rqy3DvBl2e4?si=usd_QHuEDL-iBgGl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
-        <!-- Code Snippets Buttons-->
-        <div class="sticky top-4 z-50 flex flex-wrap md:flex-row md:space-x-8 justify-center gap-2 bg-neutral-900 bg-opacity-80 rounded-3xl p-4 my-8">
-            <button class="code-snippet-button text-2xl" onclick="scrollToElement('top')">↑</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code1example')">Inventory System</button>
-            <button class="code-snippet-button" onclick="scrollToElement('code2example')">Item Slot</button>      
-            <button class="code-snippet-button" onclick="scrollToElement('code3example')">Inventory Slot</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code4example')">Inventory Slot UI</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code5example')">Inventory Display</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code6example')">Shop System</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code7example')">Shop Display</button>    
-            <button class="code-snippet-button" onclick="scrollToElement('code8example')">Save System</button>    
+        <!-- NAVIGATION BUTTONS-->
+        <div class="navigation-bar space-x-2 gap-0">
+            <button class="code-navigation-button text-2xl" onclick="scrollToElement('top')">↑</button>
+            <button class="code-navigation-button" onclick="scrollToElement('inventorysystem-code-text')">INVENTORY SYSTEM</button>
+            <button class="code-navigation-button" onclick="scrollToElement('itemslot-code-text')">ITEM SLOT</button>      
+            <button class="code-navigation-button" onclick="scrollToElement('inventoryslot-code-text')">INVENTORY SLOT</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('inventoryslotUI-code-text')">INVENTORY SLOT UI</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('inventorydisplay-code-text')">INVENTORY DISPLAY</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('shopsystem-code-text')">SHOP SYSTEM</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('shopdisplay-code-text')">SHOP DISPLAY</button>    
+            <button class="code-navigation-button" onclick="scrollToElement('savesystem-code-text')">SAVE SYSTEM</button>    
         </div>
         
-        <!-- Code Example 1 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+             <!-- INVENTORY SYSTEM CODE -->
+            <section class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code1pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('inventorysystem-code-example')">
                 ⇅
                 </button>
-                <pre id="code1pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="inventorysystem-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 [Serializable]
 public class InventorySystem
@@ -295,50 +286,57 @@ public class InventorySystem
                 </pre>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code1example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-96 overflow-y-auto">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory System</h2>
-                <p class="leading-8 py-1">
-                    The Inventory System class manages an inventory by handling item storage, retrieval and transaction processing while also tracking a gold amount.
-                    It takes care of adding, removing and checking items in the inventory.
-                </p>
-                <p class="leading-8 py-1">
-                    Inventory management involves maintaining a list of inventory slots, stacking items of the same type, and placing new items in the appropriate slot.
-                </p>
-                <p class="leading-8 py-1">
-                    Item handling ensures that items are added based on stack limits and available slots while allowing the removal of a specified amount. It also checks whether an item exists in the inventory.
-                </p>
-                <p class="leading-8 py-1">
-                    Capacity management includes finding the first available empty slot and simulating available inventory space before shop purchases to prevent overfilling.
+            <!-- INVENTORY SYSTEM CODE TEXT -->
+            <aside id="inventorysystem-code-text" class="code-text-section">
+                <h2 class="code-text-heading">INVENTORY SYSTEM</h2>
+                <p class="leading-8">
+                    The Inventory System class handles a mulitude of things. 
+                    <p>
+                        <span class="font-bold">Slots -</span>
+                        <span class="italic">Maintains a list of slots, tracks available slots, and places new items in appropriate slots.</span>
+                        <br>
+                        <span class="font-bold">Items -</span>
+                        <span class="italic">Add, stack, or remove items from slots. Ensuring stack limits are not exceeded, and checks if a specified item already exist.</span>
+                        <br>
+                        <span class="font-bold">Transactions - </span>
+                        <span class="italic">Checks availability of slots before shop purchases. Tracks gold amount.</span>
+                        <br>
+                        <span class="font-bold"></span>
+                        <span class="italic"></span>
+                        <br>
+                        <span class="font-bold"></span>
+                        <span class="italic"></span>
+                        <br>
+                    </p>
                 </p>
             </aside>    
         </div>
 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 2 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code2example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Item Slot</h2>
-                <p class="leading-8 py-1">
+        <div class="code-container">
+            <!-- ITEM SLOT CODE TEXT -->
+            <section id="itemslot-code-text" class="code-text-section">
+                <h2 class="code-text-heading">INVENTORY ITEM SLOT</h2>
+                <p class="leading-8">
                     The InventoryItemSlot class is a base class for managing individual inventory slots. It handles items assignment and stacking.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     Item management allows assigning items to a slot by either adding to an existing item stack or completely overwriting it with a new item.
                     It also tracks the item type, it's stack size and ID.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     Stacking manages adding and removing items from an item stack, and clearing the slot when the stack size reach zero.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- ITEM SLOT CODE -->
+            <aside class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code2pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('itemslot-code-example')">
                 ⇅
                 </button>
-                <pre id="code2pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="itemslot-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public class InventoryItemSlot : ISerializationCallbackReceiver
 {
@@ -431,15 +429,18 @@ public class InventoryItemSlot : ISerializationCallbackReceiver
             </aside>
         </div>
 
-        <!-- Code Example 3 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- INVENTORY SLOT CODE-->
+            <section class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code3pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('inventoryslot-code-example')">
                 ⇅
                 </button>
-                <pre id="code3pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="inventoryslot-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 [Serializable]
 public class InventorySlot : InventoryItemSlot
@@ -503,54 +504,50 @@ public class InventorySlot : InventoryItemSlot
                 </pre>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code3example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory Slot</h2>
-                <p class="leading-8 py-1">
+            <!-- INVENTORY SLOT CODE TEXT -->
+            <aside id="inventoryslot-code-text" class="code-text-section">
+                <h2 class="code-text-heading">INVENTORY SLOT</h2>
+                <p class="leading-8">
                     The InventorySlot class inherits from InventoryItemSlot, adding more functionality for managing inventory slots.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     The constructors let you create an empty slot or initialize a slot with an item and stack size. 
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     Updating a slot overwrites it with a new item and stacksize.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     Stack management checks if items can be added to a stack and returns the available space left.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     Splitting a stack takes half the items and returns a slot with the other half of the stack.
                 </p>
             </aside>    
         </div>
 
-        <!-- Code Example 4 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code4example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory Slot UI</h2>
-                <p class="leading-8 py-1">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- INVENTORY SLOT UI CODE TEXT -->
+            <section id="inventoryslotUI-code-text" class="code-text-section">
+                <h2 class="code-text-heading">INVENTORY SLOT UI</h2>
+                <p class="leading-8">
                     The InventorySlotUI class manages the visual representation of an inventory slot.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     It displays an item's sprite and stack size in the UI and is linked to an InventorySlot, which holds the actual item data.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     The UI slot is initialized and updated based on the values of the underlying InventorySlot. 
                     It can also be refreshed without assigning new values, ensuring the UI is synced properly.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     When a slot is clicked, the appropriate callback is triggered in the InventoryDisplay class.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- INVENTORY SLOT UI CODE -->
+            <aside class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code4pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('inventoryslotUI-code-example')">
                 ⇅
                 </button>
-                <pre id="code4pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="inventoryslotUI-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public class InventorySlotUI : MonoBehaviour
 {
@@ -633,15 +630,18 @@ public class InventorySlotUI : MonoBehaviour
             </aside>
         </div>
 
-        <!-- Code Example 5 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- INVENTORY DISPLAY CODE-->
+            <section class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code5pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('inventorydisplay-code-example')">
                 ⇅
                 </button>
-                <pre id="code5pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="inventorydisplay-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public abstract class InventoryDisplay : MonoBehaviour
 {
@@ -782,55 +782,50 @@ public abstract class InventoryDisplay : MonoBehaviour
                 </pre>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code5example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-96 overflow-y-auto">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Inventory Display</h2>
-                <p class="leading-8 py-1">
+            <!-- INVENTORY DISPLAY CODE TEXT -->
+            <aside id="inventorydisplay-code-text" class="code-text-section">
+                <h2 class="code-text-heading">INVENTORY DISPLAY</h2>
+                <p class="leading-8">
                     The Inventory Display class manages the visual interaction and logic of an inventory system. 
                     It references the inventory system and links the UI to the underlying data.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     When an inventory slot changes, the UI is updated to reflect the new values.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     It tracks the selected item, and when a slot is clicked, various actions are performed, such as selecting, swapping, stacking or splitting items.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     The class also handles mvoing items between slots, merging them into stacks when possible and managing overflow or stack limits.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     Overall, it ensures that the UI and underlying data remain in sync.
                 </p>
             </aside>    
         </div>
 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 6 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code6example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-96 overflow-y-auto">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Shop System</h2>
-                <p class="leading-8 py-1">
+        <div class="code-container">
+            <!-- SHOP SYSTEM CODE TEXT -->
+            <section id="shopsystem-code-text" class="code-text-section">
+                <h2 class="code-text-heading">SHOP SYSTEM</h2>
+                <p class="leading-8">
                     The ShopSystem class manages shop inventory slots, inherited from InventoryItemSlot, and handles item transactions.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     It maintains a list of inventory slots containing specific items, tracks available gold, and supports buying and selling with adjustable price markups.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     Gold and inventory are updated accordingly when transactions occur.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     The system checks if an item already exists in stock, allowing it to add, merge or remove items based on the action taken.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- SHOP SYSTEM CODE -->
+            <aside class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code6pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('shopsystem-code-example')">
                 ⇅
                 </button>
-                <pre id="code6pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="shopsystem-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 [Serializable]
 public class ShopSystem
@@ -936,15 +931,18 @@ public class ShopSystem
             </aside>
         </div>
 
-        <!-- Code Example 7 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-8 relative">
-            <section class="md:w-2/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl relative">
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- SHOP DISPLAY CODE -->
+            <section class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code7pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('shopdisplay-code-example')">
                 ⇅
                 </button>
-                <pre id="code7pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="shopdisplay-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public class ShopKeeperDisplay : MonoBehaviour
 {
@@ -1241,41 +1239,41 @@ public class ShopKeeperDisplay : MonoBehaviour
                 </pre>
             </section>
 
-            <!-- Sidebar -->
-            <aside id="code7example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Shop Display</h2>
-                <p class="leading-8 py-1">
+            <!-- SHOP DISPLAY CODE TEXT -->
+            <aside id="shopdisplay-code-text" class="code-text-section">
+                <h2 class="code-text-heading">SHOP DISPLAY</h2>
+                <p class="leading-8">
                     The ShopKeeperDisplay class manages the visual representaion and functionality of a shop. 
                     It displays both the shop's inventory, the player's iventory and the shopping cart.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     It allows the player to toggle between buying and selling modes, tracks the total price of the items in the cart, and updates the gold amount for both the player and the shop accordingly.
                 </p>
             </aside>    
         </div>
 
+        <!-- DIVIDER -->
+        <div class="divider"></div>
 
-        <!-- Code Example 8 -->
-        <div class="code-info flex flex-col md:flex-row md:space-x-8 mt-20">
-            <section id="code8example" class="md:w-1/3 bg-neutral-900 bg-opacity-80 p-6 rounded-3xl h-fit">
-                <h2 class="text-3xl font-semibold mb-4 text-green-500 shadow-md shadow-black p-2 text-center rounded-2xl">Save System</h2>
-                <p class="leading-8 py-1">
+        <div class="code-container">
+            <!-- SAVE SYSTEM CODE TEXT -->
+            <section id="savesystem-code-text" class="code-text-section">
+                <h2 class="code-text-heading">SAVE SYSTEM</h2>
+                <p class="leading-8">
                     The SaveLoad class manages saving, loading and deleting game data.
-                </p>
-                <p class="leading-8 py-1">
+                    <br>
                     It saves the game data in JSON format to a specified file, loads the data from the file, and triggeres a callback when loading. 
                     If a save file exists, it can also be deleted.
                 </p>
             </section>
 
-            <!-- Sidebar -->
-            <aside class="md:w-2/3 bg-neutral-900 bg-opacity-80 rounded-3xl p-6 my-8 md:my-0 relative">
+            <!-- SAVE SYSTEM CODE -->
+            <aside class="code-example-section">
                 <button 
-                class="toggleButton absolute top-10 right-10"
-                onclick="toggleOverflow('code8pre')">
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('savesystem-code-example')">
                 ⇅
                 </button>
-                <pre id="code8pre" class="p-4 rounded-3xl h-96 overflow-y-auto">
+                <pre id="savesystem-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
 public static class SaveLoad
 {
@@ -1358,12 +1356,15 @@ public static class SaveLoad
     <script>
         function toggleOverflow(id) {
             const preElement = document.getElementById(id);
-            if (preElement.classList.contains("h-96")) {
-                preElement.classList.remove("h-96");
-                preElement.classList.add("h-fit");
+            let height = "h-80";
+            let fullHeight = "h-fit";
+
+            if (preElement.classList.contains(height)) {
+                preElement.classList.remove(height);
+                preElement.classList.add(fullHeight);
             } else {
-                preElement.classList.remove("h-fit");
-                preElement.classList.add("h-96");
+                preElement.classList.remove(fullHeight);
+                preElement.classList.add(height);
             }
         }
     </script>
