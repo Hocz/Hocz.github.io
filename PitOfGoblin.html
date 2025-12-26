@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasmus Göransson - Pit Of Goblin</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap">
+
+    <link rel="stylesheet" href="../ScriptStyle/prism-vsc-dark-plus.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
+</head>
+
+<body class="bg-zinc-800 text-white font-exo2">
+
+    <header>
+        <div>
+            <nav>
+                <ul class="flex text-center justify-center pt-4">
+                    <li><a href="index.html" class="nav-link text-xl">HOME</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 text-white">
+        
+        <div id="top" class="flex flex-col md:flex-row md:space-x-8">
+            <!-- PIT OF GOBLIN -->
+            <section class="md:w-3/5 bg-zinc-900 bg-opacity-90 p-4 rounded-md text-lg leading-8">
+                <h2 class="text-4xl font-semibold mb-4 text-green-500">Pit Of Goblin</h2>
+                <p class="py-4">
+                    TEXT
+                </p>
+                    <!-- STEAM LINK -->
+                    <div class="flex items-center">
+                        <a href="https://store.steampowered.com/app/3253530/PIT_OF_GOBLIN/" target="_blank">
+                            <img src="../Images/steam_logo.png" alt="SteamPage" class="w-20 border-2 border-zinc-800 rounded-full hover:scale-125 transition-transform duration-200 ease-in-out">
+                        </a>
+                    </div>
+                </div>
+                
+            </section>
+
+            <!-- MY WORK -->
+            <aside class="md:w-2/5 bg-zinc-900 bg-opacity-90 p-4 my-8 md:my-0 rounded-md">
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">My Work</h2>
+                <div class="text-lg leading-8 py-2">
+                    <p>
+                        TEXT
+                    </p>
+                </div>
+            </aside>
+        </div>
+        
+        <!-- TRAILER LINK -->
+        <div class="flex justify-center">
+            <iframe class="my-8 border-2 border-zinc-900 bg-transparent place-self-center" width="800" height="450" src="https://youtu.be/ZBwuvy5JNc0?si=OMP5DI2DpGcn36sK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <!-- NAVIGATION BUTTONS-->
+        <div class="navigation-bar">
+            <button class="code-navigation-button text-2xl" onclick="scrollToElement('top')">↑</button>
+            <button class="code-navigation-button" onclick="scrollToElement('savesystem-code-text')">SAVE SYSTEM</button>
+            <button class="code-navigation-button" onclick="scrollToElement('ragdoll-code-text')">RAGDOLL</button>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- SAVE SYSTEM CODE -->
+            <section class="code-example-section">
+                <button 
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('savesystem-code-example')">
+                ⇅
+                </button>
+                <pre id="savesystem-code-example" class="code-example-preview h-80">
+                    <code class="language-csharp">
+CODE
+                    </code>
+                </pre>
+            </section>
+
+            <!-- SAVE SYSTEM CODE TEXT -->
+            <aside id="savesystem-code-text" class="code-text-section">
+                <h2 class="code-text-heading">SAVE SYSTEM</h2>
+                <p class="leading-8">
+                    TEXT
+                </p>
+            </aside>    
+        </div>
+        
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- RAGDOLL CODE TEXT -->
+            <section id="ragdoll-code-text" class="code-text-section">
+                <h2 class="code-text-heading">RAGDOLL</h2>
+                <p class="leading-8">
+                    TEXT
+                </p>
+            </section>
+
+            <!-- RAGDOLL CODE -->
+            <aside class="code-example-section">
+                <button 
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('ragdoll-code-example')">
+                ⇅
+                </button>
+                <pre id="ragdoll-code-example" class="code-example-preview h-80">
+                    <code class="language-csharp">
+CODE
+                    </code>
+                </pre>
+            </aside>
+        </div>
+
+    </main>
+
+    <script>
+        function scrollToElement(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+    </script>
+
+    <script>
+        function toggleOverflow(id) {
+            const preElement = document.getElementById(id);
+            let height = "h-80";
+            let fullHeight = "h-fit";
+
+            if (preElement.classList.contains(height)) {
+                preElement.classList.remove(height);
+                preElement.classList.add(fullHeight);
+            } else {
+                preElement.classList.remove(fullHeight);
+                preElement.classList.add(height);
+            }
+        }
+    </script>
+</body>
+</html>
