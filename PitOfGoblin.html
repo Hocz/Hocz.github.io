@@ -31,16 +31,16 @@
             <section class="md:w-3/5 bg-zinc-900 bg-opacity-90 p-4 rounded-md text-lg leading-8">
                 <h2 class="text-4xl font-semibold mb-4 text-green-500">Pit Of Goblin</h2>
                 <p class="py-4">
-                    TEXT
+                    In this online horror co-op, you play as a scrappy goblin, scavenging dungeons, dodging traps, and fleeing monsters to feed the Goblin King-Queen. 
+                    Team up with goblin pals, or go rogue, as you dive deep and cause chaos! Fail to feed them, and you might be the next meal!
                 </p>
-                    <!-- STEAM LINK -->
-                    <div class="flex items-center">
-                        <a href="https://store.steampowered.com/app/3253530/PIT_OF_GOBLIN/" target="_blank">
-                            <img src="../Images/steam_logo.png" alt="SteamPage" class="w-20 border-2 border-zinc-800 rounded-full hover:scale-125 transition-transform duration-200 ease-in-out">
-                        </a>
-                    </div>
-                </div>
-                
+
+                <!-- STEAM LINK -->
+                <div class="flex justify-between">
+                    <a href="https://store.steampowered.com/app/3253530/PIT_OF_GOBLIN/" target="_blank">
+                        <img src="../Images/steam_logo.png" alt="SteamPage" class="w-20 border-2 border-zinc-800 rounded-full hover:scale-125 transition-transform duration-200 ease-in-out">
+                    </a>
+                </div>               
             </section>
 
             <!-- MY WORK -->
@@ -56,14 +56,16 @@
         
         <!-- TRAILER LINK -->
         <div class="flex justify-center">
-            <iframe class="my-8 border-2 border-zinc-900 bg-transparent place-self-center" width="800" height="450" src="https://youtu.be/ZBwuvy5JNc0?si=OMP5DI2DpGcn36sK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe class="my-8 border-2 border-zinc-900 bg-transparent place-self-center" width="800" height="450" src="https://www.youtube.com/embed/ZBwuvy5JNc0?si=7X04UrJq6DHCZqmZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
         <!-- NAVIGATION BUTTONS-->
         <div class="navigation-bar">
             <button class="code-navigation-button text-2xl" onclick="scrollToElement('top')">↑</button>
             <button class="code-navigation-button" onclick="scrollToElement('savesystem-code-text')">SAVE SYSTEM</button>
-            <button class="code-navigation-button" onclick="scrollToElement('ragdoll-code-text')">RAGDOLL</button>
+            <button class="code-navigation-button" onclick="scrollToElement('ragdoll-code-text')">RAGDOLL ITEM</button>
+            <button class="code-navigation-button" onclick="scrollToElement('objectplace-code-text')">OBJECT PLACE</button>
+            <button class="code-navigation-button" onclick="scrollToElement('flag-code-text')">FLAG VALUE</button>
         </div>
 
         <!-- DIVIDER -->
@@ -99,7 +101,7 @@ CODE
         <div class="code-container">
             <!-- RAGDOLL CODE TEXT -->
             <section id="ragdoll-code-text" class="code-text-section">
-                <h2 class="code-text-heading">RAGDOLL</h2>
+                <h2 class="code-text-heading">RAGDOLL ITEM</h2>
                 <p class="leading-8">
                     TEXT
                 </p>
@@ -119,6 +121,61 @@ CODE
                 </pre>
             </aside>
         </div>
+
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- OBJECT PLACE CODE -->
+            <section class="code-example-section">
+                <button 
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('objectplace-code-example')">
+                ⇅
+                </button>
+                <pre id="objectplace-code-example" class="code-example-preview h-80">
+                    <code class="language-csharp">
+CODE
+                    </code>
+                </pre>
+            </section>
+
+            <!-- OBJECT PLACE CODE TEXT -->
+            <aside id="objectplace-code-text" class="code-text-section">
+                <h2 class="code-text-heading">OBJECT PLACE</h2>
+                <p class="leading-8">
+                    TEXT
+                </p>
+            </aside>    
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="divider"></div>
+
+        <div class="code-container">
+            <!-- FLAG VALUE CODE TEXT -->
+            <section id="flag-code-text" class="code-text-section">
+                <h2 class="code-text-heading">FLAG VALUE</h2>
+                <p class="leading-8">
+                    TEXT
+                </p>
+            </section>
+
+            <!-- FLAG VALUE CODE -->
+            <aside class="code-example-section">
+                <button 
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('flag-code-example')">
+                ⇅
+                </button>
+                <pre id="flag-code-example" class="code-example-preview h-80">
+                    <code class="language-csharp">
+CODE
+                    </code>
+                </pre>
+            </aside>
+        </div>
+
 
     </main>
 
