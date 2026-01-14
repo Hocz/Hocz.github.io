@@ -45,7 +45,7 @@
 
             <!-- MY WORK -->
             <aside class="md:w-2/5 bg-zinc-900 bg-opacity-90 p-4 my-8 md:my-0 rounded-md">
-                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">My Work</h2>
+                <h2 class="text-3xl font-semibold mb-4 text-center text-green-500">My Part</h2>
                 <div class="text-lg leading-8 py-2">
                     <p>
                         TEXT
@@ -62,7 +62,7 @@
         <!-- NAVIGATION BUTTONS-->
         <div class="navigation-bar">
             <button class="code-navigation-button text-2xl" onclick="scrollToElement('top')">↑</button>
-            <button class="code-navigation-button" onclick="scrollToElement('savesystem-code-text')">SAVE SYSTEM</button>
+            <button class="code-navigation-button" onclick="scrollToElement('savesystem-code-text')">SAVING SYSTEM</button>
             <button class="code-navigation-button" onclick="scrollToElement('ragdoll-code-text')">RAGDOLL ITEM</button>
             <button class="code-navigation-button" onclick="scrollToElement('objectplace-code-text')">OBJECT PLACE</button>
             <button class="code-navigation-button" onclick="scrollToElement('flag-code-text')">FLAG VALUE</button>
@@ -71,30 +71,431 @@
         <!-- DIVIDER -->
         <div class="divider"></div>
 
+        <!-- SAVING SYSTEM HEADING -->
+        <div id="savesystem-code-text" class="flex justify-center">
+            <h2 class="text-4xl font-bold mb-4 text-center">SAVING SYSTEM</h2>
+        </div>
+
+
         <div class="code-container">
-            <!-- SAVE SYSTEM CODE -->
+            <!-- SAVELOAD CODE -->
             <section class="code-example-section">
                 <button 
                 class="toggleButton border-0 absolute top-10 right-10"
-                onclick="toggleOverflow('savesystem-code-example')">
+                onclick="toggleOverflow('saveload-code-example')">
                 ⇅
                 </button>
-                <pre id="savesystem-code-example" class="code-example-preview h-80">
+                <pre id="saveload-code-example" class="code-example-preview h-80">
                     <code class="language-csharp">
-CODE
+public static class SaveLoad
+{
+    private static readonly int m_version = 1;
+    public static readonly int Version = m_version;
+
+    public enum FileValidation
+    {
+        Valid,
+        Invalid,
+        Corrupted,
+        Empty
+    }
+    private static FileValidation m_validation = FileValidation.Valid;
+    public static FileValidation Validation => m_validation;
+
+
+    private static string m_directory = "/SaveFiles/";
+    private static List&lt;string&gt; m_saveFiles = new List&lt;string&gt;()
+    {
+        "Save_1.sav", 
+        "Save_2.sav", 
+        "Save_3.sav",
+    };
+
+
+    private static int m_currentSaveFile = 0;
+    public static int CurrentSaveFile
+    {
+        get => m_currentSaveFile;
+        set => m_currentSaveFile = value;
+    }
+
+    public static List&lt;string&gt; SaveFiles => m_saveFiles;
+
+
+    private static readonly string m_encryptionKey = "Pit0fG0blin";
+    private static readonly bool m_isEncrypted = false;
+    public static bool IsEncrypted => m_isEncrypted;
+
+
+    private static bool m_prettyPrint = true;
+    public static bool Prettyprint
+    {
+        get => m_prettyPrint;
+        set => m_prettyPrint = value;
+    }
+
+
+    public static bool IsCurrentSaveFileValid()
+    {
+        if (ServiceLocator.GetService&lt;GameStateService&gt;().Current.State == GameStateAsset.GameState.DebugGame)
+            return false;
+
+        if (ServiceLocator.GetService&lt;GameStateService&gt;().IsRandomGame)
+            return false;
+
+        string fullDataPath = Application.persistentDataPath + m_directory + m_saveFiles[CurrentSaveFile];
+        
+        m_validation = ValidateSaveFile(fullDataPath, CurrentSaveFile);
+        
+        if (m_validation == FileValidation.Valid) return true;
+        else return false;
+    }
+
+    public static bool IsSaveFileValid(string saveFile)
+    {
+        string fullDataPath = Application.persistentDataPath + m_directory + saveFile;
+        int save = m_saveFiles.IndexOf(saveFile);
+
+        m_validation = ValidateSaveFile(fullDataPath, save);
+        
+        if (m_validation == FileValidation.Valid) return true;
+        else return false;
+    }
+
+    public static bool IsSaveFileValid(int saveFile)
+    {
+        if (saveFile == 3) return false;
+        string fullDataPath = Application.persistentDataPath + m_directory + m_saveFiles[saveFile];
+        
+        m_validation = ValidateSaveFile(fullDataPath, saveFile);
+        
+        if (m_validation == FileValidation.Valid) return true;
+        else return false;
+    }
+
+
+    public static bool IsSaveFileEmpty(int saveFile)
+    {
+        if (saveFile == 3) return false;
+        string fullDataPath = Application.persistentDataPath + m_directory + m_saveFiles[saveFile];
+        
+        m_validation = ValidateSaveFile(fullDataPath, saveFile);
+
+        if (m_validation == FileValidation.Empty) return true;
+        else return false;
+    }
+    public static bool IsSaveFileEmpty(string saveFile)
+    {
+        string fullDataPath = Application.persistentDataPath + m_directory + saveFile;
+        int save = m_saveFiles.IndexOf(saveFile);
+
+        m_validation = ValidateSaveFile(fullDataPath, save);
+
+        if (m_validation == FileValidation.Empty) return true;
+        else return false;
+    }
+
+
+
+    public static void Save(SaveData saveData)
+    {
+        string directory = Application.persistentDataPath + m_directory;
+
+        GUIUtility.systemCopyBuffer = directory;
+
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+
+        var fileDate = DateTime.Now.ToString("yyyy-MM-dd");
+        saveData.SaveFileCreationDate = fileDate;
+
+        string json = JsonUtility.ToJson(saveData, m_prettyPrint);
+        string finalJson = "";
+
+        if (IsEncrypted)
+        {
+            string encryptedJson = EncryptDecrypt(json);
+            finalJson = encryptedJson;
+        }
+        else
+        {
+            finalJson = json;
+        }
+
+        File.WriteAllText(directory + m_saveFiles[CurrentSaveFile], finalJson);
+
+        Debug.Log("SAVING GAME!");
+    }
+
+    public static SaveData Load()
+    {
+        string fullDataPath = Application.persistentDataPath + m_directory + m_saveFiles[CurrentSaveFile];
+        SaveData saveData = new SaveData();
+
+        m_validation = ValidateSaveFile(fullDataPath, CurrentSaveFile);
+
+        if (m_validation == FileValidation.Valid)
+        {
+            string json = File.ReadAllText(fullDataPath);
+            string finalJson = "";
+
+            if (IsEncrypted)
+            {
+                finalJson = EncryptDecrypt(json);
+            }
+            else
+            {
+                finalJson = json;
+            }
+
+            saveData = JsonUtility.FromJson&lt;SaveData&gt;(finalJson);
+
+            Debug.Log("LOADING GAME!");
+
+            return saveData;
+        }
+
+        Debug.LogError($"Validation Failed! -- Could not Load Game -- SaveData {CurrentSaveFile} will be set to Null!");
+        return null;
+
+    }
+
+    public static SaveData GetSelectedSaveData(int saveFile)
+    {
+        string fullDataPath = Application.persistentDataPath + m_directory + m_saveFiles[saveFile];
+        SaveData saveData = new SaveData();
+
+        m_validation = ValidateSaveFile(fullDataPath, saveFile);
+
+        if (m_validation == FileValidation.Valid)
+        {
+            string json = File.ReadAllText(fullDataPath);
+            string finalJson = "";
+
+            if (IsEncrypted)
+            {
+                finalJson = EncryptDecrypt(json);
+            }
+            else
+            {
+                finalJson = json;
+            }
+
+            saveData = JsonUtility.FromJson&lt;SaveData&gt;(json);
+
+            return saveData;
+        }
+
+        Debug.LogError($"Validation Failed! -- Could not Get Selected({saveFile + 1}) SaveData -- SaveData Set to Null!");
+        return null;
+    }
+
+    public static void Delete()
+    {
+        string fullDataPath = Application.persistentDataPath + m_directory + m_saveFiles[CurrentSaveFile];
+    
+        if (File.Exists(fullDataPath))
+        {
+            File.Delete(fullDataPath);
+
+            Debug.Log("SAVE FILE DELETED!");
+        }
+    }
+
+    private static string EncryptDecrypt(string data)
+    {
+        string result = "";
+
+        for (int i = 0; i &lt; data.Length; i++)
+        {
+            result += (char) (data[i] ^ m_encryptionKey[i % m_encryptionKey.Length]);
+        }
+
+        return result;
+    }
+
+
+    private static FileValidation ValidateSaveFile(string fullDataPath, int save)
+    {
+        if (!File.Exists(fullDataPath))
+        {
+            return FileValidation.Empty;
+        }
+
+        SaveData saveData = new SaveData();
+
+        string json = File.ReadAllText(fullDataPath);
+        string finalJson = "";
+
+        if (IsEncrypted)
+        {
+            finalJson = EncryptDecrypt(json);
+        }
+        else
+        {
+            finalJson = json;
+        }
+
+        if (finalJson == "")
+        {
+            Debug.LogError($"Validation Failed! -- JSON SaveData {save + 1} is Null!");
+            return FileValidation.Corrupted;
+        }
+
+        try
+        {
+            saveData = JsonUtility.FromJson&lt;SaveData&gt;(finalJson);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Validation Failed! -- Save File {save + 1} is Corrupted! -- Exception: {e}");
+            return FileValidation.Corrupted;
+        }
+
+        if (saveData.Version != Version)
+        {
+            if (saveData.Version > Version)
+            {
+                Debug.LogError($"Validation Failed! -- Save File {save + 1} Version Out of Date -- Current Version: {saveData.Version}, Expected Version: {Version}");
+            }
+            else if(saveData.Version &lt; Version)
+            {
+                Debug.LogError($"Validation Failed! -- Save File {save + 1} Version Out of Date -- Current Version: {saveData.Version}, Expected Version: {Version}");
+            }
+
+            return FileValidation.Invalid;
+        }
+
+        return FileValidation.Valid;
+    }
+}
                     </code>
                 </pre>
             </section>
 
-            <!-- SAVE SYSTEM CODE TEXT -->
-            <aside id="savesystem-code-text" class="code-text-section">
-                <h2 class="code-text-heading">SAVE SYSTEM</h2>
+            <!-- SAVELOAD CODE TEXT -->
+            <aside id="saveload-code-text" class="code-text-section">
+                <h2 class="code-text-heading">SAVELOAD</h2>
                 <p class="leading-8">
                     TEXT
                 </p>
             </aside>    
         </div>
-        
+
+
+        <div class="code-container">
+            <!-- SAVEDATA CODE TEXT -->
+            <section id="savedata-code-text" class="code-text-section">
+                <h2 class="code-text-heading">SAVEDATA</h2>
+                <p class="leading-8">
+                    TEXT
+                </p>
+            </section>
+
+            <!-- SAVEDATA CODE -->
+            <aside class="code-example-section">
+                <button 
+                class="toggleButton border-0 absolute top-10 right-10"
+                onclick="toggleOverflow('savedata-code-example')">
+                ⇅
+                </button>
+                <pre id="savedata-code-example" class="code-example-preview h-80">
+                    <code class="language-csharp">
+public class SaveData
+{
+    public int Version = SaveLoad.Version;
+
+    public int CurrentDepth;
+
+    public int CurrentSafeArea;
+
+    public int Seed;        // seed that will last until a feeding session
+    public int SessionSeed; // seed that will last until everyone dies
+    public List&lt;bool&gt; VisitedDungeons;
+    public List&lt;bool&gt; DiscoveredItems;
+
+    public List&lt;string&gt; Flags;
+
+    public List&lt;string&gt; ObjectFlagsPlaced_KEYS;
+    public List&lt;GameMode_Goblin.ItemData&gt; ObjectFlagsPlaced_VALUES;
+
+    public int PlayerGold;
+    public int TotalGoldGathered;
+
+    public int CurrentNumCogs;
+
+    public int CurrentDay;
+    public int TimeLeftInDungeon;
+
+    public int CurrentLevel;
+    public int FeedingTimes;
+    public int TotalFoodOffered;
+
+    public bool FoodValueReached;
+    public bool HasReceivedReward;
+    public int CurrentFoodValue;
+
+    public bool HubUnlocked;
+
+    public bool FirstFeedingCogCollected;
+
+    public List&lt;GameMode_Goblin.ItemData&gt; ItemStorage;
+    public List&lt;GameMode_Goblin.ItemData&gt; BucketStorage;
+    public List&lt;GameMode_Goblin.ItemData&gt; PlayerInventory;
+
+    public string SaveFileCreationDate;
+
+
+    public SaveData()
+    {
+        CurrentDepth = new();
+
+        CurrentSafeArea = new();
+
+        Seed = new();
+        SessionSeed = new();
+        VisitedDungeons = new();
+        DiscoveredItems = new();
+
+        Flags = new();
+
+        ObjectFlagsPlaced_KEYS = new();
+        ObjectFlagsPlaced_VALUES = new();
+
+        PlayerGold = new();
+        TotalGoldGathered = new();
+
+        CurrentNumCogs = new();
+
+        CurrentDay = new();
+        TimeLeftInDungeon = new();
+
+        CurrentLevel = new();
+        FeedingTimes = new();
+        TotalFoodOffered = new();
+
+        FoodValueReached = new();
+        HasReceivedReward = new();
+        CurrentFoodValue = new();
+
+        HubUnlocked = new();   
+
+        ItemStorage = new();
+        BucketStorage = new();
+        PlayerInventory = new();
+
+        SaveFileCreationDate = new("");
+    }
+}
+                    </code>
+                </pre>
+            </aside>
+        </div>
+
+
+
         <!-- DIVIDER -->
         <div class="divider"></div>
 

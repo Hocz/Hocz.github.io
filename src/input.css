@@ -59,10 +59,12 @@ html {
     }
 }
 
-
-.divider {
-    @apply w-full border-b-2 border-green-500 my-8;
+@layer components {
+    .divider {
+        @apply w-full border-b-2 border-green-500 my-8;
+    }  
 }
+
 
 .code-container {
     @apply flex flex-col md:flex-row md:space-x-8 relative;
